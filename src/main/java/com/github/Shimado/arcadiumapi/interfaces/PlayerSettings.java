@@ -23,6 +23,7 @@ public interface PlayerSettings {
     @NotNull
     UUID getPlayerUUID();
 
+
     /**
      * Gets the background song settings for the main GUI.
      *
@@ -31,6 +32,7 @@ public interface PlayerSettings {
 
     @Nullable
     BackgroundSongSettings getMainGUISong();
+
 
     /**
      * Sets the background song for the main GUI.
@@ -42,6 +44,7 @@ public interface PlayerSettings {
 
     PlayerSettings setMainGUISong(boolean musicActive, @NotNull String musicID);
 
+
     /**
      * Gets background song settings for all game GUIs.
      *
@@ -50,6 +53,7 @@ public interface PlayerSettings {
 
     @NotNull
     Map<String, BackgroundSongSettings> getGamesGUISongs();
+
 
     /**
      * Gets the background song settings for a specific game.
@@ -60,6 +64,7 @@ public interface PlayerSettings {
 
     @Nullable
     BackgroundSongSettings getGameGUISong(@NotNull String gameName);
+
 
     /**
      * Sets the background song for a specific game GUI.

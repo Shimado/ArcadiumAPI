@@ -104,4 +104,21 @@ public class GameBet {
         return null;
     }
 
+
+    /**
+     * Gets the bet price.
+     *
+     * @return the bet price as double
+     * **/
+
+    public double getBetPrice(@Nullable GameBet bet){
+        if(bet == null) return 0.0;
+        if(bet.getItemsBet() != null){
+            return bet.getItemsBet().getAmount();
+        }
+        else{
+            return bet.getMoneyBet();
+        }
+    }
+
 }

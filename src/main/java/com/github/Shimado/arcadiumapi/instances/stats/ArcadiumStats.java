@@ -5,6 +5,7 @@ public class ArcadiumStats {
     private int gamesPlayed = 0;
     private int victories = 0;
     private int defeats = 0;
+    private int draws = 0;
     private long timePlayed = 0;
 
     public ArcadiumStats(){}

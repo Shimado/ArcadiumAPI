@@ -24,12 +24,24 @@ public interface GameLog {
 
 
     @NotNull
-    String getBet();
+    String getBetAsString();
 
 
     boolean isVictory();
 
 
     boolean isDefeat();
+
+
+    boolean isDraw();
+
+
+    int getTimePlayed();
+
+
+    long getScore();
+
+
+    long getRating();
 
 }

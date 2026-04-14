@@ -21,6 +21,7 @@ public class MultiplayerGameSessionsHub<S extends MultiplayerGameSession> {
     private UUID sessionUUID;
     private Map<Player, S> playerSessions = new HashMap<>();
     private Object cycle;
+    private int cycleTime = 0;
     private int time = 0;
     private boolean opened = true;
     private boolean ended = false;
@@ -183,10 +184,6 @@ public class MultiplayerGameSessionsHub<S extends MultiplayerGameSession> {
         this.cycle = cycle;
     }
 
-    /**
-     * Cancels and clears the current cycle task if one is active.
-     */
-
     public void cancelCycleID(@NotNull CycleRunnable cancelCycleRunnable) {
         if (cycle != null) {
             cancelCycleRunnable.run(cycle);
@@ -196,9 +193,32 @@ public class MultiplayerGameSessionsHub<S extends MultiplayerGameSession> {
 
 
     /**
-     * Gets the current timer value for this session.
+     * Gets the cycle timer for this session.
      *
-     * @return the current timer value
+     * @return the current time value
+     */
+
+    public int getCycleTime() {
+        return cycleTime;
+    }
+
+    public void setCycleTime(int cycleTime) {
+        this.cycleTime = cycleTime;
+    }
+
+    public void addCycleTime() {
+        cycleTime++;
+    }
+
+    public void removeCycleTime() {
+        cycleTime--;
+    }
+
+
+    /**
+     * Gets the current played time for this session.
+     *
+     * @return the current played time value
      */
 
     public int getTime() {
@@ -211,10 +231,6 @@ public class MultiplayerGameSessionsHub<S extends MultiplayerGameSession> {
 
     public void addTime() {
         time++;
-    }
-
-    public void removeTime() {
-        time--;
     }
 
 

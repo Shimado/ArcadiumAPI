@@ -15,8 +15,7 @@ import java.util.UUID;
 
 /**
  * Provides access to persistent and runtime data used in the game system.
- * This interface defines methods to retrieve bet items, player-related data,
- * shop items, and game statistics.
+ * This interface defines methods to retrieve bet items, player-related data and game statistics.
  */
 
 public interface DataStorage {
@@ -136,7 +135,57 @@ public interface DataStorage {
     Set<PlayerStats> getSortedStatsDefeats();
 
     @NotNull
+    Set<PlayerStats> getSortedStatsDraws();
+
+    @NotNull
     Set<PlayerStats> getSortedStatsTimePlayed();
 
+
+    /**
+     * Gets a complete list of objects sorted by the required criteria.
+     * @return the set of sorted objects
+     * **/
+
+    @NotNull
+    Set<PlayerStats> getSortedStatsGamesPlayed(@NotNull String gameName);
+
+    @NotNull
+    Set<PlayerStats> getSortedStatsVictories(@NotNull String gameName);
+
+    @NotNull
+    Set<PlayerStats> getSortedStatsDefeats(@NotNull String gameName);
+
+    @NotNull
+    Set<PlayerStats> getSortedStatsDraws(@NotNull String gameName);
+
+    @NotNull
+    Set<PlayerStats> getSortedStatsTimePlayed(@NotNull String gameName);
+
+    @NotNull
+    Set<PlayerStats> getSortedStatsScore(@NotNull String gameName);
+
+    @NotNull
+    Set<PlayerStats> getSortedStatsRating(@NotNull String gameName);
+
+
+    /**
+     * Gets a complete list of objects sorted by the required criteria.
+     * @return the set of sorted objects
+     * **/
+
+    @NotNull
+    Set<GameStats> getSortedGameStatsGamesPlayed();
+
+    @NotNull
+    Set<GameStats> getSortedGameStatsVictories();
+
+    @NotNull
+    Set<GameStats> getSortedGameStatsDefeats();
+
+    @NotNull
+    Set<GameStats> getSortedGameStatsDraws();
+
+    @NotNull
+    Set<GameStats> getSortedGameStatsTimePlayed();
 
 }

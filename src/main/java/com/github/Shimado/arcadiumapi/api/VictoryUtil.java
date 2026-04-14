@@ -98,4 +98,16 @@ public interface VictoryUtil {
 
     void defeat(@NotNull Player player, @NotNull GameBet bet, @NotNull ArcadiumGame gameMode, @Nullable PlacedGameTable gameTable);
 
+
+    /**
+     * Handles a player's draw.
+     * Does not clear chip information after implementation.
+     *
+     * @param player          the player who lost
+     * @param bet             the bet placed by the player
+     * @param gameMode        the game mode where the loss occurred
+     */
+
+    void draw(@NotNull Player player, @NotNull GameBet bet, @NotNull ArcadiumGame gameMode);
+
 }

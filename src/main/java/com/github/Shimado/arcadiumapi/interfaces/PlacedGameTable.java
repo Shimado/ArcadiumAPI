@@ -23,6 +23,7 @@ public interface PlacedGameTable {
     @NotNull
     UUID getUUID();
 
+
     /**
      * Gets the ID of the {@link GameTableItem} that defines this table.
      *
@@ -32,6 +33,7 @@ public interface PlacedGameTable {
     @NotNull
     String getGameTableItemID();
 
+
     /**
      * Gets the {@link GameTableItem} definition linked to this placed table.
      *
@@ -40,6 +42,7 @@ public interface PlacedGameTable {
 
     @NotNull
     GameTableItem getGameTableItem();
+
 
     /**
      * Gets the game mode name associated with this table.
@@ -51,6 +54,7 @@ public interface PlacedGameTable {
     @NotNull
     String getGame();
 
+
     /**
      * Sets the game mode name associated with this table.
      * Can be "ALL".
@@ -61,6 +65,7 @@ public interface PlacedGameTable {
 
     PlacedGameTable setGame(@Nullable String game);
 
+
     /**
      * Gets the location of this table in the world.
      *
@@ -70,6 +75,7 @@ public interface PlacedGameTable {
     @NotNull
     Location getLoc();
 
+
     /**
      * Gets the yaw (rotation) of this table.
      * Needs for the developers pack.
@@ -78,6 +84,7 @@ public interface PlacedGameTable {
      */
 
     float getYaw();
+
 
     /**
      * Gets the UUID of the player who owns this table.

@@ -12,6 +12,8 @@ import org.jetbrains.annotations.Nullable;
 public class GameStats extends ArcadiumStats {
 
     private String gameName;
+    private long score;
+    private long rating;
 
     /**
      * Creates a new statistics object for a specific game.
@@ -32,7 +34,17 @@ public class GameStats extends ArcadiumStats {
      * @param victories   number of victories
      * @param defeats     number of defeats
      * @param timePlayed  number of timePlayed
+     * @param score       game score
+     * @param rating      player rating
      */
+
+    public GameStats(@NotNull String gameName, int gamesPlayed, int victories, int defeats, int timePlayed, long score, long rating) {
+        super(gamesPlayed, victories, defeats, timePlayed);
+        this.gameName = gameName;
+        this.score = score;
+        this.rating = rating;
+    }
+
 
     public GameStats(@NotNull String gameName, int gamesPlayed, int victories, int defeats, int timePlayed) {
         super(gamesPlayed, victories, defeats, timePlayed);
@@ -50,5 +62,33 @@ public class GameStats extends ArcadiumStats {
     public String getGameName() {
         return gameName;
     }
+
+
+
+    public long getScore() {
+        return score;
+    }
+
+    public void setScore(long score) {
+        this.score = score;
+    }
+
+    public void addScore(int score) {
+        this.score += score;
+    }
+
+
+    public long getRating() {
+        return rating;
+    }
+
+    public void setRating(long rating) {
+        this.rating = rating;
+    }
+
+    public void addRating(int rating) {
+        this.rating += rating;
+    }
+
 
 }

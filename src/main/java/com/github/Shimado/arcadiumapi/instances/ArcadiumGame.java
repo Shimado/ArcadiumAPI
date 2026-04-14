@@ -7,10 +7,7 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Represents a game mode configuration.
@@ -20,8 +17,7 @@ import java.util.Map;
 public class ArcadiumGame {
 
     private String modeName;                                                 // For usage in commands/placeholders/code and etc
-    private int guiSize = 6;                                                 // The size of the GUI (lines)
-    private String guiTitle = "";                                            // Title of the GUI
+    private LinkedList<ArcadiumGamePage> gamePages = new LinkedList<>();     // Game pages
     private String permission = "";                                          // The permission to open the game mode
     private List<Integer> slotsInGUI = new ArrayList<>();                    // Slots occupied by the icon in the main GUI
     private List<Integer> slotsInOneGameGUI = new ArrayList<>();             // Slots occupied by an icon in the main GUI for one game
@@ -106,17 +102,6 @@ public class ArcadiumGame {
     private List<String> leverItemEndLore = new ArrayList<>();               // Finished lever lore
 
     private BoomboxSong backgroundMusic;                                     // Background music in .nbs format from Boombox plugin
-    private List<Integer> musicButtonSlots = new ArrayList<>();              // Slot occupied by the button
-    private ItemStack musicButtonItemInactive;                               // Background music button (inactive)
-    private String musicButtonItemInactiveTitle;                             // Active background button title
-    private List<String> musicButtonItemInactiveLore = new ArrayList<>();    // Active background button lore
-    private ItemStack musicButtonItemActive;                                 // Background music button (active)
-    private String musicButtonItemActiveTitle;                               // Active background button title
-    private List<String> musicButtonItemActiveLore = new ArrayList<>();      // Active background button lore
-    private List<Integer> statsButtonSlots = new ArrayList<>();              // This game mode statistics slots
-    private ItemStack statsButtonItem;                                       // This game mode statistics item
-    private List<String> statsButtonLore = new ArrayList<>();                // This game mode statistics item lore with all placeholders
-    private Map<Integer, ItemStack> emptySlots = new HashMap<>();            // Background slot items
 
     private int gameOnline = 0;                                              // This is how many players are currently playing this mode
 
@@ -132,25 +117,17 @@ public class ArcadiumGame {
     }
 
 
-    @Nullable
-    public String getGuiTitle(){
-        return guiTitle;
+    @NotNull
+    public LinkedList<ArcadiumGamePage> getGamePages(){
+        return gamePages;
     }
 
-    public ArcadiumGame setGuiTitle(@NotNull String guiTitle){
-        if(guiTitle == null) return this;
-        this.guiTitle = guiTitle;
-        return this;
+    public void setGamePages(@NotNull LinkedList<ArcadiumGamePage> gamePages){
+        this.gamePages = gamePages;
     }
 
-
-    public int getGuiSize(){
-        return guiSize;
-    }
-
-    public ArcadiumGame setGuiSize(int guiSize){
-        this.guiSize = guiSize;
-        return this;
+    public void addGamePage(@NotNull ArcadiumGamePage arcadiumGamePage){
+        gamePages.add(arcadiumGamePage);
     }
 
 
@@ -1010,133 +987,6 @@ public class ArcadiumGame {
 
     public ArcadiumGame setBackgroundMusic(@Nullable BoomboxSong backgroundMusic) {
         this.backgroundMusic = backgroundMusic;
-        return this;
-    }
-
-
-    @NotNull
-    public List<Integer> getMusicButtonSlots() {
-        return musicButtonSlots;
-    }
-
-    public ArcadiumGame setMusicButtonSlots(@NotNull List<Integer> musicButtonSlots) {
-        if(musicButtonSlots == null) return this;
-        this.musicButtonSlots = musicButtonSlots;
-        return this;
-    }
-
-
-    @Nullable
-    public ItemStack getMusicButtonItemInactive() {
-        return musicButtonItemInactive;
-    }
-
-    public ArcadiumGame setMusicButtonItemInactive(@Nullable ItemStack musicButtonItemInactive) {
-        this.musicButtonItemInactive = musicButtonItemInactive;
-        return this;
-    }
-
-
-    @Nullable
-    public String getMusicButtonItemInactiveTitle() {
-        return musicButtonItemInactiveTitle;
-    }
-
-    public ArcadiumGame setMusicButtonItemInactiveTitle(@Nullable String musicButtonItemInactiveTitle) {
-        this.musicButtonItemInactiveTitle = musicButtonItemInactiveTitle;
-        return this;
-    }
-
-
-    @NotNull
-    public List<String> getMusicButtonItemInactiveLore() {
-        return musicButtonItemInactiveLore;
-    }
-
-    public ArcadiumGame setMusicButtonItemInactiveLore(@NotNull List<String> musicButtonItemInactiveLore) {
-        if(musicButtonItemInactiveLore == null) return this;
-        this.musicButtonItemInactiveLore = musicButtonItemInactiveLore;
-        return this;
-    }
-
-
-    @Nullable
-    public ItemStack getMusicButtonItemActive() {
-        return musicButtonItemActive;
-    }
-
-    public ArcadiumGame setMusicButtonItemActive(@Nullable ItemStack musicButtonItemActive) {
-        this.musicButtonItemActive = musicButtonItemActive;
-        return this;
-    }
-
-
-    @Nullable
-    public String getMusicButtonItemActiveTitle() {
-        return musicButtonItemActiveTitle;
-    }
-
-    public ArcadiumGame setMusicButtonItemActiveTitle(@Nullable String musicButtonItemActiveTitle) {
-        this.musicButtonItemActiveTitle = musicButtonItemActiveTitle;
-        return this;
-    }
-
-
-    @NotNull
-    public List<String> getMusicButtonItemActiveLore() {
-        return musicButtonItemActiveLore;
-    }
-
-    public ArcadiumGame setMusicButtonItemActiveLore(@NotNull List<String> musicButtonItemActiveLore) {
-        if(musicButtonItemActiveLore == null) return this;
-        this.musicButtonItemActiveLore = musicButtonItemActiveLore;
-        return this;
-    }
-
-
-    @NotNull
-    public List<Integer> getStatsButtonSlots() {
-        return statsButtonSlots;
-    }
-
-    public ArcadiumGame setStatsButtonSlots(@NotNull List<Integer> statsButtonSlots) {
-        if(statsButtonSlots == null) return this;
-        this.statsButtonSlots = statsButtonSlots;
-        return this;
-    }
-
-
-    @Nullable
-    public ItemStack getStatsButtonItem() {
-        return statsButtonItem;
-    }
-
-    public ArcadiumGame setStatsButtonItem(@Nullable ItemStack statsButtonItem) {
-        this.statsButtonItem = statsButtonItem;
-        return this;
-    }
-
-
-    @NotNull
-    public List<String> getStatsButtonLore() {
-        return statsButtonLore;
-    }
-
-    public ArcadiumGame setStatsButtonLore(@NotNull List<String> statsButtonLore) {
-        if(statsButtonLore == null) return this;
-        this.statsButtonLore = statsButtonLore;
-        return this;
-    }
-
-
-    @NotNull
-    public Map<Integer, ItemStack> getEmptySlots() {
-        return emptySlots;
-    }
-
-    public ArcadiumGame setEmptySlots(@NotNull Map<Integer, ItemStack> emptySlots) {
-        if(emptySlots == null) return this;
-        this.emptySlots = emptySlots;
         return this;
     }
 

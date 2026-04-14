@@ -27,13 +27,8 @@ public interface ISession<T extends ArcadiumGame & GameMethods> {
     @NotNull
     Inventory getInv();
 
-    /**
-     * Sets the inventory associated with this session.
-     *
-     * @param inv the inventory to set
-     */
-
     void setInv(@NotNull Inventory inv);
+
 
     /**
      * Gets the opened Music inventory associated with this session.
@@ -44,13 +39,8 @@ public interface ISession<T extends ArcadiumGame & GameMethods> {
     @Nullable
     Inventory getMusicInv();
 
-    /**
-     * Sets the opened Music inventory associated with this session.
-     *
-     * @param musicInv the inventory to set
-     */
-
     void setMusicInv(@Nullable Inventory musicInv);
+
 
     /**
      * Gets the type of the current GUI.
@@ -61,13 +51,19 @@ public interface ISession<T extends ArcadiumGame & GameMethods> {
     @NotNull
     InventoryType getInventoryType();
 
-    /**
-     * Sets the type of the current GUI.
-     *
-     * @param inventoryType the GUI type
-     */
-
     void setInventoryType(@NotNull InventoryType inventoryType);
+
+
+    /**
+     * Checks if the session was opened by the command.
+     *
+     * @return {@code true} if a sessions was opened by the command, otherwise {@code false}
+     * **/
+
+    boolean isOpenedByCommand();
+
+    void setOpenedByCommand(boolean openedByCommand);
+
 
     /**
      * Checks whether the session is currently changing pages.
@@ -77,13 +73,8 @@ public interface ISession<T extends ArcadiumGame & GameMethods> {
 
     boolean isChangingPage();
 
-    /**
-     * Sets whether the session is currently changing pages.
-     *
-     * @param changingPage {@code true} if changing, otherwise {@code false}
-     */
-
     void setChangingPage(boolean changingPage);
+
 
     /**
      * Gets the name of the game mode associated with this session's table.
@@ -95,14 +86,8 @@ public interface ISession<T extends ArcadiumGame & GameMethods> {
     @NotNull
     String getTableGame();
 
-    /**
-     * Sets the name of the game associated with this session's table.
-     * Can be "ALL"
-     *
-     * @param tableGame the game identifier
-     */
-
     void setTableGame(@NotNull String tableGame);
+
 
     /**
      * Gets the currently opened game instance in this session.
@@ -113,13 +98,8 @@ public interface ISession<T extends ArcadiumGame & GameMethods> {
     @Nullable
     T getOpenedGame();
 
-    /**
-     * Sets the currently opened game instance in this session.
-     *
-     * @param openedGame the game instance
-     */
-
     void setOpenedGame(@Nullable T openedGame);
+
 
     /**
      * Gets the placed table the player is playing.
@@ -130,12 +110,6 @@ public interface ISession<T extends ArcadiumGame & GameMethods> {
     @Nullable
     PlacedGameTable getGameTable();
 
-    /**
-     * Sets the placed table associated with this session or {@code null} if opened by a command.
-     *
-     * @param placedGameTable the placed table
-     */
-
     void setGameTable(@Nullable PlacedGameTable placedGameTable);
 
     /**
@@ -145,12 +119,6 @@ public interface ISession<T extends ArcadiumGame & GameMethods> {
      */
 
     int getPage();
-
-    /**
-     * Sets the current page index.
-     *
-     * @param page the page number
-     */
 
     void setPage(int page);
 
@@ -171,6 +139,7 @@ public interface ISession<T extends ArcadiumGame & GameMethods> {
      */
 
     int previousPage();
+
 
     /**
      * Closes the GUI for the given player.

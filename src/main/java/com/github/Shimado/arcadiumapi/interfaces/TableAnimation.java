@@ -23,6 +23,7 @@ public interface TableAnimation {
     @NotNull
     TableAnimationType getTableAnimationType();
 
+
     /**
      * Gets the list of items that can be dropped during the animation.
      *
@@ -32,6 +33,7 @@ public interface TableAnimation {
     @NotNull
     List<ItemStack> getItemsToDrop();
 
+
     /**
      * Gets the chance that an item will spawn/drop during the animation.
      * Value is typically between {@code 0.0} (never) and {@code 100.0}
@@ -40,6 +42,7 @@ public interface TableAnimation {
      */
 
     double getDropSpawnChance();
+
 
     /**
      * Gets the amount of items that can be dropped per animation cycle.

@@ -20,6 +20,7 @@ public interface EconomyUtil {
 
     void setupTownAccountUUID(@Nullable String townAccount);
 
+
     /**
      * Gets the UUID of the town (server-wide) account, if it exists.
      *
@@ -28,6 +29,7 @@ public interface EconomyUtil {
 
     @Nullable
     UUID getTownAccountUUID();
+
 
     /**
      * Sets the balance of a specific player.
@@ -38,6 +40,7 @@ public interface EconomyUtil {
 
     void setBalance(@Nullable UUID playerUUID, double money);
 
+
     /**
      * Gets the balance of a specific player.
      *
@@ -46,6 +49,7 @@ public interface EconomyUtil {
      */
 
     double getBalance(@Nullable UUID playerUUID);
+
 
     /**
      * Checks if a player has at least the specified amount of money.
@@ -57,6 +61,7 @@ public interface EconomyUtil {
 
     boolean isHaveMoney(@Nullable UUID playerUUID, double money);
 
+
     /**
      * Adds money to a player's balance.
      *
@@ -65,6 +70,7 @@ public interface EconomyUtil {
      */
 
     void addBalance(@Nullable UUID playerUUID, double money);
+
 
     /**
      * Removes money from a player's balance.

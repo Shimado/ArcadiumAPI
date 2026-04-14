@@ -23,6 +23,7 @@ public interface GameTableItem {
     @NotNull
     String getID();
 
+
     /**
      * Gets the {@link Material} representing the table block material.
      *
@@ -31,6 +32,7 @@ public interface GameTableItem {
 
     @NotNull
     Material getBlockMaterial();
+
 
     /**
      * Gets the {@link ItemStack} representing the table item.
@@ -41,6 +43,7 @@ public interface GameTableItem {
     @NotNull
     ItemStack getTableItem();
 
+
     /**
      * Gets the custom model data value used for the item.
      *
@@ -48,6 +51,7 @@ public interface GameTableItem {
      */
 
     int getCustomModelData();
+
 
     /**
      * Gets the game mode name associated with this table item.
@@ -59,13 +63,6 @@ public interface GameTableItem {
     @NotNull
     String getGame();
 
-    /**
-     * Gets the Y-axis offset of the table decoration armor stands.
-     *
-     * @return the vertical offset
-     */
-
-    double getYOffset();
 
     /**
      * Gets the animation configuration for the game table.

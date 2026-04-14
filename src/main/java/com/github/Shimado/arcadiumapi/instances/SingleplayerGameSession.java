@@ -14,6 +14,7 @@ public class SingleplayerGameSession {
 
     private GameBet bet;
     private Object cycle;
+    private int cycleTime = 0;
     private int time = 0;
     private boolean opened = true;
     private boolean ended = false;
@@ -54,10 +55,6 @@ public class SingleplayerGameSession {
         this.cycle = cycle;
     }
 
-    /**
-     * Cancels and clears the current cycle task if one is active.
-     */
-
     public void cancelCycleID(@NotNull CycleRunnable cancelCycleRunnable) {
         if (cycle != null) {
             cancelCycleRunnable.run(cycle);
@@ -67,9 +64,32 @@ public class SingleplayerGameSession {
 
 
     /**
-     * Gets the current timer value for this session.
+     * Gets the cycle timer for this session.
      *
-     * @return the current timer value
+     * @return the current time value
+     */
+
+    public int getCycleTime() {
+        return cycleTime;
+    }
+
+    public void setCycleTime(int cycleTime) {
+        this.cycleTime = cycleTime;
+    }
+
+    public void addCycleTime() {
+        cycleTime++;
+    }
+
+    public void removeCycleTime() {
+        cycleTime--;
+    }
+
+
+    /**
+     * Gets the current played time for this session.
+     *
+     * @return the current played time value
      */
 
     public int getTime() {
@@ -82,10 +102,6 @@ public class SingleplayerGameSession {
 
     public void addTime() {
         time++;
-    }
-
-    public void removeTime() {
-        time--;
     }
 
 
