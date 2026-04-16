@@ -1098,13 +1098,13 @@ public class ArcadiumGame {
     }
 
 
-    @Nullable
+    @NotNull
     public String getLogText() {
         return logText;
     }
 
     public ArcadiumGame setLogText(@Nullable String logText) {
-        this.logText = logText;
+        this.logText = logText != null ? logText : "";
         return this;
     }
 
