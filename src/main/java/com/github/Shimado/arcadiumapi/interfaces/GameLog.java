@@ -32,19 +32,19 @@ public interface GameLog {
     boolean isDraw();
 
 
-    int getTimePlayed();
+    long getTimePlayed();
 
 
-    long getOldScore();
+    int getOldScore();
 
 
-    long getNewScore();
+    int getNewScore();
 
 
-    long getOldRating();
+    int getOldRating();
 
 
-    long getNewRating();
+    int getNewRating();
 
 
     @NotNull

@@ -114,6 +114,9 @@ public class ArcadiumGame {
     private Map<String, Object> httpDrawHeaders = new HashMap<>();           // Request headers
     private BoomboxSong drawMusic;                                           // Music in .nbs format from Boombox plugin
 
+    // LOGS
+    private String logText;                                                  // Logs line
+
     private int gameOnline = 0;                                              // This is how many players are currently playing this mode
 
 
@@ -1091,6 +1094,17 @@ public class ArcadiumGame {
 
     public ArcadiumGame setDrawMusic(@Nullable BoomboxSong drawMusic) {
         this.drawMusic = drawMusic;
+        return this;
+    }
+
+
+    @Nullable
+    public String getLogText() {
+        return logText;
+    }
+
+    public ArcadiumGame setLogText(@Nullable String logText) {
+        this.logText = logText;
         return this;
     }
 
