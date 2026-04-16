@@ -154,7 +154,7 @@ public class MultiplayerGameSessionsHub<S extends MultiplayerGameSession> {
 
     @NotNull
     public List<Integer> getFreeSpotSlots(@NotNull ArcadiumGame gameMode) {
-        List<Integer> emptySlots = new ArrayList<>(gameMode.getSpotSlots());
+        List<Integer> emptySlots = new ArrayList<>(); //gameMode.getSpotSlots()
         Set<Integer> occupiedSlots = playerSessions.values().stream()
                 .filter(it -> it.getBet() != null && it.getBet().getSlot() != -1)
                 .map(it -> it.getBet().getSlot())
