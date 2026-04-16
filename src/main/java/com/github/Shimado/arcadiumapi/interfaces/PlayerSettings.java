@@ -25,6 +25,26 @@ public interface PlayerSettings {
 
 
     /**
+     * Gets the player's cash bet for each click.
+     * Works only for BetType.MONEY
+     *
+     * @return default bet amount
+     */
+
+    double getDefaultMoneyBet();
+
+    /**
+     * Sets the player's cash bet for each click.
+     * Works only for BetType.MONEY
+     *
+     * @param defaultMoneyBet bet amount
+     * @return this PlayerSettings instance for chaining
+     */
+
+    PlayerSettings setDefaultMoneyBet(double defaultMoneyBet);
+
+
+    /**
      * Gets the background song settings for the main GUI.
      *
      * @return main GUI background song settings, or {@code null} if not set
@@ -38,11 +58,32 @@ public interface PlayerSettings {
      * Sets the background song for the main GUI.
      *
      * @param musicActive whether the music is active. If so, music will play when the GUI is opened.
-     * @param musicID     ID of the music in the Arcadium plugin config, which is specified in the "Music GUI songs:"
+     * @param musicID     ID of the music in the Arcadium plugin config
      * @return this PlayerSettings instance for chaining
      */
 
     PlayerSettings setMainGUISong(boolean musicActive, @NotNull String musicID);
+
+
+    /**
+     * Gets the background song settings for the main GUI (for one game).
+     *
+     * @return main GUI background song settings, or {@code null} if not set
+     */
+
+    @Nullable
+    BackgroundSongSettings getMainGUIForOneGameSong();
+
+
+    /**
+     * Sets the background song for the main GUI (for one game).
+     *
+     * @param musicActive whether the music is active. If so, music will play when the GUI is opened.
+     * @param musicID     ID of the music in the Arcadium plugin config
+     * @return this PlayerSettings instance for chaining
+     */
+
+    PlayerSettings setMainGUIForOneGameSong(boolean musicActive, @NotNull String musicID);
 
 
     /**

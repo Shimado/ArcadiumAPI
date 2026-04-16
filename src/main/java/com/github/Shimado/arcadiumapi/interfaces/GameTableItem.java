@@ -61,7 +61,7 @@ public interface GameTableItem {
      */
 
     @NotNull
-    String getGame();
+    String getGameName();
 
 
     /**

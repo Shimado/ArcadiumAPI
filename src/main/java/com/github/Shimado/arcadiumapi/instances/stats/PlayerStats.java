@@ -13,7 +13,7 @@ import java.util.UUID;
 
 public class PlayerStats extends ArcadiumStats {
 
-    private UUID playerUUID;
+    private final UUID playerUUID;
     private Map<String, GameStats> gameStats = new HashMap<>();
 
 
@@ -36,11 +36,12 @@ public class PlayerStats extends ArcadiumStats {
      * @param gamesPlayed number of games played
      * @param victories   number of victories
      * @param defeats     number of defeats
+     * @param draws       number of draws
      * @param timePlayed  number of timePlayed
      */
 
-    public PlayerStats(@NotNull UUID playerUUID, int gamesPlayed, int victories, int defeats, long timePlayed){
-        super(gamesPlayed, victories, defeats, timePlayed);
+    public PlayerStats(@NotNull UUID playerUUID, int gamesPlayed, int victories, int defeats, int draws, long timePlayed){
+        super(gamesPlayed, victories, defeats, draws, timePlayed);
         this.playerUUID = playerUUID;
     }
 
@@ -69,6 +70,7 @@ public class PlayerStats extends ArcadiumStats {
         return gameStats.get(gameName);
     }
 
+
     /**
      * Gets statistics for all game modes.
      *
@@ -79,6 +81,7 @@ public class PlayerStats extends ArcadiumStats {
     public Map<String, GameStats> getGameStats() {
         return gameStats;
     }
+
 
     /**
      * Sets or updates statistics for a specific game mode.
@@ -91,6 +94,7 @@ public class PlayerStats extends ArcadiumStats {
         if(gameName == null || gameName.isEmpty() || gameStats == null) return;
         this.gameStats.put(gameName, gameStats);
     }
+
 
     /**
      * Sets the statistics map for all games.

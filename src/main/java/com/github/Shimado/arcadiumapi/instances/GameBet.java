@@ -2,6 +2,7 @@ package com.github.Shimado.arcadiumapi.instances;
 
 import com.github.Shimado.arcadiumapi.enums.BetType;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -94,14 +95,14 @@ public class GameBet {
     /**
      * Gets the bet type.
      *
-     * @return the chip type, or {@code null} if none
+     * @return the chip type, or BetType.NONE if none
      * **/
 
-    @Nullable
+    @NotNull
     public BetType getChipType(){
         if(moneyBet > 0) return BetType.MONEY;
         if(itemsBet != null) return BetType.ITEMS;
-        return null;
+        return BetType.NONE;
     }
 
 

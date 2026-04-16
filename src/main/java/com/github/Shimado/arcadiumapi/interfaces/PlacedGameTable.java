@@ -52,18 +52,18 @@ public interface PlacedGameTable {
      */
 
     @NotNull
-    String getGame();
+    String getGameName();
 
 
     /**
      * Sets the game mode name associated with this table.
      * Can be "ALL".
      *
-     * @param game the game mode name
+     * @param gameName the game mode name
      * @return this instance for chaining
      */
 
-    PlacedGameTable setGame(@Nullable String game);
+    PlacedGameTable setGameName(@Nullable String gameName);
 
 
     /**

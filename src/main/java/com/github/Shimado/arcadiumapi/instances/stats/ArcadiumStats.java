@@ -10,10 +10,11 @@ public class ArcadiumStats {
 
     public ArcadiumStats(){}
 
-    public ArcadiumStats(int gamesPlayed, int victories, int defeats, long timePlayed){
+    public ArcadiumStats(int gamesPlayed, int victories, int defeats, int draws, long timePlayed){
         this.gamesPlayed = gamesPlayed;
         this.victories = victories;
         this.defeats = defeats;
+        this.draws = draws;
         this.timePlayed = timePlayed;
     }
 
@@ -54,6 +55,19 @@ public class ArcadiumStats {
 
     public void addDefeat() {
         defeats++;
+    }
+
+
+    public int getDraws() {
+        return draws;
+    }
+
+    public void setDraws(int draws) {
+        this.draws = draws;
+    }
+
+    public void addDraws() {
+        draws++;
     }
 
 

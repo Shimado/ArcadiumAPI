@@ -16,13 +16,14 @@ import java.util.*;
 
 public class ArcadiumGame {
 
-    private String modeName;                                                 // For usage in commands/placeholders/code and etc
-    private LinkedList<ArcadiumGamePage> gamePages = new LinkedList<>();     // Game pages
+    private final String modeName;                                           // For usage in commands/placeholders/code and etc
+    private Map<String, ArcadiumGamePage> gamePages = new HashMap<>();       // Game pages
     private String permission = "";                                          // The permission to open the game mode
     private List<Integer> slotsInGUI = new ArrayList<>();                    // Slots occupied by the icon in the main GUI
     private List<Integer> slotsInOneGameGUI = new ArrayList<>();             // Slots occupied by an icon in the main GUI for one game
     private ItemStack iconItem;                                              // The icon in the main GUI
 
+    // VICTORY
     private BarColor victoryBossBarColor = BarColor.GREEN;                   // Bar color
     private BarStyle victoryBossBarStyle = BarStyle.SOLID;                   // Bar style
     private int victoryBossBarDuration = 0;                                  // Duration in ticks
@@ -53,6 +54,7 @@ public class ArcadiumGame {
     private Map<String, Object> httpVictoryHeaders = new HashMap<>();        // Request headers
     private BoomboxSong victoryMusic;                                        // Music in .nbs format from Boombox plugin
 
+    // DEFEAT
     private boolean sendDefeatTitle = false;                                 // Sends defeat title
     private BarColor defeatBossBarColor = BarColor.GREEN;                    // Bar color
     private BarStyle defeatBossBarStyle = BarStyle.SOLID;                    // Bar style
@@ -82,26 +84,35 @@ public class ArcadiumGame {
     private Map<String, Object> httpDefeatHeaders = new HashMap<>();         // Request headers
     private BoomboxSong defeatMusic;                                         // Music in .nbs format from Boombox plugin
 
-    private List<Integer> spotSlots = new ArrayList<>();                     // Betting spots
-    private ItemStack spotItem;                                              // Betting spot icon
-    private String spotItemTitle;                                            // Betting spot title
-    private List<String> spotItemLore = new ArrayList<>();                   // Betting spot lore
-
-    private List<Integer> leverSlots = new ArrayList<>();                    // Control lever slots
-    private ItemStack leverItemInactive;                                     // Inactive lever (when no bet is placed)
-    private String leverItemInactiveTitle;                                   // Inactive lever title
-    private List<String> leverItemInactiveLore = new ArrayList<>();          // Inactive lever lore
-    private ItemStack leverItemActive;                                       // Active lever (when player has placed a bet)
-    private String leverItemActiveTitle;                                     // Active lever title
-    private List<String> leverItemActiveLore = new ArrayList<>();            // Active lever lore
-    private ItemStack leverItemRolling;                                      // Rolling lever (when player has placed a bet and started the game)
-    private String leverItemRollingTitle;                                    // Rolling lever title
-    private List<String> leverItemRollingLore = new ArrayList<>();           // Rolling lever lore
-    private ItemStack leverItemEnd;                                          // Finished lever (when the game is over)
-    private String leverItemEndTitle;                                        // Finished lever title
-    private List<String> leverItemEndLore = new ArrayList<>();               // Finished lever lore
-
-    private BoomboxSong backgroundMusic;                                     // Background music in .nbs format from Boombox plugin
+    // DRAW
+    private boolean sendDrawTitle = false;                                   // Sends draw title
+    private BarColor drawBossBarColor = BarColor.GREEN;                      // Bar color
+    private BarStyle drawBossBarStyle = BarStyle.SOLID;                      // Bar style
+    private int drawBossBarDuration = 0;                                     // Duration in ticks
+    private boolean sendDrawBossBar = false;                                 // Sends bossbar title to player
+    private String drawBossBarTitle;                                         // Title itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private boolean sendDrawBossBarToAll = false;                            // Sends bossbar title to all players
+    private String drawBossBarTitleToAll;                                    // Title itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private String drawTitle;                                                // Title itself [Placeholders: %player%, %mode%, %bet_price%]
+    private String drawSubtitle;                                             // Subtitle itself [Placeholders: %player%, %mode%, %bet_price%]
+    private boolean sendDrawTitleToAll = false;                              // Sends draw title to all players
+    private String drawTitleToAll;                                           // Title itself [Placeholders: %player%, %mode%, %bet_price%]
+    private String drawSubtitleToAll;                                        // Subtitle itself [Placeholders: %player%, %mode%, %bet_price%]
+    private int drawTitleFadeIn = 0;                                         // Title fade in time in ticks
+    private int drawTitleStay = 0;                                           // Title stay time in ticks
+    private int drawTitleFadeOut = 0;                                        // Title fade out time in ticks
+    private boolean sendDrawMessage = false;                                 // Sends draw message to the losing player
+    private String drawMessage;                                              // Message itself [Placeholders: %player%, %mode%, %bet_price%]
+    private boolean sendDrawMessageToAll = false;                            // Sends draw message to all players
+    private String drawMessageToAll;                                         // Message itself [Placeholders: %player%, %mode%, %bet_price%]
+    private boolean sendDrawMessageToDiscord = false;                        // Sends draw message to Discord
+    private String drawMessageToDiscord;                                     // Message itself [Placeholders: %player%, %mode%, %bet_price%]
+    private boolean useOnlyDrawCommands = false;                             // Whether only commands will be executed
+    private List<String> drawCommandsToDispatch = new ArrayList<>();         // Commands executed when player loses [Placeholders: %player%, %mode%, %bet_price%, %bet_price_rounded%]
+    private String httpDrawURL;                                              // URL to be processed [Placeholders: %player%, %mode%, %bet_price%, %bet_price_rounded%]
+    private String httpDrawMethod = "POST";                                  // Request method
+    private Map<String, Object> httpDrawHeaders = new HashMap<>();           // Request headers
+    private BoomboxSong drawMusic;                                           // Music in .nbs format from Boombox plugin
 
     private int gameOnline = 0;                                              // This is how many players are currently playing this mode
 
@@ -118,16 +129,16 @@ public class ArcadiumGame {
 
 
     @NotNull
-    public LinkedList<ArcadiumGamePage> getGamePages(){
+    public Map<String, ArcadiumGamePage> getGamePages(){
         return gamePages;
     }
 
-    public void setGamePages(@NotNull LinkedList<ArcadiumGamePage> gamePages){
+    public void setGamePages(@NotNull Map<String, ArcadiumGamePage> gamePages){
         this.gamePages = gamePages;
     }
 
-    public void addGamePage(@NotNull ArcadiumGamePage arcadiumGamePage){
-        gamePages.add(arcadiumGamePage);
+    public void addGamePage(@NotNull String gameName, @NotNull ArcadiumGamePage arcadiumGamePage){
+        gamePages.put(gameName, arcadiumGamePage);
     }
 
 
@@ -785,208 +796,301 @@ public class ArcadiumGame {
     }
 
 
+    @Nullable
+    public BarColor getDrawBossBarColor() {
+        return drawBossBarColor;
+    }
+
+    public ArcadiumGame setDrawBossBarColor(@Nullable BarColor drawBossBarColor) {
+        this.drawBossBarColor = drawBossBarColor;
+        return this;
+    }
+
+
+    @Nullable
+    public BarStyle getDrawBossBarStyle() {
+        return drawBossBarStyle;
+    }
+
+    public ArcadiumGame setDrawBossBarStyle(@Nullable BarStyle drawBossBarStyle) {
+        this.drawBossBarStyle = drawBossBarStyle;
+        return this;
+    }
+
+
+    public int getDrawBossBarDuration() {
+        return drawBossBarDuration;
+    }
+
+    public ArcadiumGame setDrawBossBarDuration(int drawBossBarDuration) {
+        this.drawBossBarDuration = drawBossBarDuration;
+        return this;
+    }
+
+
+    public boolean isSendDrawBossBar() {
+        return sendDrawBossBar;
+    }
+
+    public ArcadiumGame setSendDrawBossBar(boolean sendDrawBossBar) {
+        this.sendDrawBossBar = sendDrawBossBar;
+        return this;
+    }
+
+
+    @Nullable
+    public String getDrawBossBarTitle() {
+        return drawBossBarTitle;
+    }
+
+    public ArcadiumGame setDrawBossBarTitle(@Nullable String drawBossBarTitle) {
+        this.drawBossBarTitle = drawBossBarTitle;
+        return this;
+    }
+
+
+    public boolean isSendDrawBossBarToAll() {
+        return sendDrawBossBarToAll;
+    }
+
+    public ArcadiumGame setSendDrawBossBarToAll(boolean sendDrawBossBarToAll) {
+        this.sendDrawBossBarToAll = sendDrawBossBarToAll;
+        return this;
+    }
+
+
+    @Nullable
+    public String getDrawBossBarTitleToAll() {
+        return drawBossBarTitleToAll;
+    }
+
+    public ArcadiumGame setDrawBossBarTitleToAll(@Nullable String drawBossBarTitleToAll) {
+        this.drawBossBarTitleToAll = drawBossBarTitleToAll;
+        return this;
+    }
+
+
+    public boolean isSendDrawTitle() {
+        return sendDrawTitle;
+    }
+
+    public ArcadiumGame setSendDrawTitle(boolean sendDrawTitle) {
+        this.sendDrawTitle = sendDrawTitle;
+        return this;
+    }
+
+
+    @Nullable
+    public String getDrawTitle() {
+        return drawTitle;
+    }
+
+    public ArcadiumGame setDrawTitle(@Nullable String drawTitle) {
+        this.drawTitle = drawTitle;
+
+        return this;
+    }
+
+
+    @Nullable
+    public String getDrawSubtitle() {
+        return drawSubtitle;
+    }
+
+    public ArcadiumGame setDrawSubtitle(@Nullable String drawSubtitle) {
+        this.drawSubtitle = drawSubtitle;
+        return this;
+    }
+
+
+    public boolean isSendDrawTitleToAll() {
+        return sendDrawTitleToAll;
+    }
+
+    public ArcadiumGame setSendDrawTitleToAll(boolean sendDrawTitleToAll) {
+        this.sendDrawTitleToAll = sendDrawTitleToAll;
+        return this;
+    }
+
+
+    @Nullable
+    public String getDrawTitleToAll() {
+        return drawTitleToAll;
+    }
+
+    public ArcadiumGame setDrawTitleToAll(@Nullable String drawTitleToAll) {
+        this.drawTitleToAll = drawTitleToAll;
+        return this;
+    }
+
+
+    @Nullable
+    public String getDrawSubtitleToAll() {
+        return drawSubtitleToAll;
+    }
+
+    public ArcadiumGame setDrawSubtitleToAll(@Nullable String drawSubtitleToAll) {
+        this.drawSubtitleToAll = drawSubtitleToAll;
+        return this;
+    }
+
+
+    public int getDrawTitleFadeIn() {
+        return drawTitleFadeIn;
+    }
+
+    public ArcadiumGame setDrawTitleFadeIn(int drawTitleFadeIn) {
+        this.drawTitleFadeIn = drawTitleFadeIn;
+        return this;
+    }
+
+
+    public int getDrawTitleStay() {
+        return drawTitleStay;
+    }
+
+    public ArcadiumGame setDrawTitleStay(int drawTitleStay) {
+        this.drawTitleStay = drawTitleStay;
+        return this;
+    }
+
+
+    public int getDrawTitleFadeOut() {
+        return drawTitleFadeOut;
+    }
+
+    public ArcadiumGame setDrawTitleFadeOut(int drawTitleFadeOut) {
+        this.drawTitleFadeOut = drawTitleFadeOut;
+        return this;
+    }
+
+
+    public boolean isSendDrawMessage() {
+        return sendDrawMessage;
+    }
+
+    public ArcadiumGame setSendDrawMessage(boolean sendDrawMessage) {
+        this.sendDrawMessage = sendDrawMessage;
+        return this;
+    }
+
+
+    @Nullable
+    public String getDrawMessage() {
+        return drawMessage;
+    }
+
+    public ArcadiumGame setDrawMessage(@Nullable String drawMessage) {
+        this.drawMessage = drawMessage;
+        return this;
+    }
+
+
+    public boolean isSendDrawMessageToAll() {
+        return sendDrawMessageToAll;
+    }
+
+    public ArcadiumGame setSendDrawMessageToAll(boolean sendDrawMessageToAll) {
+        this.sendDrawMessageToAll = sendDrawMessageToAll;
+        return this;
+    }
+
+
+    @Nullable
+    public String getDrawMessageToAll() {
+        return drawMessageToAll;
+    }
+
+    public ArcadiumGame setDrawMessageToAll(@Nullable String drawMessageToAll) {
+        this.drawMessageToAll = drawMessageToAll;
+        return this;
+    }
+
+
+    public boolean isSendDrawMessageToDiscord() {
+        return sendDrawMessageToDiscord;
+    }
+
+    public ArcadiumGame setSendDrawMessageToDiscord(boolean sendDrawMessageToDiscord) {
+        this.sendDrawMessageToDiscord = sendDrawMessageToDiscord;
+        return this;
+    }
+
+
+    @Nullable
+    public String getDrawMessageToDiscord() {
+        return drawMessageToDiscord;
+    }
+
+    public ArcadiumGame setDrawMessageToDiscord(@Nullable String drawMessageToDiscord) {
+        this.drawMessageToDiscord = drawMessageToDiscord;
+        return this;
+    }
+
+
+    public boolean isUseOnlyDrawCommands(){
+        return useOnlyDrawCommands;
+    }
+
+    public ArcadiumGame setUseOnlyDrawCommands(boolean useOnlyDrawCommands){
+        this.useOnlyDrawCommands = useOnlyDrawCommands;
+        return this;
+    }
+
+
     @NotNull
-    public List<Integer> getSpotSlots() {
-        return spotSlots;
+    public List<String> getDrawCommandsToDispatch() {
+        return drawCommandsToDispatch;
     }
 
-    public ArcadiumGame setSpotSlots(@NotNull List<Integer> spotSlots) {
-        if(spotSlots == null) return this;
-        this.spotSlots = spotSlots;
+    public ArcadiumGame setDrawCommandsToDispatch(@NotNull List<String> drawCommandsToDispatch) {
+        if(drawCommandsToDispatch == null) return this;
+        this.drawCommandsToDispatch = drawCommandsToDispatch;
         return this;
     }
 
 
     @Nullable
-    public ItemStack getSpotItem() {
-        return spotItem;
+    public String getHttpDrawURL() {
+        return httpDrawURL;
     }
 
-    public ArcadiumGame setSpotItem(@Nullable ItemStack spotItem) {
-        this.spotItem = spotItem;
+    public ArcadiumGame setHttpDrawURL(@Nullable String httpDrawURL) {
+        this.httpDrawURL = httpDrawURL;
         return this;
     }
 
 
     @Nullable
-    public String getSpotItemTitle() {
-        return spotItemTitle;
+    public String getHttpDrawMethod() {
+        return httpDrawMethod;
     }
 
-    public ArcadiumGame setSpotItemTitle(@Nullable String spotItemTitle) {
-        this.spotItemTitle = spotItemTitle;
-        return this;
-    }
-
-
-
-    @NotNull
-    public List<String> getSpotItemLore() {
-        return spotItemLore;
-    }
-
-    public ArcadiumGame setSpotItemLore(@NotNull List<String> spotItemLore) {
-        if(spotItemLore == null) return this;
-        this.spotItemLore = spotItemLore;
+    public ArcadiumGame setHttpDrawMethod(@Nullable String httpDrawMethod) {
+        this.httpDrawMethod = httpDrawMethod;
         return this;
     }
 
 
     @NotNull
-    public List<Integer> getLeverSlots() {
-        return leverSlots;
+    public Map<String, Object> getHttpDrawHeaders() {
+        return httpDrawHeaders;
     }
 
-    public ArcadiumGame setLeverSlots(@NotNull List<Integer> leverSlots) {
-        if(leverSlots == null) return this;
-        this.leverSlots = leverSlots;
+    public ArcadiumGame setHttpDrawHeaders(@NotNull Map<String, Object> httpDrawHeaders) {
+        if(httpDrawHeaders == null) return this;
+        this.httpDrawHeaders = httpDrawHeaders;
         return this;
     }
 
 
     @Nullable
-    public ItemStack getLeverItemInactive() {
-        return leverItemInactive;
+    public BoomboxSong getDrawMusic() {
+        return drawMusic;
     }
 
-    public ArcadiumGame setLeverItemInactive(@Nullable ItemStack leverItemInactive) {
-        this.leverItemInactive = leverItemInactive;
-        return this;
-    }
-
-
-    @Nullable
-    public String getLeverItemInactiveTitle() {
-        return leverItemInactiveTitle;
-    }
-
-    public ArcadiumGame setLeverItemInactiveTitle(@Nullable String leverItemInactiveTitle) {
-        this.leverItemInactiveTitle = leverItemInactiveTitle;
-        return this;
-    }
-
-
-    @NotNull
-    public List<String> getLeverItemInactiveLore() {
-        return leverItemInactiveLore;
-    }
-
-    public ArcadiumGame setLeverItemInactiveLore(@NotNull List<String> leverItemInactiveLore) {
-        if(leverItemInactiveLore == null) return this;
-        this.leverItemInactiveLore = leverItemInactiveLore;
-        return this;
-    }
-
-
-    @Nullable
-    public ItemStack getLeverItemActive() {
-        return leverItemActive;
-    }
-
-    public ArcadiumGame setLeverItemActive(@Nullable ItemStack leverItemActive) {
-        this.leverItemActive = leverItemActive;
-        return this;
-    }
-
-
-    @Nullable
-    public String getLeverItemActiveTitle() {
-        return leverItemActiveTitle;
-    }
-
-    public ArcadiumGame setLeverItemActiveTitle(@Nullable String leverItemActiveTitle) {
-        this.leverItemActiveTitle = leverItemActiveTitle;
-        return this;
-    }
-
-
-    @NotNull
-    public List<String> getLeverItemActiveLore() {
-        return leverItemActiveLore;
-    }
-
-    public ArcadiumGame setLeverItemActiveLore(@NotNull List<String> leverItemActiveLore) {
-        if(leverItemActiveLore == null) return this;
-        this.leverItemActiveLore = leverItemActiveLore;
-        return this;
-    }
-
-
-    @Nullable
-    public ItemStack getLeverItemRolling() {
-        return leverItemRolling;
-    }
-
-    public ArcadiumGame setLeverItemRolling(@Nullable ItemStack leverItemRolling) {
-        this.leverItemRolling = leverItemRolling;
-        return this;
-    }
-
-
-    @Nullable
-    public String getLeverItemRollingTitle() {
-        return leverItemRollingTitle;
-    }
-
-    public ArcadiumGame setLeverItemRollingTitle(@Nullable String leverItemRollingTitle) {
-        this.leverItemRollingTitle = leverItemRollingTitle;
-        return this;
-    }
-
-
-    @NotNull
-    public List<String> getLeverItemRollingLore() {
-        return leverItemRollingLore;
-    }
-
-    public ArcadiumGame setLeverItemRollingLore(@NotNull List<String> leverItemRollingLore) {
-        if(leverItemRollingLore == null) return this;
-        this.leverItemRollingLore = leverItemRollingLore;
-        return this;
-    }
-
-
-    @Nullable
-    public ItemStack getLeverItemEnd() {
-        return leverItemEnd;
-    }
-
-    public ArcadiumGame setLeverItemEnd(@Nullable ItemStack leverItemEnd) {
-        this.leverItemEnd = leverItemEnd;
-        return this;
-    }
-
-
-    @Nullable
-    public String getLeverItemEndTitle() {
-        return leverItemEndTitle;
-    }
-
-    public ArcadiumGame setLeverItemEndTitle(@Nullable String leverItemEndTitle) {
-        this.leverItemEndTitle = leverItemEndTitle;
-        return this;
-    }
-
-
-    @NotNull
-    public List<String> getLeverItemEndLore() {
-        return leverItemEndLore;
-    }
-
-    public ArcadiumGame setLeverItemEndLore(@NotNull List<String> leverItemEndLore) {
-        if(leverItemEndLore == null) return this;
-        this.leverItemEndLore = leverItemEndLore;
-        return this;
-    }
-
-
-    @Nullable
-    public BoomboxSong getBackgroundMusic() {
-        return backgroundMusic;
-    }
-
-    public ArcadiumGame setBackgroundMusic(@Nullable BoomboxSong backgroundMusic) {
-        this.backgroundMusic = backgroundMusic;
+    public ArcadiumGame setDrawMusic(@Nullable BoomboxSong drawMusic) {
+        this.drawMusic = drawMusic;
         return this;
     }
 

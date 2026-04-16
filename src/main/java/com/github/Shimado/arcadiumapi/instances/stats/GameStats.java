@@ -11,9 +11,9 @@ import org.jetbrains.annotations.Nullable;
 
 public class GameStats extends ArcadiumStats {
 
-    private String gameName;
-    private long score;
-    private long rating;
+    private final String gameName;
+    private long score = 0;
+    private long rating = 0;
 
     /**
      * Creates a new statistics object for a specific game.
@@ -33,21 +33,22 @@ public class GameStats extends ArcadiumStats {
      * @param gamesPlayed number of games played
      * @param victories   number of victories
      * @param defeats     number of defeats
+     * @param draws       number of draws
      * @param timePlayed  number of timePlayed
      * @param score       game score
      * @param rating      player rating
      */
 
-    public GameStats(@NotNull String gameName, int gamesPlayed, int victories, int defeats, int timePlayed, long score, long rating) {
-        super(gamesPlayed, victories, defeats, timePlayed);
+    public GameStats(@NotNull String gameName, int gamesPlayed, int victories, int defeats, int draws, int timePlayed, long score, long rating) {
+        super(gamesPlayed, victories, defeats, draws, timePlayed);
         this.gameName = gameName;
         this.score = score;
         this.rating = rating;
     }
 
 
-    public GameStats(@NotNull String gameName, int gamesPlayed, int victories, int defeats, int timePlayed) {
-        super(gamesPlayed, victories, defeats, timePlayed);
+    public GameStats(@NotNull String gameName, int gamesPlayed, int victories, int defeats, int draws, int timePlayed) {
+        super(gamesPlayed, victories, defeats, draws, timePlayed);
         this.gameName = gameName;
     }
 
@@ -58,7 +59,7 @@ public class GameStats extends ArcadiumStats {
      * @return the name of the game mode
      */
 
-    @Nullable
+    @NotNull
     public String getGameName() {
         return gameName;
     }

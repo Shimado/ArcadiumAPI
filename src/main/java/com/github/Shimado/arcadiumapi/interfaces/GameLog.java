@@ -23,10 +23,6 @@ public interface GameLog {
     String getGameName();
 
 
-    @NotNull
-    String getBetAsString();
-
-
     boolean isVictory();
 
 
@@ -39,9 +35,23 @@ public interface GameLog {
     int getTimePlayed();
 
 
-    long getScore();
+    long getOldScore();
 
 
-    long getRating();
+    long getNewScore();
+
+
+    long getOldRating();
+
+
+    long getNewRating();
+
+
+    @NotNull
+    String getBetAsString();
+
+
+    @NotNull
+    String getPrizeAsString();
 
 }
