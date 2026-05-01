@@ -5,6 +5,7 @@ public enum GamePage {
     INITIAL,
     PLAYERS,
     SEARCH,
+    ACCEPT_GAME,
     GAME,
     VICTORY,
     DEFEAT,

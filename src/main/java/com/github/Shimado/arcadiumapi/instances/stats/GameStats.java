@@ -1,7 +1,6 @@
 package com.github.Shimado.arcadiumapi.instances.stats;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * Represents statistics for a specific game mode.
