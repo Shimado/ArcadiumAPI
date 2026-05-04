@@ -24,24 +24,13 @@ public interface PlayerSettings {
     UUID getPlayerUUID();
 
 
-    /**
-     * Gets the player's cash bet for each click.
-     * Works only for BetType.MONEY
-     *
-     * @return default bet amount
-     */
 
-    double getDefaultMoneyBet();
+    @NotNull
+    Map<String, Double> getDefaultMoneyBets();
 
-    /**
-     * Sets the player's cash bet for each click.
-     * Works only for BetType.MONEY
-     *
-     * @param defaultMoneyBet bet amount
-     * @return this PlayerSettings instance for chaining
-     */
+    double getDefaultMoneyBet(@NotNull String gameName);
 
-    PlayerSettings setDefaultMoneyBet(double defaultMoneyBet);
+    PlayerSettings setDefaultMoneyBet(@NotNull String gameName, double defaultMoneyBet);
 
 
     /**

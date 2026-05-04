@@ -1,13 +1,13 @@
 package com.github.Shimado.arcadiumapi.instances;
 
+import com.github.Shimado.arcadiumapi.interfaces.items.GeneralChangeableItem;
+import com.github.Shimado.arcadiumapi.interfaces.items.GeneralItem;
 import com.github.Shimado.boomboxapi.instances.BoomboxSong;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class ArcadiumGamePage {
@@ -21,74 +21,30 @@ public class ArcadiumGamePage {
     private int maxBetPriceInItems = 64;
     private double maxDiffBetweenBets = 100.0;
 
-    private List<Integer> moneyBetSlots = new ArrayList<>();
-    private ItemStack moneyBetItem;
-    private String moneyBetItemTitle;
-    private List<String> moneyBetItemLore = new ArrayList<>();
-    private double moneyBetDefault = 1000.0;
-    private double moneyBetChangePerClick = 1000.0;
-    private double moneyBetChangePerClickBig = 10000.0;
+    private GeneralItem addMoneyBetItem;
+    private double addMoneyBetPerClick = 1000.0;
+    private double addMoneyBetPerClickBig = 10000.0;
 
-    private List<Integer> spotSlots = new ArrayList<>();
-    private ItemStack spotItem;
+    private GeneralItem removeMoneyBetItem;
+    private double removeMoneyBetPerClick = 1000.0;
+    private double removeMoneyBetPerClickBig = 10000.0;
 
-    private List<Integer> leverItemInactiveSlots = new ArrayList<>();
-    private ItemStack leverItemInactiveItem;
-    private List<Integer> leverItemActiveSlots = new ArrayList<>();
-    private ItemStack leverItemActiveItem;
-
-    private List<Integer> closeButtonSlots = new ArrayList<>();
-    private ItemStack closeButtonItem;
-
-    private List<Integer> restartButtonSlots = new ArrayList<>();
-    private ItemStack restartButtonItem;
-
-    private List<Integer> notificationsButtonSlots = new ArrayList<>();
-    private ItemStack notificationsItem;
-    private String notificationsButtonTitle;
-    private List<String> notificationsButtonLore = new ArrayList<>();
-
-    private List<Integer> musicInactiveButtonSlots = new ArrayList<>();
-    private ItemStack musicInactiveItem;
-    private String musicInactiveButtonTitle;
-    private List<String> musicInactiveButtonLore = new ArrayList<>();
-
-    private List<Integer> musicActiveButtonSlots = new ArrayList<>();
-    private ItemStack musicActiveItem;
-    private String musicActiveButtonTitle;
-    private List<String> musicActiveButtonLore = new ArrayList<>();
-
-    private List<Integer> scoreSlots = new ArrayList<>();
-    private ItemStack scoreItem;
-    private String scoreTitle;
-    private List<String> scoreLore = new ArrayList<>();
-
-    private List<Integer> ratingSlots = new ArrayList<>();
-    private ItemStack ratingItem;
-    private String ratingTitle;
-    private List<String> ratingLore = new ArrayList<>();
-
-    private List<Integer> globalInfoSlots = new ArrayList<>();
-    private ItemStack globalInfoItem;
-    private String globalInfoTitle;
-    private List<String> globalInfoLore = new ArrayList<>();
-
-    private List<Integer> yoursInfoSlots = new ArrayList<>();
-    private ItemStack yoursInfoItem;
-    private String yoursInfoTitle;
-    private List<String> yoursInfoLore = new ArrayList<>();
-
-    private List<Integer> previousPageButtonSlots = new ArrayList<>();
-    private ItemStack previousPageButtonItem;
-
-    private List<Integer> nextPageButtonSlots = new ArrayList<>();
-    private ItemStack nextPageButtonItem;
-
-    private List<Integer> pageSlots = new ArrayList<>();
-    private Map<Integer, ItemStack> pageItems = new HashMap<>();
-
+    private GeneralItem spotItem;
+    private GeneralItem leverInactiveItem;
+    private GeneralItem leverActiveItem;
+    private GeneralItem closeButtonItem;
+    private GeneralItem restartButtonItem;
+    private GeneralChangeableItem notificationItems;
+    private GeneralItem musicInactiveItem;
+    private GeneralItem musicActiveItem;
+    private GeneralItem scoreItem;
+    private GeneralItem ratingItem;
+    private GeneralItem globalInfoItem;
+    private GeneralItem yourInfoItem;
+    private GeneralItem previousPageItem;
+    private GeneralItem nextPageItem;
+    private GeneralChangeableItem pageItems;
     private BoomboxSong backgroundMusic;
-
     private Map<Integer, ItemStack> emptySlots = new HashMap<>();
 
 
@@ -159,585 +115,228 @@ public class ArcadiumGamePage {
     }
 
 
-    @NotNull
-    public List<Integer> getMoneyBetSlots() {
-        return moneyBetSlots;
+    @Nullable
+    public GeneralItem getAddMoneyBetItem() {
+        return addMoneyBetItem;
     }
 
-    public ArcadiumGamePage setMoneyBetSlots(@Nullable List<Integer> moneyBetSlots) {
-        if(moneyBetSlots == null) return this;
-        this.moneyBetSlots = moneyBetSlots;
+    public ArcadiumGamePage setAddMoneyBetItem(@Nullable GeneralItem addMoneyBetItem) {
+        this.addMoneyBetItem = addMoneyBetItem;
+        return this;
+    }
+
+
+    public double getAddMoneyBetPerClick() {
+        return addMoneyBetPerClick;
+    }
+
+    public ArcadiumGamePage setAddMoneyBetPerClick(double addMoneyBetPerClick) {
+        this.addMoneyBetPerClick = addMoneyBetPerClick;
+        return this;
+    }
+
+
+    public double getAddMoneyBetPerClickBig() {
+        return addMoneyBetPerClickBig;
+    }
+
+    public ArcadiumGamePage setAddMoneyBetPerClickBig(double addMoneyBetPerClickBig) {
+        this.addMoneyBetPerClickBig = addMoneyBetPerClickBig;
         return this;
     }
 
 
     @Nullable
-    public ItemStack getMoneyBetItem() {
-        return moneyBetItem;
+    public GeneralItem getRemoveMoneyBetItem() {
+        return removeMoneyBetItem;
     }
 
-    public ArcadiumGamePage setMoneyBetItem(@Nullable ItemStack moneyBetItem) {
-        this.moneyBetItem = moneyBetItem;
+    public ArcadiumGamePage setRemoveMoneyBetItem(@Nullable GeneralItem removeMoneyBetItem) {
+        this.removeMoneyBetItem = removeMoneyBetItem;
+        return this;
+    }
+
+
+    public double getRemoveMoneyBetPerClick() {
+        return removeMoneyBetPerClick;
+    }
+
+    public ArcadiumGamePage setRemoveMoneyBetPerClick(double removeMoneyBetPerClick) {
+        this.removeMoneyBetPerClick = removeMoneyBetPerClick;
+        return this;
+    }
+
+
+    public double getRemoveMoneyBetPerClickBig() {
+        return removeMoneyBetPerClickBig;
+    }
+
+    public ArcadiumGamePage setRemoveMoneyBetPerClickBig(double removeMoneyBetPerClickBig) {
+        this.removeMoneyBetPerClickBig = removeMoneyBetPerClickBig;
         return this;
     }
 
 
     @Nullable
-    public String getMoneyBetItemTitle() {
-        return moneyBetItemTitle;
-    }
-
-    public ArcadiumGamePage setMoneyBetItemTitle(@Nullable String moneyBetItemTitle) {
-        this.moneyBetItemTitle = moneyBetItemTitle;
-        return this;
-    }
-
-
-    @NotNull
-    public List<String> getMoneyBetItemLore() {
-        return moneyBetItemLore;
-    }
-
-    public ArcadiumGamePage setMoneyBetItemLore(@Nullable List<String> moneyBetItemLore) {
-        if(moneyBetItemLore == null) return this;
-        this.moneyBetItemLore = moneyBetItemLore;
-        return this;
-    }
-
-
-    public double getMoneyBetDefault() {
-        return moneyBetDefault;
-    }
-
-    public ArcadiumGamePage setMoneyBetDefault(double moneyBetDefault) {
-        this.moneyBetDefault = moneyBetDefault;
-        return this;
-    }
-
-
-    public double getMoneyBetChangePerClick() {
-        return moneyBetChangePerClick;
-    }
-
-    public ArcadiumGamePage setMoneyBetChangePerClick(double moneyBetChangePerClick) {
-        this.moneyBetChangePerClick = moneyBetChangePerClick;
-        return this;
-    }
-
-
-    public double getMoneyBetChangePerClickBig() {
-        return moneyBetChangePerClickBig;
-    }
-
-    public ArcadiumGamePage setMoneyBetChangePerClickBig(double moneyBetChangePerClickBig) {
-        this.moneyBetChangePerClickBig = moneyBetChangePerClickBig;
-        return this;
-    }
-
-
-    @NotNull
-    public List<Integer> getSpotSlots() {
-        return spotSlots;
-    }
-
-    public ArcadiumGamePage setSpotSlots(@Nullable List<Integer> spotSlots) {
-        if(spotSlots == null) return this;
-        this.spotSlots = spotSlots;
-        return this;
-    }
-
-
-    @Nullable
-    public ItemStack getSpotItem() {
+    public GeneralItem getSpotItem() {
         return spotItem;
     }
 
-    public ArcadiumGamePage setSpotItem(@Nullable ItemStack spotItem) {
-        if(spotItem == null) return this;
+    public ArcadiumGamePage setSpotItem(@Nullable GeneralItem spotItem) {
         this.spotItem = spotItem;
         return this;
     }
 
 
-    @NotNull
-    public List<Integer> getLeverItemInactiveSlots() {
-        return leverItemInactiveSlots;
+    @Nullable
+    public GeneralItem getLeverInactiveItem() {
+        return leverInactiveItem;
     }
 
-    public ArcadiumGamePage setLeverItemInactiveSlots(@Nullable List<Integer> leverItemInactiveSlots) {
-        if(leverItemInactiveSlots == null) return this;
-        this.leverItemInactiveSlots = leverItemInactiveSlots;
+    public ArcadiumGamePage setLeverInactiveItem(@Nullable GeneralItem leverInactiveItem) {
+        this.leverInactiveItem = leverInactiveItem;
         return this;
     }
 
 
     @Nullable
-    public ItemStack getLeverItemInactiveItem() {
-        return leverItemInactiveItem;
+    public GeneralItem getLeverActiveItem() {
+        return leverActiveItem;
     }
 
-    public ArcadiumGamePage setLeverItemInactiveItem(@Nullable ItemStack leverItemInactiveItem) {
-        this.leverItemInactiveItem = leverItemInactiveItem;
-        return this;
-    }
-
-
-    @NotNull
-    public List<Integer> getLeverItemActiveSlots() {
-        return leverItemActiveSlots;
-    }
-
-    public ArcadiumGamePage setLeverItemActiveSlots(@Nullable List<Integer> leverItemActiveSlots) {
-        if(leverItemActiveSlots == null) return this;
-        this.leverItemActiveSlots = leverItemActiveSlots;
+    public ArcadiumGamePage setLeverActiveItem(@Nullable GeneralItem leverActiveItem) {
+        this.leverActiveItem = leverActiveItem;
         return this;
     }
 
 
     @Nullable
-    public ItemStack getLeverItemActiveItem() {
-        return leverItemActiveItem;
-    }
-
-    public ArcadiumGamePage setLeverItemActiveItem(@Nullable ItemStack leverItemActiveItem) {
-        this.leverItemActiveItem = leverItemActiveItem;
-        return this;
-    }
-
-
-    @NotNull
-    public List<Integer> getCloseButtonSlots() {
-        return closeButtonSlots;
-    }
-
-    public ArcadiumGamePage setCloseButtonSlots(@Nullable List<Integer> closeButtonSlots) {
-        if(closeButtonSlots == null) return this;
-        this.closeButtonSlots = closeButtonSlots;
-        return this;
-    }
-
-
-    @Nullable
-    public ItemStack getCloseButtonItem() {
+    public GeneralItem getCloseButtonItem() {
         return closeButtonItem;
     }
 
-    public ArcadiumGamePage setCloseButtonItem(@Nullable ItemStack closeButtonItem) {
+    public ArcadiumGamePage setCloseButtonItem(@Nullable GeneralItem closeButtonItem) {
         this.closeButtonItem = closeButtonItem;
         return this;
     }
 
 
-    @NotNull
-    public List<Integer> getRestartButtonSlots() {
-        return restartButtonSlots;
-    }
-
-    public ArcadiumGamePage setRestartButtonSlots(@Nullable List<Integer> restartButtonSlots) {
-        if(restartButtonSlots == null) return this;
-        this.restartButtonSlots = restartButtonSlots;
-        return this;
-    }
-
-
     @Nullable
-    public ItemStack getRestartButtonItem() {
+    public GeneralItem getRestartButtonItem() {
         return restartButtonItem;
     }
 
-    public ArcadiumGamePage setRestartButtonItem(@Nullable ItemStack restartButtonItem) {
+    public ArcadiumGamePage setRestartButtonItem(@Nullable GeneralItem restartButtonItem) {
         this.restartButtonItem = restartButtonItem;
         return this;
     }
 
 
-    @NotNull
-    public List<Integer> getNotificationsButtonSlots() {
-        return notificationsButtonSlots;
+    @Nullable
+    public GeneralChangeableItem getNotificationItems() {
+        return notificationItems;
     }
 
-    public ArcadiumGamePage setNotificationsButtonSlots(@Nullable List<Integer> notificationsButtonSlots) {
-        if(notificationsButtonSlots == null) return this;
-        this.notificationsButtonSlots = notificationsButtonSlots;
+    public ArcadiumGamePage setNotificationItems(@Nullable GeneralChangeableItem notificationItems) {
+        this.notificationItems = notificationItems;
         return this;
     }
 
 
     @Nullable
-    public ItemStack getNotificationsItem() {
-        return notificationsItem;
-    }
-
-    public ArcadiumGamePage setNotificationsItem(@Nullable ItemStack notificationsItem) {
-        this.notificationsItem = notificationsItem;
-        return this;
-    }
-
-
-    @Nullable
-    public String getNotificationsButtonTitle() {
-        return notificationsButtonTitle;
-    }
-
-    public ArcadiumGamePage setNotificationsButtonTitle(@Nullable String notificationsButtonTitle) {
-        this.notificationsButtonTitle = notificationsButtonTitle;
-        return this;
-    }
-
-
-    @NotNull
-    public List<String> getNotificationsButtonLore() {
-        return notificationsButtonLore;
-    }
-
-    public ArcadiumGamePage setNotificationsButtonLore(@Nullable List<String> notificationsButtonLore) {
-        if(notificationsButtonLore == null) return this;
-        this.notificationsButtonLore = notificationsButtonLore;
-        return this;
-    }
-
-
-    @NotNull
-    public List<Integer> getMusicInactiveButtonSlots() {
-        return musicInactiveButtonSlots;
-    }
-
-    public ArcadiumGamePage setMusicInactiveButtonSlots(@Nullable List<Integer> musicInactiveButtonSlots) {
-        if(musicInactiveButtonSlots == null) return this;
-        this.musicInactiveButtonSlots = musicInactiveButtonSlots;
-        return this;
-    }
-
-
-    @Nullable
-    public ItemStack getMusicInactiveItem() {
+    public GeneralItem getMusicInactiveItem() {
         return musicInactiveItem;
     }
 
-    public ArcadiumGamePage setMusicInactiveItem(@Nullable ItemStack musicInactiveItem) {
+    public ArcadiumGamePage setMusicInactiveItem(@Nullable GeneralItem musicInactiveItem) {
         this.musicInactiveItem = musicInactiveItem;
         return this;
     }
 
 
     @Nullable
-    public String getMusicInactiveButtonTitle() {
-        return musicInactiveButtonTitle;
-    }
-
-    public ArcadiumGamePage setMusicInactiveButtonTitle(@Nullable String musicInactiveButtonTitle) {
-        this.musicInactiveButtonTitle = musicInactiveButtonTitle;
-        return this;
-    }
-
-
-    @NotNull
-    public List<String> getMusicInactiveButtonLore() {
-        return musicInactiveButtonLore;
-    }
-
-    public ArcadiumGamePage setMusicInactiveButtonLore(@Nullable List<String> musicInactiveButtonLore) {
-        if(musicInactiveButtonLore == null) return this;
-        this.musicInactiveButtonLore = musicInactiveButtonLore;
-        return this;
-    }
-
-
-    @NotNull
-    public List<Integer> getMusicActiveButtonSlots() {
-        return musicActiveButtonSlots;
-    }
-
-    public ArcadiumGamePage setMusicActiveButtonSlots(@Nullable List<Integer> musicActiveButtonSlots) {
-        if(musicActiveButtonSlots == null) return this;
-        this.musicActiveButtonSlots = musicActiveButtonSlots;
-        return this;
-    }
-
-
-    @Nullable
-    public ItemStack getMusicActiveItem() {
+    public GeneralItem getMusicActiveItem() {
         return musicActiveItem;
     }
 
-    public ArcadiumGamePage setMusicActiveItem(@Nullable ItemStack musicActiveItem) {
+    public ArcadiumGamePage setMusicActiveItem(@Nullable GeneralItem musicActiveItem) {
         this.musicActiveItem = musicActiveItem;
         return this;
     }
 
 
     @Nullable
-    public String getMusicActiveButtonTitle() {
-        return musicActiveButtonTitle;
-    }
-
-    public ArcadiumGamePage setMusicActiveButtonTitle(@Nullable String musicActiveButtonTitle) {
-        this.musicActiveButtonTitle = musicActiveButtonTitle;
-        return this;
-    }
-
-
-    @NotNull
-    public List<String> getMusicActiveButtonLore() {
-        return musicActiveButtonLore;
-    }
-
-    public ArcadiumGamePage setMusicActiveButtonLore(@Nullable List<String> musicActiveButtonLore) {
-        if(musicActiveButtonLore == null) return this;
-        this.musicActiveButtonLore = musicActiveButtonLore;
-        return this;
-    }
-
-
-    @NotNull
-    public List<Integer> getScoreSlots() {
-        return scoreSlots;
-    }
-
-    public ArcadiumGamePage setScoreSlots(@Nullable List<Integer> scoreSlots) {
-        if(scoreSlots == null) return this;
-        this.scoreSlots = scoreSlots;
-        return this;
-    }
-
-
-    @Nullable
-    public ItemStack getScoreItem() {
+    public GeneralItem getScoreItem() {
         return scoreItem;
     }
 
-    public ArcadiumGamePage setScoreItem(@Nullable ItemStack scoreItem) {
+    public ArcadiumGamePage setScoreItem(@Nullable GeneralItem scoreItem) {
         this.scoreItem = scoreItem;
         return this;
     }
 
 
     @Nullable
-    public String getScoreTitle() {
-        return scoreTitle;
-    }
-
-    public ArcadiumGamePage setScoreTitle(@Nullable String scoreTitle) {
-        this.scoreTitle = scoreTitle;
-        return this;
-    }
-
-
-    @NotNull
-    public List<String> getScoreLore() {
-        return scoreLore;
-    }
-
-    public ArcadiumGamePage setScoreLore(@Nullable List<String> scoreLore) {
-        if(scoreLore == null) return this;
-        this.scoreLore = scoreLore;
-        return this;
-    }
-
-
-    @NotNull
-    public List<Integer> getRatingSlots() {
-        return ratingSlots;
-    }
-
-    public ArcadiumGamePage setRatingSlots(@Nullable List<Integer> ratingSlots) {
-        if(ratingSlots == null) return this;
-        this.ratingSlots = ratingSlots;
-        return this;
-    }
-
-
-    @Nullable
-    public ItemStack getRatingItem() {
+    public GeneralItem getRatingItem() {
         return ratingItem;
     }
 
-    public ArcadiumGamePage setRatingItem(@Nullable ItemStack ratingItem) {
+    public ArcadiumGamePage setRatingItem(@Nullable GeneralItem ratingItem) {
         this.ratingItem = ratingItem;
         return this;
     }
 
 
     @Nullable
-    public String getRatingTitle() {
-        return ratingTitle;
-    }
-
-    public ArcadiumGamePage setRatingTitle(@Nullable String ratingTitle) {
-        this.ratingTitle = ratingTitle;
-        return this;
-    }
-
-
-    @NotNull
-    public List<String> getRatingLore() {
-        return ratingLore;
-    }
-
-    public ArcadiumGamePage setRatingLore(@Nullable List<String> ratingLore) {
-        if(ratingLore == null) return this;
-        this.ratingLore = ratingLore;
-        return this;
-    }
-
-
-    @NotNull
-    public List<Integer> getGlobalInfoSlots() {
-        return globalInfoSlots;
-    }
-
-    public ArcadiumGamePage setGlobalInfoSlots(@Nullable List<Integer> globalInfoSlots) {
-        if(globalInfoSlots == null) return this;
-        this.globalInfoSlots = globalInfoSlots;
-        return this;
-    }
-
-
-    @Nullable
-    public ItemStack getGlobalInfoItem() {
+    public GeneralItem getGlobalInfoItem() {
         return globalInfoItem;
     }
 
-    public ArcadiumGamePage setGlobalInfoItem(@Nullable ItemStack globalInfoItem) {
+    public ArcadiumGamePage setGlobalInfoItem(@Nullable GeneralItem globalInfoItem) {
         this.globalInfoItem = globalInfoItem;
         return this;
     }
 
 
     @Nullable
-    public String getGlobalInfoTitle() {
-        return globalInfoTitle;
+    public GeneralItem getYourInfoItem() {
+        return yourInfoItem;
     }
 
-    public ArcadiumGamePage setGlobalInfoTitle(@Nullable String globalInfoTitle) {
-        this.globalInfoTitle = globalInfoTitle;
-        return this;
-    }
-
-
-    @NotNull
-    public List<String> getGlobalInfoLore() {
-        return globalInfoLore;
-    }
-
-    public ArcadiumGamePage setGlobalInfoLore(@Nullable List<String> globalInfoLore) {
-        if(globalInfoLore == null) return this;
-        this.globalInfoLore = globalInfoLore;
-        return this;
-    }
-
-
-    @NotNull
-    public List<Integer> getYoursInfoSlots() {
-        return yoursInfoSlots;
-    }
-
-    public ArcadiumGamePage setYoursInfoSlots(@Nullable List<Integer> yoursInfoSlots) {
-        if(yoursInfoSlots == null) return this;
-        this.yoursInfoSlots = yoursInfoSlots;
+    public ArcadiumGamePage setYourInfoItem(@Nullable GeneralItem yourInfoItem) {
+        this.yourInfoItem = yourInfoItem;
         return this;
     }
 
 
     @Nullable
-    public ItemStack getYoursInfoItem() {
-        return yoursInfoItem;
+    public GeneralItem getPreviousPageItem() {
+        return previousPageItem;
     }
 
-    public ArcadiumGamePage setYoursInfoItem(@Nullable ItemStack yoursInfoItem) {
-        this.yoursInfoItem = yoursInfoItem;
+    public ArcadiumGamePage setPreviousPageItem(@Nullable GeneralItem previousPageItem) {
+        this.previousPageItem = previousPageItem;
         return this;
     }
 
 
     @Nullable
-    public String getYoursInfoTitle() {
-        return yoursInfoTitle;
+    public GeneralItem getNextPageItem() {
+        return nextPageItem;
     }
 
-    public ArcadiumGamePage setYoursInfoTitle(@Nullable String yoursInfoTitle) {
-        this.yoursInfoTitle = yoursInfoTitle;
-        return this;
-    }
-
-
-    @NotNull
-    public List<String> getYoursInfoLore() {
-        return yoursInfoLore;
-    }
-
-    public ArcadiumGamePage setYoursInfoLore(@Nullable List<String> yoursInfoLore) {
-        if(yoursInfoLore == null) return this;
-        this.yoursInfoLore = yoursInfoLore;
-        return this;
-    }
-
-
-    @NotNull
-    public List<Integer> getPreviousPageButtonSlots() {
-        return previousPageButtonSlots;
-    }
-
-    public ArcadiumGamePage setPreviousPageButtonSlots(@Nullable List<Integer> previousPageButtonSlots) {
-        if(previousPageButtonSlots == null) return this;
-        this.previousPageButtonSlots = previousPageButtonSlots;
+    public ArcadiumGamePage setNextPageItem(@Nullable GeneralItem nextPageItem) {
+        this.nextPageItem = nextPageItem;
         return this;
     }
 
 
     @Nullable
-    public ItemStack getPreviousPageButtonItem() {
-        return previousPageButtonItem;
-    }
-
-    public ArcadiumGamePage setPreviousPageButtonItem(@Nullable ItemStack previousPageButtonItem) {
-        this.previousPageButtonItem = previousPageButtonItem;
-        return this;
-    }
-
-
-    @NotNull
-    public List<Integer> getNextPageButtonSlots() {
-        return nextPageButtonSlots;
-    }
-
-    public ArcadiumGamePage setNextPageButtonSlots(@Nullable List<Integer> nextPageButtonSlots) {
-        if(nextPageButtonSlots == null) return this;
-        this.nextPageButtonSlots = nextPageButtonSlots;
-        return this;
-    }
-
-
-    @Nullable
-    public ItemStack getNextPageButtonItem() {
-        return nextPageButtonItem;
-    }
-
-    public ArcadiumGamePage setNextPageButtonItem(@Nullable ItemStack nextPageButtonItem) {
-        this.nextPageButtonItem = nextPageButtonItem;
-        return this;
-    }
-
-
-    @NotNull
-    public List<Integer> getPageSlots() {
-        return pageSlots;
-    }
-
-    public ArcadiumGamePage setPageSlots(@Nullable List<Integer> pageSlots) {
-        if(pageSlots == null) return this;
-        this.pageSlots = pageSlots;
-        return this;
-    }
-
-
-    @NotNull
-    public Map<Integer, ItemStack> getPageItems() {
+    public GeneralChangeableItem getPageItems() {
         return pageItems;
     }
 
-    public ArcadiumGamePage setPageItems(@Nullable Map<Integer, ItemStack> pageItems) {
-        if(pageItems == null) return this;
+    public ArcadiumGamePage setPageItems(@Nullable GeneralChangeableItem pageItems) {
         this.pageItems = pageItems;
         return this;
     }

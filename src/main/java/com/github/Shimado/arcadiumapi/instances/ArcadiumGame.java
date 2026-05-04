@@ -114,8 +114,8 @@ public class ArcadiumGame {
     private Map<String, Object> httpDrawHeaders = new HashMap<>();           // Request headers
     private BoomboxSong drawMusic;                                           // Music in .nbs format from Boombox plugin
 
-    // LOGS
     private String logText;                                                  // Logs line
+    private double moneyBetDefault = 1000.0;                                 // Initial bet for the mode
 
     private int gameOnline = 0;                                              // This is how many players are currently playing this mode
 
@@ -1106,6 +1106,15 @@ public class ArcadiumGame {
     public ArcadiumGame setLogText(@Nullable String logText) {
         this.logText = logText != null ? logText : "";
         return this;
+    }
+
+
+    public double getMoneyBetDefault(){
+        return moneyBetDefault;
+    }
+
+    public void setMoneyBetDefault(double moneyBetDefault){
+        this.moneyBetDefault = moneyBetDefault;
     }
 
 

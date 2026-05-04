@@ -6,7 +6,7 @@
 
     <groupId>org.shimado.Shimado</groupId>
     <artifactId>ArcadiumAPI</artifactId>
-    <version>1.0.7</version>
+    <version>1.0.8</version>
 
     <name>ArcadiumAPI</name>
     <description>API for minecraft plugin Arcadium</description>
