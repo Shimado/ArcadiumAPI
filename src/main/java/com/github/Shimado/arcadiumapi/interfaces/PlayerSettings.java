@@ -46,12 +46,12 @@ public interface PlayerSettings {
     /**
      * Sets the background song for the main GUI.
      *
-     * @param musicActive whether the music is active. If so, music will play when the GUI is opened.
      * @param musicID     ID of the music in the Arcadium plugin config
+     * @param musicActive whether the music is active. If so, music will play when the GUI is opened.
      * @return this PlayerSettings instance for chaining
      */
 
-    PlayerSettings setMainGUISong(boolean musicActive, @NotNull String musicID);
+    PlayerSettings setMainGUISong(@NotNull String musicID, boolean musicActive);
 
 
     /**
@@ -67,12 +67,12 @@ public interface PlayerSettings {
     /**
      * Sets the background song for the main GUI (for one game).
      *
-     * @param musicActive whether the music is active. If so, music will play when the GUI is opened.
      * @param musicID     ID of the music in the Arcadium plugin config
+     * @param musicActive whether the music is active. If so, music will play when the GUI is opened.
      * @return this PlayerSettings instance for chaining
      */
 
-    PlayerSettings setMainGUIForOneGameSong(boolean musicActive, @NotNull String musicID);
+    PlayerSettings setMainGUIForOneGameSong(@NotNull String musicID, boolean musicActive);
 
 
     /**
@@ -100,11 +100,11 @@ public interface PlayerSettings {
      * Sets the background song for a specific game GUI.
      *
      * @param gameName    name of the game
-     * @param musicActive whether the music is active. If so, music will play when the GUI is opened
      * @param musicID     ID of the music in the Arcadium plugin config, which is specified in the "Music GUI songs:"
+     * @param musicActive whether the music is active. If so, music will play when the GUI is opened
      * @return this PlayerSettings instance for chaining
      */
 
-    PlayerSettings setGameGUISong(@NotNull String gameName, boolean musicActive, @NotNull String musicID);
+    PlayerSettings setGameGUISong(@NotNull String gameName, @NotNull String musicID, boolean musicActive);
 
 }
