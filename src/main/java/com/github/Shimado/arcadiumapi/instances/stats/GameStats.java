@@ -11,19 +11,6 @@ import org.jetbrains.annotations.NotNull;
 public class GameStats extends ArcadiumStats {
 
     private final String gameName;
-    private long score = 0;
-    private long rating = 0;
-
-    /**
-     * Creates a new statistics object for a specific game.
-     *
-     * @param gameName name of the game mode
-     */
-
-    public GameStats(@NotNull String gameName) {
-        super();
-        this.gameName = gameName;
-    }
 
     /**
      * Creates a new statistics object with full values.
@@ -38,16 +25,18 @@ public class GameStats extends ArcadiumStats {
      * @param rating      player rating
      */
 
-    public GameStats(@NotNull String gameName, int gamesPlayed, int victories, int defeats, int draws, int timePlayed, long score, long rating) {
-        super(gamesPlayed, victories, defeats, draws, timePlayed);
+    public GameStats(@NotNull String gameName, int gamesPlayed, int victories, int defeats, int draws, long timePlayed, long score, long rating) {
+        super(gamesPlayed, victories, defeats, draws, timePlayed, score, rating);
         this.gameName = gameName;
-        this.score = score;
-        this.rating = rating;
     }
 
+    public GameStats(@NotNull String gameName, int gamesPlayed, int victories, int defeats, int draws, long timePlayed) {
+        super(gamesPlayed, victories, defeats, draws, timePlayed, 0, 0);
+        this.gameName = gameName;
+    }
 
-    public GameStats(@NotNull String gameName, int gamesPlayed, int victories, int defeats, int draws, int timePlayed) {
-        super(gamesPlayed, victories, defeats, draws, timePlayed);
+    public GameStats(@NotNull String gameName) {
+        super();
         this.gameName = gameName;
     }
 
@@ -62,33 +51,5 @@ public class GameStats extends ArcadiumStats {
     public String getGameName() {
         return gameName;
     }
-
-
-
-    public long getScore() {
-        return score;
-    }
-
-    public void setScore(long score) {
-        this.score = score;
-    }
-
-    public void addScore(int score) {
-        this.score += score;
-    }
-
-
-    public long getRating() {
-        return rating;
-    }
-
-    public void setRating(long rating) {
-        this.rating = rating;
-    }
-
-    public void addRating(int rating) {
-        this.rating += rating;
-    }
-
 
 }

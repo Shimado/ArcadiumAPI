@@ -16,19 +16,6 @@ public class PlayerStats extends ArcadiumStats {
     private final UUID playerUUID;
     private Map<String, GameStats> gameStats = new HashMap<>();
 
-
-    /**
-     * Creates a new PlayerStats instance with only a UUID.
-     * If you want to create a "clean" user with zero statistics.
-     *
-     * @param playerUUID unique identifier of the player
-     */
-
-    public PlayerStats(@NotNull UUID playerUUID){
-        super();
-        this.playerUUID = playerUUID;
-    }
-
     /**
      * Creates a new PlayerStats instance with full statistics.
      *
@@ -38,10 +25,22 @@ public class PlayerStats extends ArcadiumStats {
      * @param defeats     number of defeats
      * @param draws       number of draws
      * @param timePlayed  number of timePlayed
+     * @param score       game score
+     * @param rating      player rating
      */
 
+    public PlayerStats(@NotNull UUID playerUUID, int gamesPlayed, int victories, int defeats, int draws, long timePlayed, long score, long rating){
+        super(gamesPlayed, victories, defeats, draws, timePlayed, score, rating);
+        this.playerUUID = playerUUID;
+    }
+
     public PlayerStats(@NotNull UUID playerUUID, int gamesPlayed, int victories, int defeats, int draws, long timePlayed){
-        super(gamesPlayed, victories, defeats, draws, timePlayed);
+        super(gamesPlayed, victories, defeats, draws, timePlayed, 0, 0);
+        this.playerUUID = playerUUID;
+    }
+
+    public PlayerStats(@NotNull UUID playerUUID){
+        super();
         this.playerUUID = playerUUID;
     }
 

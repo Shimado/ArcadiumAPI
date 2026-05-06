@@ -7,15 +7,19 @@ public class ArcadiumStats {
     private int defeats = 0;
     private int draws = 0;
     private long timePlayed = 0;
+    private long score = 0;
+    private long rating = 0;
 
     public ArcadiumStats(){}
 
-    public ArcadiumStats(int gamesPlayed, int victories, int defeats, int draws, long timePlayed){
+    public ArcadiumStats(int gamesPlayed, int victories, int defeats, int draws, long timePlayed, long score, long rating){
         this.gamesPlayed = gamesPlayed;
         this.victories = victories;
         this.defeats = defeats;
         this.draws = draws;
         this.timePlayed = timePlayed;
+        this.score = score;
+        this.rating = rating;
     }
 
 
@@ -81,6 +85,44 @@ public class ArcadiumStats {
 
     public void addTimePlayed() {
         timePlayed++;
+    }
+
+    public void addTimePlayed(long timePlayed) {
+        this.timePlayed += timePlayed;
+    }
+
+
+    public long getScore() {
+        return score;
+    }
+
+    public void setScore(long score) {
+        this.score = score;
+    }
+
+    public void addScore() {
+        score++;
+    }
+
+    public void addScore(long score) {
+        this.score += score;
+    }
+
+
+    public long getRating() {
+        return rating;
+    }
+
+    public void setRating(long rating) {
+        this.rating = rating;
+    }
+
+    public void addRating() {
+        rating++;
+    }
+
+    public void addRating(long rating) {
+        this.rating += rating;
     }
 
 }
