@@ -99,7 +99,7 @@ public class GameBet {
      * **/
 
     @NotNull
-    public BetType getChipType(){
+    public BetType getBetType(){
         if(moneyBet > 0) return BetType.MONEY;
         if(itemsBet != null) return BetType.ITEMS;
         return BetType.NONE;
@@ -112,13 +112,12 @@ public class GameBet {
      * @return the bet price as double
      * **/
 
-    public double getBetPrice(@Nullable GameBet bet){
-        if(bet == null) return 0.0;
-        if(bet.getItemsBet() != null){
-            return bet.getItemsBet().getAmount();
+    public double getBetPrice(){
+        if(getItemsBet() != null){
+            return getItemsBet().getAmount();
         }
         else{
-            return bet.getMoneyBet();
+            return getMoneyBet();
         }
     }
 
