@@ -19,6 +19,8 @@ public class ArcadiumGame {
     private final String modeName;                                           // For usage in commands/placeholders/code and etc
     private Map<String, ArcadiumGamePage> gamePages = new HashMap<>();       // Game pages
     private String permission = "";                                          // The permission to open the game mode
+    private double moneyBetDefault = 1000.0;                                 // Initial bet for the mode
+    private BoomboxSong backgroundMusic;                                     // Background music
     private List<Integer> slotsInGUI = new ArrayList<>();                    // Slots occupied by the icon in the main GUI
     private List<Integer> slotsInOneGameGUI = new ArrayList<>();             // Slots occupied by an icon in the main GUI for one game
     private ItemStack iconItem;                                              // The icon in the main GUI
@@ -115,7 +117,6 @@ public class ArcadiumGame {
     private BoomboxSong drawMusic;                                           // Music in .nbs format from Boombox plugin
 
     private String logText;                                                  // Logs line
-    private double moneyBetDefault = 1000.0;                                 // Initial bet for the mode
 
     private int gameOnline = 0;                                              // This is how many players are currently playing this mode
 
@@ -136,12 +137,14 @@ public class ArcadiumGame {
         return gamePages;
     }
 
-    public void setGamePages(@NotNull Map<String, ArcadiumGamePage> gamePages){
+    public ArcadiumGame setGamePages(@NotNull Map<String, ArcadiumGamePage> gamePages){
         this.gamePages = gamePages;
+        return this;
     }
 
-    public void addGamePage(@NotNull String gameName, @NotNull ArcadiumGamePage arcadiumGamePage){
+    public ArcadiumGame addGamePage(@NotNull String gameName, @NotNull ArcadiumGamePage arcadiumGamePage){
         gamePages.put(gameName, arcadiumGamePage);
+        return this;
     }
 
 
@@ -153,6 +156,27 @@ public class ArcadiumGame {
     public ArcadiumGame setPermission(@NotNull String permission){
         if(permission == null) return this;
         this.permission = permission;
+        return this;
+    }
+
+
+    public double getMoneyBetDefault(){
+        return moneyBetDefault;
+    }
+
+    public ArcadiumGame setMoneyBetDefault(double moneyBetDefault){
+        this.moneyBetDefault = moneyBetDefault;
+        return this;
+    }
+
+
+    @Nullable
+    public BoomboxSong getBackgroundMusic() {
+        return backgroundMusic;
+    }
+
+    public ArcadiumGame setBackgroundMusic(@Nullable BoomboxSong backgroundMusic) {
+        this.backgroundMusic = backgroundMusic;
         return this;
     }
 
@@ -1109,29 +1133,23 @@ public class ArcadiumGame {
     }
 
 
-    public double getMoneyBetDefault(){
-        return moneyBetDefault;
-    }
-
-    public void setMoneyBetDefault(double moneyBetDefault){
-        this.moneyBetDefault = moneyBetDefault;
-    }
-
-
     public int getGameOnline(){
         return gameOnline;
     }
 
-    public void setGameOnline(int gameOnline){
+    public ArcadiumGame setGameOnline(int gameOnline){
         this.gameOnline = gameOnline;
+        return this;
     }
 
-    public void addGameOnline(){
+    public ArcadiumGame addGameOnline(){
         gameOnline++;
+        return this;
     }
 
-    public void removeGameOnline(){
+    public ArcadiumGame removeGameOnline(){
         gameOnline = Math.max(0, gameOnline - 1);
+        return this;
     }
 
 }

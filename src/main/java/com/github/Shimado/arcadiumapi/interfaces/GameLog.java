@@ -32,7 +32,7 @@ public interface GameLog {
     boolean isDraw();
 
 
-    LocalDateTime getTimePlayed();
+    long getTimePlayed();
 
 
     long getOldScore();
