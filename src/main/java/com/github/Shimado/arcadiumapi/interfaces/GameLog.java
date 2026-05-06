@@ -35,16 +35,16 @@ public interface GameLog {
     LocalDateTime getTimePlayed();
 
 
-    int getOldScore();
+    long getOldScore();
 
 
-    int getNewScore();
+    long getNewScore();
 
 
-    int getOldRating();
+    long getOldRating();
 
 
-    int getNewRating();
+    long getNewRating();
 
 
     @NotNull
