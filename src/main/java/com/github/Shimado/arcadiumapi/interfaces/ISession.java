@@ -1,6 +1,7 @@
 package com.github.Shimado.arcadiumapi.interfaces;
 
 import com.github.Shimado.arcadiumapi.api.GameMethods;
+import com.github.Shimado.arcadiumapi.enums.GamePage;
 import com.github.Shimado.arcadiumapi.enums.InventoryType;
 import com.github.Shimado.arcadiumapi.instances.ArcadiumGame;
 import org.bukkit.entity.Player;
@@ -45,24 +46,25 @@ public interface ISession<T extends ArcadiumGame & GameMethods> {
     /**
      * Gets the type of the current GUI.
      *
-     * @return the GUI type
+     * @return the GUI type, or {@code null}
      */
 
-    @NotNull
+    @Nullable
     InventoryType getInventoryType();
 
-    void setInventoryType(@NotNull InventoryType inventoryType);
+    void setInventoryType(@Nullable InventoryType inventoryType);
 
 
     /**
-     * Checks if the session was opened by the command.
+     * Gets the type of the game page.
      *
-     * @return {@code true} if a sessions was opened by the command, otherwise {@code false}
-     * **/
+     * @return the page type, or {@code null}
+     */
 
-    boolean isOpenedByCommand();
+    @Nullable
+    GamePage getGamePage();
 
-    void setOpenedByCommand(boolean openedByCommand);
+    void setGamePage(@Nullable GamePage gamePage);
 
 
     /**

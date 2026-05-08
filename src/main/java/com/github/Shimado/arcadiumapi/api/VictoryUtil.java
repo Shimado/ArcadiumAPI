@@ -31,7 +31,7 @@ public interface VictoryUtil {
      * @param tableOwnerUUID  the UUID of the table owner
      */
 
-    void victory(@NotNull Player player, @NotNull GameBet bet, @NotNull ArcadiumGame gameMode, double multiplier, @Nullable Location tableLocation, @Nullable UUID tableOwnerUUID);
+    void victory(@NotNull Player player, @NotNull GameBet bet, @NotNull ArcadiumGame gameMode, double multiplier, long timePlayed, int addedScore, int addedRating, @Nullable Location tableLocation, @Nullable UUID tableOwnerUUID);
 
     /**
      * Processes the player's win by multiplying his bet by the multiplier.
@@ -44,7 +44,7 @@ public interface VictoryUtil {
      * @param gameTable       the placed game table instance. Stores the location of the table where the game was played and the UUID of the table owner
      */
 
-    void victory(@NotNull Player player, @NotNull GameBet bet, @NotNull ArcadiumGame gameMode, double multiplier, @Nullable PlacedGameTable gameTable);
+    void victory(@NotNull Player player, @NotNull GameBet bet, @NotNull ArcadiumGame gameMode, double multiplier, long timePlayed, int addedScore, int addedRating, @Nullable PlacedGameTable gameTable);
 
     /**
      * Handles a player win when a player wins other players' bets.
@@ -57,7 +57,7 @@ public interface VictoryUtil {
      * @param tableLocation   the location of the table where the game was played
      */
 
-    void victory(@NotNull Player player, @NotNull GameBet bet, @NotNull List<GameBet> prizeBets, @NotNull ArcadiumGame gameMode, @Nullable Location tableLocation);
+    void victory(@NotNull Player player, @NotNull GameBet bet, @NotNull List<GameBet> prizeBets, long timePlayed, int addedScore, int addedRating, @NotNull ArcadiumGame gameMode, @Nullable Location tableLocation);
 
     /**
      * Handles a player win when a player wins other players' bets.
@@ -70,7 +70,7 @@ public interface VictoryUtil {
      * @param gameTable       the placed game table instance. Stores the location of the table where the game was played and the UUID of the table owner
      */
 
-    void victory(@NotNull Player player, @NotNull GameBet bet, @NotNull List<GameBet> prizeBets, @NotNull ArcadiumGame gameMode, @Nullable PlacedGameTable gameTable);
+    void victory(@NotNull Player player, @NotNull GameBet bet, @NotNull List<GameBet> prizeBets, long timePlayed, int addedScore, int addedRating, @NotNull ArcadiumGame gameMode, @Nullable PlacedGameTable gameTable);
 
 
     /**
@@ -84,7 +84,7 @@ public interface VictoryUtil {
      * @param tableOwnerUUID  the UUID of the table owner
      */
 
-    void defeat(@NotNull Player player, @NotNull GameBet bet, @NotNull ArcadiumGame gameMode, @Nullable Location tableLocation, @Nullable UUID tableOwnerUUID);
+    void defeat(@NotNull Player player, @NotNull GameBet bet, @NotNull ArcadiumGame gameMode, long timePlayed, int addedScore, int addedRating, @Nullable Location tableLocation, @Nullable UUID tableOwnerUUID);
 
     /**
      * Handles a player's loss.
@@ -96,7 +96,7 @@ public interface VictoryUtil {
      * @param gameTable       the placed game table instance. Stores the location of the table where the game was played and the UUID of the table owner
      */
 
-    void defeat(@NotNull Player player, @NotNull GameBet bet, @NotNull ArcadiumGame gameMode, @Nullable PlacedGameTable gameTable);
+    void defeat(@NotNull Player player, @NotNull GameBet bet, @NotNull ArcadiumGame gameMode, long timePlayed, int addedScore, int addedRating, @Nullable PlacedGameTable gameTable);
 
 
     /**
@@ -108,6 +108,6 @@ public interface VictoryUtil {
      * @param gameMode        the game mode where the loss occurred
      */
 
-    void draw(@NotNull Player player, @NotNull GameBet bet, @NotNull ArcadiumGame gameMode);
+    void draw(@NotNull Player player, @NotNull GameBet bet, @NotNull ArcadiumGame gameMode, long timePlayed);
 
 }
