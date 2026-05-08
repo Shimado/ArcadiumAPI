@@ -13,15 +13,6 @@ import java.util.UUID;
 public interface EconomyUtil {
 
     /**
-     * Sets the UUID of the town (server-wide) account.
-     *
-     * @param townAccount The player's UUID or name, which will act as the account
-     */
-
-    void setupTownAccountUUID(@Nullable String townAccount);
-
-
-    /**
      * Gets the UUID of the town (server-wide) account, if it exists.
      *
      * @return the UUID of the town account, or {@code null} if not defined

@@ -6,6 +6,7 @@ public enum InventoryType {
     STATISTICS,
     MUSIC,
     DECORATIONS,
+    NOTIFICATIONS,
     GAME_MODE
 
 }

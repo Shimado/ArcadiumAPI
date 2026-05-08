@@ -1,5 +1,6 @@
 package com.github.Shimado.arcadiumapi.instances;
 
+import com.github.Shimado.arcadiumapi.enums.GamePage;
 import com.github.Shimado.boomboxapi.instances.BoomboxSong;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
@@ -17,7 +18,7 @@ import java.util.*;
 public class ArcadiumGame {
 
     private final String modeName;                                           // For usage in commands/placeholders/code and etc
-    private Map<String, ArcadiumGamePage> gamePages = new HashMap<>();       // Game pages
+    private Map<GamePage, ArcadiumGamePage> gamePages = new HashMap<>();     // Game pages
     private String permission = "";                                          // The permission to open the game mode
     private double moneyBetDefault = 1000.0;                                 // Initial bet for the mode
     private BoomboxSong backgroundMusic;                                     // Background music
@@ -134,17 +135,17 @@ public class ArcadiumGame {
 
 
     @NotNull
-    public Map<String, ArcadiumGamePage> getGamePages(){
+    public Map<GamePage, ArcadiumGamePage> getGamePages(){
         return gamePages;
     }
 
-    public ArcadiumGame setGamePages(@NotNull Map<String, ArcadiumGamePage> gamePages){
+    public ArcadiumGame setGamePages(@NotNull Map<GamePage, ArcadiumGamePage> gamePages){
         this.gamePages = gamePages;
         return this;
     }
 
-    public ArcadiumGame addGamePage(@NotNull String gameName, @NotNull ArcadiumGamePage arcadiumGamePage){
-        gamePages.put(gameName, arcadiumGamePage);
+    public ArcadiumGame addGamePage(@NotNull GamePage gamePage, @NotNull ArcadiumGamePage arcadiumGamePage){
+        gamePages.put(gamePage, arcadiumGamePage);
         return this;
     }
 
