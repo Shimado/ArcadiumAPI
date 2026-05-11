@@ -37,8 +37,8 @@ public class ArcadiumGamePage {
     private GeneralChangeableItem notificationItems;
     private GeneralItem musicInactiveItem;
     private GeneralItem musicActiveItem;
-    private GeneralItem scoreItem;
-    private GeneralItem ratingItem;
+    private GeneralChangeableItem scoreItem;
+    private GeneralChangeableItem ratingItem;
     private GeneralItem globalInfoItem;
     private GeneralItem yourInfoItem;
     private GeneralItem previousPageItem;
@@ -267,22 +267,22 @@ public class ArcadiumGamePage {
 
 
     @Nullable
-    public GeneralItem getScoreItem() {
+    public GeneralChangeableItem getScoreItem() {
         return scoreItem;
     }
 
-    public ArcadiumGamePage setScoreItem(@Nullable GeneralItem scoreItem) {
+    public ArcadiumGamePage setScoreItem(@Nullable GeneralChangeableItem scoreItem) {
         this.scoreItem = scoreItem;
         return this;
     }
 
 
     @Nullable
-    public GeneralItem getRatingItem() {
+    public GeneralChangeableItem getRatingItem() {
         return ratingItem;
     }
 
-    public ArcadiumGamePage setRatingItem(@Nullable GeneralItem ratingItem) {
+    public ArcadiumGamePage setRatingItem(@Nullable GeneralChangeableItem ratingItem) {
         this.ratingItem = ratingItem;
         return this;
     }
