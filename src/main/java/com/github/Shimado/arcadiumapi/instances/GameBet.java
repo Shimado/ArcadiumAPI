@@ -7,7 +7,8 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * Represents a game bet.
- * A bet can be placed in one of two different forms:
+ * A bet can be placed in one of three different forms:
+ *     NONE (moneyBet = 0.0 and itemsBet = null)
  *     MONEY (numeric value)
  *     ITEMS ({@link ItemStack})
  * Provides utility methods for modifying the bet, checking its type,
@@ -19,6 +20,42 @@ public class GameBet {
     private int slot = -1;
     private double moneyBet = 0.0;
     private ItemStack itemsBet;
+
+
+    /**
+     * Creates a new game bet object with full values.
+     *
+     * @param slot       the slot that the bet occupies in the GUI
+     * @param moneyBet   how much money did the player bet
+     */
+
+    public GameBet(int slot, double moneyBet){
+        this.slot = slot;
+        this.moneyBet = moneyBet;
+    }
+
+    public GameBet(double moneyBet){
+        this.moneyBet = moneyBet;
+    }
+
+
+    /**
+     * Creates a new game bet object with full values.
+     *
+     * @param slot       the slot that the bet occupies in the GUI
+     * @param itemsBet   The item that the player placed
+     */
+
+    public GameBet(int slot, ItemStack itemsBet){
+        this.slot = slot;
+        this.itemsBet = itemsBet;
+    }
+
+    public GameBet(ItemStack itemsBet){
+        this.itemsBet = itemsBet;
+    }
+
+    public GameBet(){}
 
 
     /**
@@ -117,7 +154,7 @@ public class GameBet {
             return getItemsBet().getAmount();
         }
         else{
-            return getMoneyBet();
+            return Math.max(0.0, getMoneyBet());
         }
     }
 

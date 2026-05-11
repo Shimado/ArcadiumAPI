@@ -27,7 +27,14 @@ public class PlayerStats extends ArcadiumStats {
      * @param timePlayed  number of timePlayed
      * @param score       game score
      * @param rating      player rating
+     * @param gameStats   all personal player statistics by mode
      */
+
+    public PlayerStats(@NotNull UUID playerUUID, int gamesPlayed, int victories, int defeats, int draws, long timePlayed, long score, long rating, @NotNull Map<String, GameStats> gameStats){
+        super(gamesPlayed, victories, defeats, draws, timePlayed, score, rating);
+        this.playerUUID = playerUUID;
+        setGameStats(gameStats);
+    }
 
     public PlayerStats(@NotNull UUID playerUUID, int gamesPlayed, int victories, int defeats, int draws, long timePlayed, long score, long rating){
         super(gamesPlayed, victories, defeats, draws, timePlayed, score, rating);

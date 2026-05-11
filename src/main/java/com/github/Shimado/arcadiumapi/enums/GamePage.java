@@ -9,6 +9,10 @@ public enum GamePage {
     GAME,
     VICTORY,
     DEFEAT,
-    DRAW
+    DRAW,
+
+    OPTIONAL_1,
+    OPTIONAL_2,
+    OPTIONAL_3
 
 }

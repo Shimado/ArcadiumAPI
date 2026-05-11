@@ -21,7 +21,6 @@ public class ArcadiumGame {
     private Map<GamePage, ArcadiumGamePage> gamePages = new HashMap<>();     // Game pages
     private String permission = "";                                          // The permission to open the game mode
     private double moneyBetDefault = 1000.0;                                 // Initial bet for the mode
-    private BoomboxSong backgroundMusic;                                     // Background music
     private int pageInGUI;                                                   // Page on the icon in the main GUI
     private List<Integer> slotsInGUI = new ArrayList<>();                    // Slots occupied by the icon in the main GUI
     private List<Integer> slotsInOneGameGUI = new ArrayList<>();             // Slots occupied by an icon in the main GUI for one game
@@ -168,17 +167,6 @@ public class ArcadiumGame {
 
     public ArcadiumGame setMoneyBetDefault(double moneyBetDefault){
         this.moneyBetDefault = moneyBetDefault;
-        return this;
-    }
-
-
-    @Nullable
-    public BoomboxSong getBackgroundMusic() {
-        return backgroundMusic;
-    }
-
-    public ArcadiumGame setBackgroundMusic(@Nullable BoomboxSong backgroundMusic) {
-        this.backgroundMusic = backgroundMusic;
         return this;
     }
 

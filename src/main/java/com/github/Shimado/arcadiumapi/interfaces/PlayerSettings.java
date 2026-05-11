@@ -24,11 +24,32 @@ public interface PlayerSettings {
     UUID getPlayerUUID();
 
 
+    /**
+     * Gets saved bet amount for each mode.
+     *
+     * @return map with a money bet for each game mode
+     */
 
     @NotNull
     Map<String, Double> getDefaultMoneyBets();
 
+    /**
+     * Gets saved default bet for the game mode
+     *
+     * @param gameName   the name of the game mode
+     *
+     * @return the bet price for the mode or else 0.0
+     */
+
     double getDefaultMoneyBet(@NotNull String gameName);
+
+    /**
+     * Sets the default bet price for the game mode.
+     *
+     * @param gameName         the name of the game mode
+     * @param defaultMoneyBet  the bet price
+     * @return this PlayerSettings instance for chaining
+     */
 
     PlayerSettings setDefaultMoneyBet(@NotNull String gameName, double defaultMoneyBet);
 

@@ -2,6 +2,7 @@ package com.github.Shimado.arcadiumapi.instances;
 
 import com.github.Shimado.arcadiumapi.interfaces.items.GeneralChangeableItem;
 import com.github.Shimado.arcadiumapi.interfaces.items.GeneralItem;
+import com.github.Shimado.boomboxapi.instances.BoomboxSong;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -44,6 +45,8 @@ public class ArcadiumGamePage {
     private GeneralItem nextPageItem;
     private GeneralChangeableItem pageItems;
     private Map<Integer, ItemStack> emptySlots = new HashMap<>();
+
+    private BoomboxSong backgroundMusic;
 
 
     public ArcadiumGamePage(int guiSize, @NotNull String guiTitle){
@@ -348,6 +351,17 @@ public class ArcadiumGamePage {
     public ArcadiumGamePage setEmptySlots(@NotNull Map<Integer, ItemStack> emptySlots) {
         if(emptySlots == null) return this;
         this.emptySlots = emptySlots;
+        return this;
+    }
+
+
+    @Nullable
+    public BoomboxSong getBackgroundMusic() {
+        return backgroundMusic;
+    }
+
+    public ArcadiumGamePage setBackgroundMusic(@Nullable BoomboxSong backgroundMusic) {
+        this.backgroundMusic = backgroundMusic;
         return this;
     }
 }
