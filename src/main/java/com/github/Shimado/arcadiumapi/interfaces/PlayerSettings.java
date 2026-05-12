@@ -1,5 +1,6 @@
 package com.github.Shimado.arcadiumapi.interfaces;
 
+import com.github.Shimado.arcadiumapi.enums.GamePage;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -110,22 +111,24 @@ public interface PlayerSettings {
      * Gets the background song settings for a specific game.
      *
      * @param gameName name of the game
+     * @param gamePage game page of the GUI
      * @return background song settings, or {@code null} if not found
      */
 
     @Nullable
-    BackgroundSongSettings getGameGUISong(@NotNull String gameName);
+    BackgroundSongSettings getGameGUISong(@NotNull String gameName, @Nullable GamePage gamePage);
 
 
     /**
      * Sets the background song for a specific game GUI.
      *
      * @param gameName    name of the game
+     * @param gamePage    game page of the GUI
      * @param musicID     ID of the music in the Arcadium plugin config, which is specified in the "Music GUI songs:"
      * @param musicActive whether the music is active. If so, music will play when the GUI is opened
      * @return this PlayerSettings instance for chaining
      */
 
-    PlayerSettings setGameGUISong(@NotNull String gameName, @NotNull String musicID, boolean musicActive);
+    PlayerSettings setGameGUISong(@NotNull String gameName, @Nullable GamePage gamePage, @NotNull String musicID, boolean musicActive);
 
 }

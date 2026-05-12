@@ -44,6 +44,16 @@ public interface GameLog {
 
 
     /**
+     * Gets the ID of the game that was played.
+     *
+     * @return a non-null string containing the game ID
+     */
+
+    @NotNull
+    String getGameID();
+
+
+    /**
      * Gets the name of the game that was played.
      *
      * @return a non-null string containing the game name

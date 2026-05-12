@@ -1,12 +1,24 @@
 package com.github.Shimado.arcadiumapi.interfaces;
 
+import com.github.Shimado.arcadiumapi.enums.GamePage;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Represents background song status (active state and music ID).
  */
 
 public interface BackgroundSongSettings {
+
+    /**
+     * Gets the game page type.
+     *
+     * @return the game page name
+     * **/
+
+    @Nullable
+    GamePage getGamePage();
+
 
     /**
      * Gets the music identifier.

@@ -17,6 +17,7 @@ import java.util.*;
 
 public class ArcadiumGame {
 
+    private final String gameID;                                             // Special ID to save data in MYSQL
     private final String modeName;                                           // For usage in commands/placeholders/code and etc
     private Map<GamePage, ArcadiumGamePage> gamePages = new HashMap<>();     // Game pages
     private String permission = "";                                          // The permission to open the game mode
@@ -122,8 +123,15 @@ public class ArcadiumGame {
     private int gameOnline = 0;                                              // This is how many players are currently playing this mode
 
 
-    public ArcadiumGame(@NotNull String modeName){
+    public ArcadiumGame(@NotNull String gameID, @NotNull String modeName){
+        this.gameID = gameID;
         this.modeName = modeName;
+    }
+
+
+    @NotNull
+    public String getGameID(){
+        return gameID;
     }
 
 

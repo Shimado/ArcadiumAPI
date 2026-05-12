@@ -7,7 +7,9 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ArcadiumGamePage {
@@ -47,6 +49,7 @@ public class ArcadiumGamePage {
     private Map<Integer, ItemStack> emptySlots = new HashMap<>();
 
     private BoomboxSong backgroundMusic;
+    private List<BoomboxSong> backgroundMusicList;
 
 
     public ArcadiumGamePage(int guiSize, @NotNull String guiTitle){
@@ -363,5 +366,23 @@ public class ArcadiumGamePage {
     public ArcadiumGamePage setBackgroundMusic(@Nullable BoomboxSong backgroundMusic) {
         this.backgroundMusic = backgroundMusic;
         return this;
+    }
+
+
+    @NotNull
+    public List<BoomboxSong> getBackgroundMusicList(){
+        return backgroundMusicList;
+    }
+
+    public void setBackgroundMusicList(@NotNull List<BoomboxSong> backgroundMusicList){
+        if(backgroundMusicList == null){
+            this.backgroundMusicList = new ArrayList<>();
+            return;
+        }
+        this.backgroundMusicList = backgroundMusicList;
+    }
+
+    public void addBackgroundMusicList(@NotNull BoomboxSong boomboxSong){
+        this.backgroundMusicList.add(boomboxSong);
     }
 }

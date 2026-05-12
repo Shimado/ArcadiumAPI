@@ -17,6 +17,18 @@ import java.util.Map;
 
 public interface GameRegister<T extends ArcadiumGame & GameMethods> {
 
+
+    /**
+     * Gets a game mode by its permanent ID.
+     *
+     * @param gameID   the ID the game
+     * @return the game mode instance, or {@code null} if not found
+     */
+
+    @Nullable
+    T getGameByID(@Nullable String gameID);
+
+
     /**
      * Gets a game mode by its registered name.
      *
