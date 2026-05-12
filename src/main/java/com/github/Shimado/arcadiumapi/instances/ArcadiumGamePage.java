@@ -1,5 +1,6 @@
 package com.github.Shimado.arcadiumapi.instances;
 
+import com.github.Shimado.arcadiumapi.interfaces.BackgroundSong;
 import com.github.Shimado.arcadiumapi.interfaces.items.GeneralChangeableItem;
 import com.github.Shimado.arcadiumapi.interfaces.items.GeneralItem;
 import com.github.Shimado.boomboxapi.instances.BoomboxSong;
@@ -48,8 +49,8 @@ public class ArcadiumGamePage {
     private GeneralChangeableItem pageItems;
     private Map<Integer, ItemStack> emptySlots = new HashMap<>();
 
-    private BoomboxSong backgroundMusic;
-    private List<BoomboxSong> backgroundMusicList;
+    private BackgroundSong backgroundSong;
+    private List<BackgroundSong> backgroundSongList;
 
 
     public ArcadiumGamePage(int guiSize, @NotNull String guiTitle){
@@ -359,30 +360,30 @@ public class ArcadiumGamePage {
 
 
     @Nullable
-    public BoomboxSong getBackgroundMusic() {
-        return backgroundMusic;
+    public BackgroundSong getBackgroundSong() {
+        return backgroundSong;
     }
 
-    public ArcadiumGamePage setBackgroundMusic(@Nullable BoomboxSong backgroundMusic) {
-        this.backgroundMusic = backgroundMusic;
+    public ArcadiumGamePage setBackgroundSong(@Nullable BackgroundSong backgroundSong) {
+        this.backgroundSong = backgroundSong;
         return this;
     }
 
 
     @NotNull
-    public List<BoomboxSong> getBackgroundMusicList(){
-        return backgroundMusicList;
+    public List<BackgroundSong> getBackgroundSongList(){
+        return backgroundSongList;
     }
 
-    public void setBackgroundMusicList(@NotNull List<BoomboxSong> backgroundMusicList){
-        if(backgroundMusicList == null){
-            this.backgroundMusicList = new ArrayList<>();
+    public void setBackgroundSongList(@NotNull List<BackgroundSong> backgroundSongList){
+        if(backgroundSongList == null){
+            this.backgroundSongList = new ArrayList<>();
             return;
         }
-        this.backgroundMusicList = backgroundMusicList;
+        this.backgroundSongList = backgroundSongList;
     }
 
-    public void addBackgroundMusicList(@NotNull BoomboxSong boomboxSong){
-        this.backgroundMusicList.add(boomboxSong);
+    public void addBackgroundSongList(@NotNull BackgroundSong backgroundSong){
+        this.backgroundSongList.add(backgroundSong);
     }
 }
