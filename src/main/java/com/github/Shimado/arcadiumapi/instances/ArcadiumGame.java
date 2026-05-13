@@ -1,6 +1,7 @@
 package com.github.Shimado.arcadiumapi.instances;
 
 import com.github.Shimado.arcadiumapi.enums.GamePage;
+import com.github.Shimado.arcadiumapi.interfaces.items.GeneralItem;
 import com.github.Shimado.boomboxapi.instances.BoomboxSong;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
@@ -22,6 +23,14 @@ public class ArcadiumGame {
     private Map<GamePage, ArcadiumGamePage> gamePages = new HashMap<>();     // Game pages
     private String permission = "";                                          // The permission to open the game mode
     private double moneyBetDefault = 1000.0;                                 // Initial bet for the mode
+    private double minBetPrice = 0.01;                                       // Minimum cash bet that a player can place
+    private int minBetPriceInItems = 1;                                      // Minimum bid in items that a player can bet
+    private double maxBetPrice = 10000000.0;                                 // The maximum monetary bet that a player can place
+    private int maxBetPriceInItems = 64;                                     // The maximum bet in items that a player can bet
+    private double maxDiffBetweenBets = 100000.0;                            // Maximum percentage difference between player bets
+    private double changeMoneyBetPerClick = 1000.0;                          // How much will "moneyBetDefault" change when clicked
+    private double changeMoneyBetPerClickBig = 10000.0;                      // How much will "moneyBetDefault" change when Shift + click
+    private GeneralItem moneyBetItem;                                        // Money bet icon
     private int pageInGUI;                                                   // Page on the icon in the main GUI
     private List<Integer> slotsInGUI = new ArrayList<>();                    // Slots occupied by the icon in the main GUI
     private List<Integer> slotsInOneGameGUI = new ArrayList<>();             // Slots occupied by an icon in the main GUI for one game
@@ -147,17 +156,19 @@ public class ArcadiumGame {
     }
 
     public ArcadiumGame setGamePages(@NotNull Map<GamePage, ArcadiumGamePage> gamePages){
+        if(gamePages == null) return this;
         this.gamePages = gamePages;
         return this;
     }
 
-    public ArcadiumGame addGamePage(@NotNull GamePage gamePage, @NotNull ArcadiumGamePage arcadiumGamePage){
-        gamePages.put(gamePage, arcadiumGamePage);
+    public ArcadiumGame addGamePage(@NotNull GamePage gamePageType, @NotNull ArcadiumGamePage gamePage){
+        if(gamePageType == null || gamePage == null) return this;
+        gamePages.put(gamePageType, gamePage);
         return this;
     }
 
 
-    @Nullable
+    @NotNull
     public String getPermission(){
         return permission;
     }
@@ -176,6 +187,86 @@ public class ArcadiumGame {
     public ArcadiumGame setMoneyBetDefault(double moneyBetDefault){
         this.moneyBetDefault = moneyBetDefault;
         return this;
+    }
+
+
+    public double getMinBetPrice() {
+        return minBetPrice;
+    }
+
+    public ArcadiumGame setMinBetPrice(double minBetPrice) {
+        this.minBetPrice = minBetPrice;
+        return this;
+    }
+
+
+    public int getMinBetPriceInItems() {
+        return minBetPriceInItems;
+    }
+
+    public ArcadiumGame setMinBetPriceInItems(int minBetPriceInItems) {
+        this.minBetPriceInItems = minBetPriceInItems;
+        return this;
+    }
+
+
+    public double getMaxBetPrice() {
+        return maxBetPrice;
+    }
+
+    public ArcadiumGame setMaxBetPrice(double maxBetPrice) {
+        this.maxBetPrice = maxBetPrice;
+        return this;
+    }
+
+
+    public int getMaxBetPriceInItems() {
+        return maxBetPriceInItems;
+    }
+
+    public ArcadiumGame setMaxBetPriceInItems(int maxBetPriceInItems) {
+        this.maxBetPriceInItems = maxBetPriceInItems;
+        return this;
+    }
+
+
+    public double getMaxDiffBetweenBets() {
+        return maxDiffBetweenBets;
+    }
+
+    public ArcadiumGame setMaxDiffBetweenBets(double maxDiffBetweenBets) {
+        this.maxDiffBetweenBets = maxDiffBetweenBets;
+        return this;
+    }
+
+
+    public double getChangeMoneyBetPerClick() {
+        return changeMoneyBetPerClick;
+    }
+
+    public ArcadiumGame setChangeMoneyBetPerClick(double changeMoneyBetPerClick) {
+        this.changeMoneyBetPerClick = changeMoneyBetPerClick;
+        return this;
+    }
+
+
+    public double getChangeMoneyBetPerClickBig() {
+        return changeMoneyBetPerClickBig;
+    }
+
+    public ArcadiumGame setChangeMoneyBetPerClickBig(double changeMoneyBetPerClickBig) {
+        this.changeMoneyBetPerClickBig = changeMoneyBetPerClickBig;
+        return this;
+    }
+
+
+    @Nullable
+    public GeneralItem getMoneyBetItem(){
+        return moneyBetItem;
+    }
+
+    public void setMoneyBetItem(@Nullable GeneralItem moneyBetItem){
+        this.moneyBetItem = moneyBetItem;
     }
 
 

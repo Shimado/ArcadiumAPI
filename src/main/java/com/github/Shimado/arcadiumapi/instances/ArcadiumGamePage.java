@@ -3,7 +3,6 @@ package com.github.Shimado.arcadiumapi.instances;
 import com.github.Shimado.arcadiumapi.interfaces.BackgroundSong;
 import com.github.Shimado.arcadiumapi.interfaces.items.GeneralChangeableItem;
 import com.github.Shimado.arcadiumapi.interfaces.items.GeneralItem;
-import com.github.Shimado.boomboxapi.instances.BoomboxSong;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -18,20 +17,8 @@ public class ArcadiumGamePage {
     private final int guiSize;
     private final String guiTitle;
 
-    private double minBetPrice = 0.01;
-    private int minBetPriceInItems = 1;
-    private double maxBetPrice = 10000000.0;
-    private int maxBetPriceInItems = 64;
-    private double maxDiffBetweenBets = 100.0;
-
     private GeneralItem addMoneyBetItem;
-    private double addMoneyBetPerClick = 1000.0;
-    private double addMoneyBetPerClickBig = 10000.0;
-
     private GeneralItem removeMoneyBetItem;
-    private double removeMoneyBetPerClick = 1000.0;
-    private double removeMoneyBetPerClickBig = 10000.0;
-
     private GeneralItem spotItem;
     private GeneralItem leverInactiveItem;
     private GeneralItem leverActiveItem;
@@ -70,56 +57,6 @@ public class ArcadiumGamePage {
     }
 
 
-    public double getMinBetPrice() {
-        return minBetPrice;
-    }
-
-    public ArcadiumGamePage setMinBetPrice(double minBetPrice) {
-        this.minBetPrice = minBetPrice;
-        return this;
-    }
-
-
-    public int getMinBetPriceInItems() {
-        return minBetPriceInItems;
-    }
-
-    public ArcadiumGamePage setMinBetPriceInItems(int minBetPriceInItems) {
-        this.minBetPriceInItems = minBetPriceInItems;
-        return this;
-    }
-
-
-    public double getMaxBetPrice() {
-        return maxBetPrice;
-    }
-
-    public ArcadiumGamePage setMaxBetPrice(double maxBetPrice) {
-        this.maxBetPrice = maxBetPrice;
-        return this;
-    }
-
-
-    public int getMaxBetPriceInItems() {
-        return maxBetPriceInItems;
-    }
-
-    public ArcadiumGamePage setMaxBetPriceInItems(int maxBetPriceInItems) {
-        this.maxBetPriceInItems = maxBetPriceInItems;
-        return this;
-    }
-
-
-    public double getMaxDiffBetweenBets() {
-        return maxDiffBetweenBets;
-    }
-
-    public ArcadiumGamePage setMaxDiffBetweenBets(double maxDiffBetweenBets) {
-        this.maxDiffBetweenBets = maxDiffBetweenBets;
-        return this;
-    }
-
-
     @Nullable
     public GeneralItem getAddMoneyBetItem() {
         return addMoneyBetItem;
@@ -131,26 +68,6 @@ public class ArcadiumGamePage {
     }
 
 
-    public double getAddMoneyBetPerClick() {
-        return addMoneyBetPerClick;
-    }
-
-    public ArcadiumGamePage setAddMoneyBetPerClick(double addMoneyBetPerClick) {
-        this.addMoneyBetPerClick = addMoneyBetPerClick;
-        return this;
-    }
-
-
-    public double getAddMoneyBetPerClickBig() {
-        return addMoneyBetPerClickBig;
-    }
-
-    public ArcadiumGamePage setAddMoneyBetPerClickBig(double addMoneyBetPerClickBig) {
-        this.addMoneyBetPerClickBig = addMoneyBetPerClickBig;
-        return this;
-    }
-
-
     @Nullable
     public GeneralItem getRemoveMoneyBetItem() {
         return removeMoneyBetItem;
@@ -158,26 +75,6 @@ public class ArcadiumGamePage {
 
     public ArcadiumGamePage setRemoveMoneyBetItem(@Nullable GeneralItem removeMoneyBetItem) {
         this.removeMoneyBetItem = removeMoneyBetItem;
-        return this;
-    }
-
-
-    public double getRemoveMoneyBetPerClick() {
-        return removeMoneyBetPerClick;
-    }
-
-    public ArcadiumGamePage setRemoveMoneyBetPerClick(double removeMoneyBetPerClick) {
-        this.removeMoneyBetPerClick = removeMoneyBetPerClick;
-        return this;
-    }
-
-
-    public double getRemoveMoneyBetPerClickBig() {
-        return removeMoneyBetPerClickBig;
-    }
-
-    public ArcadiumGamePage setRemoveMoneyBetPerClickBig(double removeMoneyBetPerClickBig) {
-        this.removeMoneyBetPerClickBig = removeMoneyBetPerClickBig;
         return this;
     }
 
@@ -375,15 +272,15 @@ public class ArcadiumGamePage {
         return backgroundSongList;
     }
 
-    public void setBackgroundSongList(@NotNull List<BackgroundSong> backgroundSongList){
-        if(backgroundSongList == null){
-            this.backgroundSongList = new ArrayList<>();
-            return;
-        }
+    public ArcadiumGamePage setBackgroundSongList(@NotNull List<BackgroundSong> backgroundSongList){
+        if(backgroundSongList == null) return this;
         this.backgroundSongList = backgroundSongList;
+        return this;
     }
 
-    public void addBackgroundSongList(@NotNull BackgroundSong backgroundSong){
+    public ArcadiumGamePage addBackgroundSongList(@NotNull BackgroundSong backgroundSong){
+        if(backgroundSong == null) return this;
         this.backgroundSongList.add(backgroundSong);
+        return this;
     }
 }
