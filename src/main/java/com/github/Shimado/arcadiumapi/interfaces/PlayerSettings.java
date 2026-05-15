@@ -98,6 +98,27 @@ public interface PlayerSettings {
 
 
     /**
+     * Gets the background song settings for the statistics GUI.
+     *
+     * @return statistics GUI background song settings, or {@code null} if not set
+     */
+
+    @Nullable
+    BackgroundSongSettings getStatsGUISong();
+
+
+    /**
+     * Sets the background song for the statistics GUI.
+     *
+     * @param musicID     ID of the music in the Arcadium plugin config
+     * @param musicActive whether the music is active. If so, music will play when the GUI is opened.
+     * @return this PlayerSettings instance for chaining
+     */
+
+    PlayerSettings setStatsGUISong(@NotNull String musicID, boolean musicActive);
+
+
+    /**
      * Gets background song settings for all game GUIs.
      *
      * @return map of game names to background song settings
