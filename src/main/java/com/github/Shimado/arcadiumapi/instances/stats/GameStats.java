@@ -10,11 +10,13 @@ import org.jetbrains.annotations.NotNull;
 
 public class GameStats extends ArcadiumStats {
 
+    private final String gameID;
     private final String gameName;
 
     /**
      * Creates a new statistics object with full values.
      *
+     * @param gameID      ID of the game mode
      * @param gameName    name of the game mode
      * @param gamesPlayed number of games played
      * @param victories   number of victories
@@ -25,19 +27,34 @@ public class GameStats extends ArcadiumStats {
      * @param rating      player rating
      */
 
-    public GameStats(@NotNull String gameName, int gamesPlayed, int victories, int defeats, int draws, long timePlayed, long score, long rating) {
+    public GameStats(@NotNull String gameID, @NotNull String gameName, int gamesPlayed, int victories, int defeats, int draws, long timePlayed, long score, long rating) {
         super(gamesPlayed, victories, defeats, draws, timePlayed, score, rating);
+        this.gameID = gameID;
         this.gameName = gameName;
     }
 
-    public GameStats(@NotNull String gameName, int gamesPlayed, int victories, int defeats, int draws, long timePlayed) {
+    public GameStats(@NotNull String gameID, @NotNull String gameName, int gamesPlayed, int victories, int defeats, int draws, long timePlayed) {
         super(gamesPlayed, victories, defeats, draws, timePlayed, 0, 0);
+        this.gameID = gameID;
         this.gameName = gameName;
     }
 
-    public GameStats(@NotNull String gameName) {
+    public GameStats(@NotNull String gameID, @NotNull String gameName) {
         super();
+        this.gameID = gameID;
         this.gameName = gameName;
+    }
+
+
+    /**
+     * Gets the ID of the game mode.
+     *
+     * @return the ID of the game mode
+     */
+
+    @NotNull
+    public String getGameID() {
+        return gameID;
     }
 
 
