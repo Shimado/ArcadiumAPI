@@ -68,6 +68,18 @@ public interface ISession<T extends ArcadiumGame & GameMethods> {
 
 
     /**
+     * Gets the opened Notifications inventory associated with this session.
+     *
+     * @return the inventory, or {@code null} if GUI is closed
+     */
+
+    @Nullable
+    Inventory getNotificationsInv();
+
+    void setNotificationsInv(@Nullable Inventory notificationsInv);
+
+
+    /**
      * Gets the currently opened game instance in this session.
      *
      * @return the opened game, or {@code null} if none is active
