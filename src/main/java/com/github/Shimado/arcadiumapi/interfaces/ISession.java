@@ -32,6 +32,30 @@ public interface ISession<T extends ArcadiumGame & GameMethods> {
 
 
     /**
+     * Gets the type of the current GUI.
+     *
+     * @return the GUI type, or {@code null}
+     */
+
+    @Nullable
+    InventoryType getInvType();
+
+    void setInvType(@Nullable InventoryType invType);
+
+
+    /**
+     * Gets the type of the previous GUI.
+     *
+     * @return the previous GUI type, or {@code null}
+     */
+
+    @Nullable
+    InventoryType getPreviousInvType();
+
+    void setPreviousInvType(@Nullable InventoryType invType);
+
+
+    /**
      * Gets the opened Music inventory associated with this session.
      *
      * @return the inventory, or {@code null} if GUI is closed
@@ -44,15 +68,15 @@ public interface ISession<T extends ArcadiumGame & GameMethods> {
 
 
     /**
-     * Gets the type of the current GUI.
+     * Gets the currently opened game instance in this session.
      *
-     * @return the GUI type, or {@code null}
+     * @return the opened game, or {@code null} if none is active
      */
 
     @Nullable
-    InventoryType getInventoryType();
+    T getOpenedGame();
 
-    void setInventoryType(@Nullable InventoryType inventoryType);
+    void setOpenedGame(@Nullable T openedGame);
 
 
     /**
@@ -92,18 +116,6 @@ public interface ISession<T extends ArcadiumGame & GameMethods> {
 
 
     /**
-     * Gets the currently opened game instance in this session.
-     *
-     * @return the opened game, or {@code null} if none is active
-     */
-
-    @Nullable
-    T getOpenedGame();
-
-    void setOpenedGame(@Nullable T openedGame);
-
-
-    /**
      * Gets the placed table the player is playing.
      *
      * @return the placed table, or {@code null} if opened by a command.
@@ -113,6 +125,7 @@ public interface ISession<T extends ArcadiumGame & GameMethods> {
     PlacedGameTable getGameTable();
 
     void setGameTable(@Nullable PlacedGameTable placedGameTable);
+
 
     /**
      * Gets the current page index.
@@ -124,6 +137,7 @@ public interface ISession<T extends ArcadiumGame & GameMethods> {
 
     void setPage(int page);
 
+
     /**
      * Advances to the next page and returns the new index.
      *
@@ -133,6 +147,7 @@ public interface ISession<T extends ArcadiumGame & GameMethods> {
      */
 
     int nextPage(int maxPage);
+
 
     /**
      * Goes back to the previous page and returns the new index.
@@ -144,13 +159,25 @@ public interface ISession<T extends ArcadiumGame & GameMethods> {
 
 
     /**
+     * Gets the background song settings of the current GUI.
+     *
+     * @return the background song settings, or {@code null}
+     */
+
+    @Nullable
+    BackgroundSongSettings getBackgroundSong();
+
+    void setBackgroundSong(@Nullable BackgroundSongSettings backgroundSong);
+
+
+    /**
      * Closes the GUI for the given player.
      * Closes the GUI and does not return to the previous one.
      *
      * @param player the player whose inventory should be closed
      */
 
-    void closeInventory(@NotNull Player player);
+    void closeInventoryWithoutReturn(@NotNull Player player);
 
 }
 
