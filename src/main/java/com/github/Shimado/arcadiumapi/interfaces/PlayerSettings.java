@@ -125,7 +125,7 @@ public interface PlayerSettings {
      */
 
     @NotNull
-    Map<String, BackgroundSongSettings> getGamesGUISongs();
+    Map<String, Map<GamePage, BackgroundSongSettings>> getGamesGUISongs();
 
 
     /**
