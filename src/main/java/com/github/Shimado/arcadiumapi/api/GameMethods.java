@@ -18,12 +18,11 @@ public interface GameMethods {
      * Checks permissions to see if the player can access this mode.
      * Sets the music, statistics, bet change, and background items buttons.
      *
-     * @param player the player who is opening the game
-     * @param inv    the inventory (GUI) that will be shown to the player.
-     *               It will already contain a title and some common items
+     * @param player   the player who is opening the game
+     * @param session  the inventory session with some data
      */
 
-    void openGame(@NotNull Player player, @NotNull Inventory inv);
+    void openGame(@NotNull Player player, @NotNull ISession session);
 
 
     /**
@@ -49,6 +48,32 @@ public interface GameMethods {
      */
 
     void clickGUI(@NotNull InventoryClickEvent e, @NotNull Player player, @NotNull ISession session, int slot);
+
+
+    /**
+     * Handles logic when the player interacts with the close/return to previous GUI button.
+     * Checks permissions to see if the player can access this mode.
+     *
+     * @param e       the inventory click event
+     * @param player  the player who clicked
+     * @param session the inventory session that stores some data {@link ISession}
+     * @param slot    the clicked slot in the GUI
+     */
+
+    void clickCloseButton(@NotNull InventoryClickEvent e, @NotNull Player player, @NotNull ISession session, int slot);
+
+
+    /**
+     * Handles logic when the player interacts with the restart game button.
+     * Checks permissions to see if the player can access this mode.
+     *
+     * @param e       the inventory click event
+     * @param player  the player who clicked
+     * @param session the inventory session that stores some data {@link ISession}
+     * @param slot    the clicked slot in the GUI
+     */
+
+    void clickRestartButton(@NotNull InventoryClickEvent e, @NotNull Player player, @NotNull ISession session, int slot);
 
 
     /**
