@@ -52,7 +52,7 @@ public interface GameLog {
      */
 
     @NotNull
-    List<UUID> getRivalUUID();
+    List<UUID> getRivalUUIDs();
 
 
     /**
@@ -62,7 +62,7 @@ public interface GameLog {
      */
 
     @NotNull
-    List<String> getRivalName();
+    List<String> getRivalNames();
 
 
     /**
