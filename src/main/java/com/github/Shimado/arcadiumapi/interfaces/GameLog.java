@@ -1,8 +1,10 @@
 package com.github.Shimado.arcadiumapi.interfaces;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -41,6 +43,26 @@ public interface GameLog {
 
     @NotNull
     String getPlayerName();
+
+
+    /**
+     * Gets the unique identifiers of the rivals who participated in the game.
+     *
+     * @return a non-null list of the rival uuids
+     */
+
+    @NotNull
+    List<UUID> getRivalUUID();
+
+
+    /**
+     * Gets the display names of the rivals who participated in the game.
+     *
+     * @return a non-null list containing the rival names
+     */
+
+    @NotNull
+    List<String> getRivalName();
 
 
     /**
