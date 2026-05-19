@@ -128,6 +128,7 @@ public class ArcadiumGame {
     private BoomboxSong drawMusic;                                           // Music in .nbs format from Boombox plugin
 
     private String logText;                                                  // Logs line
+    private List<String> notificationText;                                   // Notification text (as list)
 
     private int gameOnline = 0;                                              // This is how many players are currently playing this mode
 
@@ -1228,6 +1229,17 @@ public class ArcadiumGame {
 
     public ArcadiumGame setLogText(@Nullable String logText) {
         this.logText = logText != null ? logText : "";
+        return this;
+    }
+
+
+    @NotNull
+    public List<String> getNotificationText() {
+        return notificationText;
+    }
+
+    public ArcadiumGame setNotificationText(@NotNull List<String> notificationText) {
+        this.notificationText = notificationText != null ? notificationText : new ArrayList<>();
         return this;
     }
 
