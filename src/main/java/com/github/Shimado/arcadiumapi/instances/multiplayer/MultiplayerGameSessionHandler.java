@@ -179,6 +179,5 @@ public abstract class MultiplayerGameSessionHandler<S extends MultiplayerGameSes
             session.setOpened(false);
         }
         sessions.clear();
-        arcadiumGame.setGameOnline(0);
     }
 }
