@@ -174,7 +174,7 @@ public abstract class MultiplayerGameSessionHandler<S extends MultiplayerGameSes
     public void reload(@NotNull ArcadiumGame arcadiumGame, @NotNull CycleRunnable cancelCycleRunnable) {
         for (H session : sessions.values()) {
             cancelCycleRunnable.run(session.getCycleID());
-            gameUtil.reloadSingleplayerGameGUI(session.getPlayerSessions(), arcadiumGame);
+            //gameUtil.reloadSingleplayerGameGUI(session.getPlayerSessions(), arcadiumGame);
             session.setPlayerSessions(new HashMap<>());
             session.setOpened(false);
         }
