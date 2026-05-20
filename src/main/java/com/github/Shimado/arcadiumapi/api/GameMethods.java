@@ -13,6 +13,8 @@ import org.jetbrains.annotations.NotNull;
 
 public interface GameMethods {
 
+    int getGameOnline();
+
     /**
      * Opens the game GUI for a given player.
      * Checks permissions to see if the player can access this mode.

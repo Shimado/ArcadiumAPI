@@ -130,8 +130,6 @@ public class ArcadiumGame {
     private String logText;                                                  // Logs line
     private List<String> notificationText;                                   // Notification text (as list)
 
-    private int gameOnline = 0;                                              // This is how many players are currently playing this mode
-
 
     public ArcadiumGame(@NotNull String gameID, @NotNull String modeName){
         this.gameID = gameID;
@@ -1240,26 +1238,6 @@ public class ArcadiumGame {
 
     public ArcadiumGame setNotificationText(@NotNull List<String> notificationText) {
         this.notificationText = notificationText != null ? notificationText : new ArrayList<>();
-        return this;
-    }
-
-
-    public int getGameOnline(){
-        return gameOnline;
-    }
-
-    public ArcadiumGame setGameOnline(int gameOnline){
-        this.gameOnline = gameOnline;
-        return this;
-    }
-
-    public ArcadiumGame addGameOnline(){
-        gameOnline++;
-        return this;
-    }
-
-    public ArcadiumGame removeGameOnline(){
-        gameOnline = Math.max(0, gameOnline - 1);
         return this;
     }
 
