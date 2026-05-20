@@ -16,13 +16,14 @@ public interface GameMethods {
     /**
      * Opens the game GUI for a given player.
      * Checks permissions to see if the player can access this mode.
-     * Sets the music, statistics, bet change, and background items buttons.
+     * Sets the music, notifications, statistics, bet change, and background items buttons.
      *
-     * @param player   the player who is opening the game
-     * @param session  the inventory session with some data
+     * @param player      the player who is opening the game
+     * @param session     the inventory session with some data
+     * @param withoutBet  will there be a need to place a bet to start
      */
 
-    void openGame(@NotNull Player player, @NotNull ISession session);
+    void openGame(@NotNull Player player, @NotNull ISession session, boolean withoutBet);
 
 
     /**
@@ -30,11 +31,12 @@ public interface GameMethods {
      * Here you can specify the return of the bet if the session has not started.
      * And the deletion of the player's data from the session.
      *
-     * @param player   the player who closed the game inventory
-     * @param session  the inventory session with some data
+     * @param player     the player who closed the game inventory
+     * @param session    the inventory session with some data
+     * @param fullClose  will the GUI be completely closed without returning to the previous one
      */
 
-    void closeGUI(@NotNull Player player, @NotNull ISession session);
+    void closeGUI(@NotNull Player player, @NotNull ISession session, boolean fullClose);
 
 
     /**

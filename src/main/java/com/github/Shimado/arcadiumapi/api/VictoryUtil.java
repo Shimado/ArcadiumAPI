@@ -28,15 +28,15 @@ public interface VictoryUtil {
      * @param gameMode        the game mode where the win occurred
      * @param multiplier      the payout multiplier applied to the bet
      * @param timePlayed      how many seconds the player played the mode
-     * @param addedScore      how much rating will the player receive
-     * @param addedRating     how many points did the player score
+     * @param currentScore    how many points did the player score
+     * @param addedRating     how much rating will the player receive
      * @param tableLocation   the location of the table where the game was played
      * @param tableOwnerUUID  the UUID of the table owner
      */
 
-    void victory(@NotNull Player player, @Nullable GameBet bet, @NotNull ArcadiumGame gameMode, double multiplier, long timePlayed, int addedScore, int addedRating, @Nullable Location tableLocation, @Nullable UUID tableOwnerUUID);
+    void victory(@NotNull Player player, @Nullable GameBet bet, @NotNull ArcadiumGame gameMode, double multiplier, long timePlayed, int currentScore, int addedRating, @Nullable Location tableLocation, @Nullable UUID tableOwnerUUID);
 
-    void victory(@NotNull Player player, @NotNull ArcadiumGame gameMode, long timePlayed, int addedScore, int addedRating, @Nullable Location tableLocation, @Nullable UUID tableOwnerUUID);
+    void victory(@NotNull Player player, @NotNull ArcadiumGame gameMode, long timePlayed, int currentScore, int addedRating, @Nullable Location tableLocation, @Nullable UUID tableOwnerUUID);
 
     void victory(@NotNull Player player, @NotNull ArcadiumGame gameMode, @Nullable Location tableLocation, @Nullable UUID tableOwnerUUID);
 

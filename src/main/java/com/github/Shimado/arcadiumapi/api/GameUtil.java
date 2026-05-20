@@ -1,6 +1,7 @@
 package com.github.Shimado.arcadiumapi.api;
 
 import com.github.Shimado.arcadiumapi.instances.ArcadiumGame;
+import com.github.Shimado.arcadiumapi.instances.ArcadiumGamePage;
 import com.github.Shimado.arcadiumapi.instances.GameBet;
 import com.github.Shimado.arcadiumapi.instances.SingleplayerGameSession;
 import com.github.Shimado.arcadiumapi.instances.multiplayer.MultiplayerGameSession;
@@ -36,7 +37,7 @@ public interface GameUtil<T extends ArcadiumGame & GameMethods> {
      * @param betRunnable      action to run if the bet is made with chips/money/items. Handles further actions after a bet has been placed
      */
 
-    void placeBet(@NotNull Player player, @NotNull GameBet bet, int slot, @NotNull T gameMode, @Nullable ItemRunnable betRunnable);
+    void placeBet(@NotNull Player player, @NotNull GameBet bet, int slot, @NotNull T game, @Nullable ItemRunnable betsRunnable);
 
 
     /**
@@ -50,23 +51,8 @@ public interface GameUtil<T extends ArcadiumGame & GameMethods> {
      * @param slot            the bet slot where the item will be installed
      * **/
 
-    void placeBetToSingleplayerGameInventory(@NotNull Player player, @NotNull Inventory inv, @NotNull T gameMode, @NotNull ItemStack itemToSet, int slot);
+    void placeBetToSingleplayerGameInventory(@NotNull Player player, @NotNull Inventory inv, @NotNull T game, @NotNull ArcadiumGamePage gamePage, @Nullable ItemStack itemToSet, int slot);
 
-
-    /**
-     * Responsible for the visual display of the bet for a multiplayer mode.
-     * Places the bet itself in the GUI.
-     * Sets the placed game table and visual item to the session memory.
-     *
-     * @param player             the player placing the bet
-     * @param sessionHub         the hub that contains all sessions of players who play in one session
-     * @param gameSession        the session of the player who places the bet
-     * @param gameMode           the game mode where the bet is placed
-     * @param itemToSet          the item that will be placed in the bet slot
-     * @param slot               the bet slot where the item will be installed
-     * **/
-
-    void placeBetToMultiplayerGameInventory(@NotNull Player player, @NotNull MultiplayerGameSessionsHub sessionHub, @NotNull MultiplayerGameSession gameSession, @NotNull T gameMode, @NotNull ItemStack itemToSet, int slot);
 
 
     /**
@@ -78,7 +64,10 @@ public interface GameUtil<T extends ArcadiumGame & GameMethods> {
      * @param gameMode        the game itself
      */
 
-    void refundBet(@NotNull Player player, @Nullable GameBet bet, @NotNull T gameMode);
+    void refundBet(@NotNull Player player, @Nullable GameBet bet, @Nullable Runnable runnable);
+
+
+    void removeBetFromSingleplayerGameInventory(@NotNull Player player, @NotNull Inventory inv, @NotNull T game, @NotNull ArcadiumGamePage gamePage);
 
 
     /**
@@ -104,60 +93,12 @@ public interface GameUtil<T extends ArcadiumGame & GameMethods> {
 
 
     /**
-     * Handles the player closing the GUI, returns their bet if the game has not yet started.
-     * It counts as a loss if you lose during an active game.
-     *
-     * @param player         the player who closed the GUI
-     * @param gameSession    the player game session
-     * @param gameMode the game mode itself that was closed
-     * @param runnable       necessary to complement the method. But it's generally used to remove a player from the session map.
-     * **/
-
-    void closeSingleplayerGameGUI(@NotNull Player player, @Nullable SingleplayerGameSession gameSession, @NotNull T gameMode, @Nullable Runnable runnable);
-
-
-    /**
-     * Sets the bid buttons, replacing all placeholders.
-     *
-     * @param player          for whom is the button installed and whose data will be taken
-     * @param inv             the inventory where it will be installed
-     * @param spotSlots       the slots in the GUI to set
-     * @param gameMode  the game mode itself
-     * **/
-
-    void setSpotItems(@NotNull Player player, @NotNull Inventory inv, @NotNull List<Integer> spotSlots, @NotNull ArcadiumGame gameMode);
-
-
-    /**
      * Handles mode update on /arcadium reload, returns their bet if the game has not yet started.
      *
      * @param sessions        the map with all players in this mode, where UUID - is the UUID of the player
      * @param gameMode  the game mode itself
      * **/
 
-    void reloadSingleplayerGameGUI(@NotNull Map<UUID, SingleplayerGameSession> sessions, @NotNull T gameMode);
-
-
-    /**
-     * Sets the delay for recharging the mode.
-     *
-     * @param delay       the delay in ticks before starting a new game
-     * @param player      the player who plays in this mode
-     * @param gameSession the game session that requires a restart
-     * @param runnable    where the method itself is implemented that restarts the mode
-     * **/
-
-    void restartSingleplayerGameWithDelay(int delay, @NotNull Player player, @NotNull SingleplayerGameSession gameSession, @NotNull Runnable runnable);
-
-
-    /**
-     * Sets the delay for recharging the mode.
-     *
-     * @param delay       the delay in ticks before starting a new game
-     * @param sessionHub  the game session that contains all game sessions
-     * @param runnable    where the method itself is implemented that restarts the mode
-     * **/
-
-    void restartMultiplayerGameWithDelay(int delay, @NotNull MultiplayerGameSessionsHub sessionHub, @NotNull Runnable runnable);
+    void reloadSingleplayerGame(@NotNull Map<UUID, SingleplayerGameSession> sessions, @NotNull T gameMode);
 
 }
