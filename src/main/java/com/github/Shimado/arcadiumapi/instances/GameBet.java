@@ -1,140 +1,159 @@
 package com.github.Shimado.arcadiumapi.instances;
 
 import com.github.Shimado.arcadiumapi.enums.BetType;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Represents a game bet.
- * A bet can be placed in one of three different forms:
- *     NONE (moneyBet = 0.0 and itemsBet = null)
- *     MONEY (numeric value)
- *     ITEMS ({@link ItemStack})
- * Provides utility methods for modifying the bet, checking its type,
- * and retrieving its total value.
+ * Represents a player bet used within the game system.
+ * <p>
+ * A bet can exist in one of three forms:
+ * <ul>
+ *     <li>{@link BetType#NONE} - no active bet</li>
+ *     <li>{@link BetType#MONEY} - a money-based bet</li>
+ *     <li>{@link BetType#ITEMS} - an item-based bet</li>
+ * </ul>
+ * <p>
+ * Provides utility methods for modifying bet values,
+ * determining the active bet type, and retrieving
+ * the total bet value.
  */
-
 public class GameBet {
 
+    private Player player;
     private int slot = -1;
     private double moneyBet = 0.0;
     private ItemStack itemsBet;
 
 
     /**
-     * Creates a new game bet object with full values.
+     * Creates a money-based bet with an assigned GUI slot.
      *
-     * @param slot       the slot that the bet occupies in the GUI
-     * @param moneyBet   how much money did the player bet
+     * @param player     the player who owns the bet
+     * @param slot       the GUI slot associated with the bet
+     * @param moneyBet   the money amount placed as a bet
      */
-
-    public GameBet(int slot, double moneyBet){
+    public GameBet(@NotNull Player player, int slot, double moneyBet){
+        this.player = player;
         this.slot = slot;
         this.moneyBet = moneyBet;
     }
 
-    public GameBet(double moneyBet){
+    public GameBet(@NotNull Player player, double moneyBet){
+        this.player = player;
         this.moneyBet = moneyBet;
     }
 
 
     /**
-     * Creates a new game bet object with full values.
+     * Creates an item-based bet with an assigned GUI slot.
      *
-     * @param slot       the slot that the bet occupies in the GUI
-     * @param itemsBet   The item that the player placed
+     * @param player     the player who owns the bet
+     * @param slot       the GUI slot associated with the bet
+     * @param itemsBet   the item stack placed as a bet
      */
-
-    public GameBet(int slot, ItemStack itemsBet){
+    public GameBet(@NotNull Player player, int slot, ItemStack itemsBet){
+        this.player = player;
         this.slot = slot;
         this.itemsBet = itemsBet;
     }
 
-    public GameBet(ItemStack itemsBet){
+    public GameBet(@NotNull Player player, ItemStack itemsBet){
+        this.player = player;
         this.itemsBet = itemsBet;
     }
 
-    public GameBet(){}
+
+    /**
+     * Creates an empty bet for the specified player.
+     *
+     * @param player the player who owns the bet
+     */
+    public GameBet(@NotNull Player player){
+        this.player = player;
+    }
 
 
     /**
-     * Gets the bet slot of the player in the game session GUI.
+     * Gets the owner of this bet.
      *
-     * @return the slot position, or -1 if no slot is assigned
+     * @return the player who owns the bet
      */
+    public Player getPlayer() {
+        return player;
+    }
 
+
+    /**
+     * Gets the GUI slot associated with this bet.
+     *
+     * @return the assigned slot, or {@code -1} if no slot is assigned
+     */
     public int getSlot() {
         return slot;
     }
 
-    public GameBet setSlot(int slot) {
+    public void setSlot(int slot) {
         this.slot = slot;
-        return this;
     }
 
 
     /**
-     * Gets the money bet.
+     * Gets the money-based bet amount.
      *
-     * @return the money bet value
+     * @return the current money bet value
      */
-
     public double getMoneyBet() {
         return moneyBet;
     }
 
-    public GameBet setMoneyBet(double moneyBet) {
+    public void setMoneyBet(double moneyBet) {
         this.moneyBet = moneyBet;
-        return this;
     }
 
-    public GameBet addMoneyBet(double moneyBet) {
+    public void addMoneyBet(double moneyBet) {
         this.moneyBet += moneyBet;
-        return this;
     }
 
-    public GameBet removeMoneyBet(double moneyBet) {
+    public void removeMoneyBet(double moneyBet) {
         this.moneyBet -= moneyBet;
         if (this.moneyBet < 0) this.moneyBet = 0;
-        return this;
     }
 
 
     /**
-     * Gets the items bet.
+     * Gets the item-based bet.
      *
-     * @return the items bet, or {@code null} if none
+     * @return the item stack used as a bet, or {@code null} if no item bet exists
      */
-
     @Nullable
     public ItemStack getItemsBet() {
         return itemsBet;
     }
 
-    public GameBet setItemsBet(@Nullable ItemStack itemsBet) {
+    public void setItemsBet(@Nullable ItemStack itemsBet) {
         this.itemsBet = itemsBet;
-        return this;
     }
 
 
     /**
-     * Checks if there is any bet (money or items).
+     * Checks whether this bet contains
+     * either a money bet or an item bet.
      *
-     * @return {@code true} if at least one type of bet is present, otherwise {@code false}
+     * @return {@code true} if at least one bet type is active, otherwise {@code false}
      */
-
     public boolean isAnyBet() {
         return moneyBet > 0 || itemsBet != null;
     }
 
 
     /**
-     * Gets the bet type.
+     * Gets the current type of this bet.
      *
-     * @return the chip type, or BetType.NONE if none
-     * **/
-
+     * @return the active {@link BetType}, or {@link BetType#NONE} if no bet exists
+     */
     @NotNull
     public BetType getBetType(){
         if(moneyBet > 0) return BetType.MONEY;
@@ -144,11 +163,13 @@ public class GameBet {
 
 
     /**
-     * Gets the bet price.
+     * Gets the total value of this bet.
+     * <p>
+     * For item bets, the returned value equals the item stack amount.
+     * For money bets, the returned value equals the money amount.
      *
-     * @return the bet price as double
-     * **/
-
+     * @return the calculated bet value
+     */
     public double getBetPrice(){
         if(getItemsBet() != null){
             return getItemsBet().getAmount();

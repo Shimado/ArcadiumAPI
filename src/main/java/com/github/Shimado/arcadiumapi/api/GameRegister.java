@@ -9,44 +9,40 @@ import java.util.Map;
 
 /**
  * Registry interface for managing game modes.
- * Provides methods for registering, unregistering, and retrieving game modes
- * by name or by their assigned slot in different GUIs.
+ * <p>
+ * Provides methods for registering, unregistering, and retrieving
+ * game modes by ID, name, or GUI slot.
  *
- * @param <T> the type of game mode, which must implement {@link ArcadiumGame}, {@link GameMethods}
+ * @param <T> the game mode type
  */
-
 public interface GameRegister<T extends ArcadiumGame & GameMethods> {
 
-
     /**
-     * Gets a game mode by its permanent ID.
+     * Gets a registered game mode by its unique permanent ID.
      *
-     * @param gameID   the ID the game
-     * @return the game mode instance, or {@code null} if not found
+     * @param gameID the unique game ID
+     * @return the matching game mode instance, or {@code null} if no game was found
      */
-
     @Nullable
     T getGameByID(@Nullable String gameID);
 
 
     /**
-     * Gets a game mode by its registered name.
+     * Gets a registered game mode by its name.
      *
-     * @param gameName the name of the game
-     * @return the game mode instance, or {@code null} if not found
+     * @param gameName the game name
+     * @return the matching game mode instance,or {@code null} if no game was found
      */
-
     @Nullable
     T getGameByName(@Nullable String gameName);
 
 
     /**
-     * Gets a game mode by the slot assigned to it in the main GUI.
+     * Gets a registered game mode by its assigned slot in the main GUI menu.
      *
-     * @param slot the slot index in the main GUI
-     * @return the game mode instance, or {@code null} if not found
+     * @param slot the inventory slot index
+     * @return the matching game mode instance, or {@code null} if no game was found
      */
-
     @Nullable
     T getGameBySlotInMainGUI(int slot);
 
@@ -54,28 +50,25 @@ public interface GameRegister<T extends ArcadiumGame & GameMethods> {
     /**
      * Gets all registered game modes.
      *
-     * @return a map of game names to their corresponding game mode instances
+     * @return a map containing registered game names and their corresponding game mode instances
      */
-
     @NotNull
     Map<String, T> getGames();
 
 
     /**
-     * Registers a new game mode in the plugin.
+     * Registers a new game mode.
      *
      * @param game the game mode instance to register
      */
-
     void register(@Nullable T game);
 
 
     /**
      * Unregisters a game mode by its name.
      *
-     * @param gameName the name of the game to remove
+     * @param gameName the name of the game to unregister
      */
-
     void unregister(@Nullable String gameName);
 
 
@@ -89,7 +82,6 @@ public interface GameRegister<T extends ArcadiumGame & GameMethods> {
      * @param clazz game mode class. For example: Checkers.class, Battleship.class and etc
      * @param pluginInstance your plugin class instance. Arcadium or ArcadiumAddon
      */
-
     @Nullable
     T getBasicGameModeFromConfig(@NotNull String configKey, @NotNull YamlConfiguration config, @NotNull YamlConfiguration messages, @NotNull Class<T> clazz, @NotNull Object pluginInstance);
 }

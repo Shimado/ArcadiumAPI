@@ -1,6 +1,7 @@
 package com.github.Shimado.arcadiumapi.instances.multiplayer;
 
 import com.github.Shimado.arcadiumapi.instances.GameBet;
+import com.github.Shimado.arcadiumapi.interfaces.ISession;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.Nullable;
@@ -13,10 +14,8 @@ import org.jetbrains.annotations.Nullable;
 
 public class MultiplayerGameSession {
 
-    private Inventory inv;
+    private ISession session;
     private GameBet bet;
-    private ItemStack visualBetItem;
-    private ItemStack visualHeadItem;
 
 
     /**
@@ -27,11 +26,11 @@ public class MultiplayerGameSession {
 
     @Nullable
     public Inventory getInv() {
-        return inv;
+        return null;
     }
 
     public void setInv(@Nullable Inventory inv) {
-        this.inv = inv;
+
     }
 
 
@@ -50,38 +49,5 @@ public class MultiplayerGameSession {
         this.bet = bet;
     }
 
-
-    /**
-     * Gets the visual representation of the bet item.
-     * This is typically an ItemStack that visually represents the bet in the GUI.
-     *
-     * @return the visual bet item, or null if not set
-     */
-
-    @Nullable
-    public ItemStack getVisualBetItem() {
-        return visualBetItem;
-    }
-
-    public void setVisualBetItem(@Nullable ItemStack visualBetItem) {
-        this.visualBetItem = visualBetItem;
-    }
-
-
-    /**
-     * Gets the visual representation of the head item (Optional).
-     * This is typically an ItemStack that visually represents the player's head in the GUI.
-     *
-     * @return the visual head item, or null if not set
-     */
-
-    @Nullable
-    public ItemStack getVisualHeadItem() {
-        return visualHeadItem;
-    }
-
-    public void setVisualHeadItem(@Nullable ItemStack visualHeadItem) {
-        this.visualHeadItem = visualHeadItem;
-    }
 
 }

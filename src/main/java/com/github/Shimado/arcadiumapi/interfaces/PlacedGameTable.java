@@ -7,11 +7,12 @@ import org.jetbrains.annotations.Nullable;
 import java.util.UUID;
 
 /**
- * Represents a placed table in the world.
- * Stores metadata about its identity, location, orientation,
- * associated game, and owner.
+ * Represents a game table placed in the world.
+ * <p>
+ * Stores information about the table instance,
+ * including its unique identifier, location,
+ * rotation, associated game mode, and owner data.
  */
-
 public interface PlacedGameTable {
 
     /**
@@ -19,79 +20,78 @@ public interface PlacedGameTable {
      *
      * @return the table UUID
      */
-
     @NotNull
     UUID getUUID();
 
 
     /**
-     * Gets the ID of the {@link GameTableItem} that defines this table.
+     * Gets the unique ID of the {@link GameTableItem}
+     * used to create this table.
      *
      * @return the table item ID
      */
-
     @NotNull
     String getGameTableItemID();
 
 
     /**
-     * Gets the {@link GameTableItem} definition linked to this placed table.
+     * Gets the {@link GameTableItem} definition
+     * associated with this placed table.
      *
      * @return the table item definition
      */
-
     @NotNull
     GameTableItem getGameTableItem();
 
 
     /**
-     * Gets the game mode name associated with this table.
-     * Can be "ALL".
+     * Gets the name of the game mode linked to this table.
+     * <p>
+     * May return {@code "ALL"} if the table supports
+     * multiple game modes.
      *
-     * @return the game mode name
+     * @return the associated game mode name
      */
-
     @NotNull
     String getGameName();
 
 
     /**
-     * Sets the game mode name associated with this table.
-     * Can be "ALL".
+     * Sets the game mode associated with this table.
+     * <p>
+     * The value may be {@code "ALL"} to indicate
+     * support for multiple game modes.
      *
-     * @param gameName the game mode name
-     * @return this instance for chaining
+     * @param gameName the new game mode name
+     * @return this table instance for chaining
      */
-
     PlacedGameTable setGameName(@Nullable String gameName);
 
 
     /**
-     * Gets the location of this table in the world.
+     * Gets the world location of this table.
      *
-     * @return this table location
+     * @return the table location
      */
-
     @NotNull
     Location getLoc();
 
 
     /**
-     * Gets the yaw (rotation) of this table.
-     * Needs for the developers pack.
+     * Gets the yaw rotation of this table.
+     * <p>
+     * Mainly used for rendering and developer tools.
      *
-     * @return the yaw angle
+     * @return the yaw rotation value
      */
-
     float getYaw();
 
 
     /**
      * Gets the UUID of the player who owns this table.
      *
-     * @return the owner's UUID, or {@code null} if not set
+     * @return the owner UUID, or {@code null} if the table has no owner
      */
-
     @Nullable
     UUID getOwner();
 

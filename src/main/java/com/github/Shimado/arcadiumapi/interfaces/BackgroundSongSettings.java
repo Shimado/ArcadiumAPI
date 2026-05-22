@@ -7,7 +7,6 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Represents background song status (active state and music ID).
  */
-
 public interface BackgroundSongSettings {
 
     /**
@@ -15,7 +14,6 @@ public interface BackgroundSongSettings {
      *
      * @return the game page name
      * **/
-
     @Nullable
     GamePage getGamePage();
 
@@ -26,7 +24,6 @@ public interface BackgroundSongSettings {
      *
      * @return music ID
      */
-
     @NotNull
     String getMusicID();
 
@@ -36,7 +33,6 @@ public interface BackgroundSongSettings {
      *
      * @return {@code true} if music is active, {@code false} otherwise
      */
-
     boolean isMusicActive();
 
 
@@ -45,7 +41,6 @@ public interface BackgroundSongSettings {
      *
      * @param musicActive true if active, false otherwise
      */
-
     void setMusicActive(boolean musicActive);
 
 }

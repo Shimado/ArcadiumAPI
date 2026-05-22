@@ -7,69 +7,68 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * Represents a configurable game table item definition.
- * Stores metadata such as ID, model data, linked game type,
- * table appearance (blocks and items), and optional animations.
- * Stores information about an item, not about the placed table.
+ * <p>
+ * Stores metadata and visual configuration for a game table item,
+ * including its identifier, materials, model data,
+ * linked game mode, and optional animation settings.
+ * <p>
+ * This interface describes the item definition itself,
+ * not a placed table instance in the world.
  */
-
 public interface GameTableItem {
 
     /**
      * Gets the unique identifier of this table item.
      *
-     * @return the ID of the table
+     * @return the table item ID
      */
-
     @NotNull
     String getID();
 
 
     /**
-     * Gets the {@link Material} representing the table block material.
+     * Gets the block material used for the table.
      *
      * @return the table block material
      */
-
     @NotNull
     Material getBlockMaterial();
 
 
     /**
-     * Gets the {@link ItemStack} representing the table item.
+     * Gets the item representation of this table.
      *
-     * @return the table item
+     * @return the table item stack
      */
-
     @NotNull
     ItemStack getTableItem();
 
 
     /**
-     * Gets the custom model data value used for the item.
+     * Gets the custom model data assigned to this table item.
      *
-     * @return the custom model data
+     * @return the custom model data value
      */
-
     int getCustomModelData();
 
 
     /**
-     * Gets the game mode name associated with this table item.
-     * Or "ALL".
+     * Gets the game mode associated with this table item.
+     * <p>
+     * May return {@code "ALL"} if the table item
+     * supports multiple game modes.
      *
-     * @return the game mode name or "ALL"
+     * @return the associated game mode name
      */
-
     @NotNull
     String getGameName();
 
 
     /**
-     * Gets the animation configuration for the game table.
+     * Gets the animation configuration assigned to this table.
      *
-     * @return the table animation, or {@code null} if not set
+     * @return the table animation configuration, or {@code null} if no animation is configured
      */
-
     @Nullable
     TableAnimation getTableAnimation();
 

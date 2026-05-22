@@ -7,49 +7,54 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 /**
- * Represents the animation configuration for a table.
- * Defines how items are spawned/dropped, the animation type,
- * and other related parameters.
+ * Represents animation settings used for a game table.
+ * <p>
+ * Defines the animation type, dropped items,
+ * drop chance, and item spawn amount used during
+ * table animation effects.
  */
-
 public interface TableAnimation {
 
     /**
-     * Gets the type of table animation.
+     * Gets the animation type used for the table.
      *
-     * @return the animation type
+     * @return the configured table animation type
      */
-
     @NotNull
     TableAnimationType getTableAnimationType();
 
 
     /**
-     * Gets the list of items that can be dropped during the animation.
+     * Gets the list of items that may be spawned
+     * or dropped during the animation.
      *
-     * @return a non-null list of item stacks (may be empty)
+     * @return a non-null list of item stacks
      */
-
     @NotNull
     List<ItemStack> getItemsToDrop();
 
 
     /**
-     * Gets the chance that an item will spawn/drop during the animation.
-     * Value is typically between {@code 0.0} (never) and {@code 100.0}
+     * Gets the chance for an item to spawn or drop
+     * during an animation cycle.
+     * <p>
+     * The value is typically between:
+     * <ul>
+     *     <li>{@code 0.0} - item never spawns</li>
+     *     <li>{@code 100.0} - item always spawns</li>
+     * </ul>
      *
-     * @return the drop spawn chance
+     * @return the item drop chance percentage
      */
-
     double getDropSpawnChance();
 
 
     /**
-     * Gets the amount of items that can be dropped per animation cycle.
+     * Gets the maximum number of items that may be spawned
+     * or dropped during a single animation cycle.
      *
-     * @return the number of items
+     * @return the item amount per cycle
      */
-
     int getItemsAmount();
 
 }

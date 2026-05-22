@@ -10,7 +10,6 @@ import java.util.Map;
  * Represents an item that can change or have multiple variations across same slots.
  * Provides mapping between slot positions and their corresponding GeneralItem instances.
  */
-
 public interface GeneralChangeableItem {
 
     /**
@@ -18,7 +17,6 @@ public interface GeneralChangeableItem {
      *
      * @return a non-null list of slot indices
      */
-
     @NotNull
     List<Integer> getSlots();
 
@@ -29,7 +27,6 @@ public interface GeneralChangeableItem {
      *
      * @return a non-null map with GeneralItem objects
      */
-
     @NotNull
     Map<Integer, GeneralItem> getItems();
 

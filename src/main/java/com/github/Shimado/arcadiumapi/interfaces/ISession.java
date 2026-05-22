@@ -10,21 +10,22 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Represents a session for a game GUI (inventory-based).
- * Stores information about the current state of the session such as
- * opened inventory, associated game, table, and pagination.
+ * Represents an inventory-based game session.
+ * <p>
+ * Stores information about the currently opened GUI,
+ * active game mode, linked table, pagination state,
+ * background music settings, and additional session data.
  *
- * @param <T> the game mode, which must implement {@link ArcadiumGame}, {@link GameMethods}
+ * @param <T> the game mode type
  */
-
 public interface ISession<T extends ArcadiumGame & GameMethods> {
 
     /**
-     * Gets the current inventory associated with this session.
+     * Gets the currently opened inventory.
+     * Except Music and Notifications GUI.
      *
-     * @return the inventory
+     * @return the active inventory
      */
-
     @NotNull
     Inventory getInv();
 
@@ -32,11 +33,10 @@ public interface ISession<T extends ArcadiumGame & GameMethods> {
 
 
     /**
-     * Gets the type of the current GUI.
+     * Gets the type of the currently opened GUI.
      *
-     * @return the GUI type, or {@code null}
+     * @return the current inventory type, or {@code null} if not defined
      */
-
     @Nullable
     InventoryType getInvType();
 
@@ -44,11 +44,10 @@ public interface ISession<T extends ArcadiumGame & GameMethods> {
 
 
     /**
-     * Gets the type of the previous GUI.
+     * Gets the type of the previously opened GUI.
      *
-     * @return the previous GUI type, or {@code null}
+     * @return the previous inventory type, or {@code null} if not defined
      */
-
     @Nullable
     InventoryType getPreviousInvType();
 
@@ -56,11 +55,10 @@ public interface ISession<T extends ArcadiumGame & GameMethods> {
 
 
     /**
-     * Gets the opened Music inventory associated with this session.
+     * Gets the currently opened music inventory.
      *
-     * @return the inventory, or {@code null} if GUI is closed
+     * @return the music inventory, or {@code null} if not opened
      */
-
     @Nullable
     Inventory getMusicInv();
 
@@ -68,11 +66,10 @@ public interface ISession<T extends ArcadiumGame & GameMethods> {
 
 
     /**
-     * Gets the opened Notifications inventory associated with this session.
+     * Gets the currently opened notifications inventory.
      *
-     * @return the inventory, or {@code null} if GUI is closed
+     * @return the notifications inventory, or {@code null} if not opened
      */
-
     @Nullable
     Inventory getNotificationsInv();
 
@@ -80,11 +77,10 @@ public interface ISession<T extends ArcadiumGame & GameMethods> {
 
 
     /**
-     * Gets the currently opened game instance in this session.
+     * Gets the currently opened game mode instance.
      *
-     * @return the opened game, or {@code null} if none is active
+     * @return the opened game, or {@code null} if no game is active
      */
-
     @Nullable
     T getOpenedGame();
 
@@ -92,11 +88,10 @@ public interface ISession<T extends ArcadiumGame & GameMethods> {
 
 
     /**
-     * Gets the type of the game page.
+     * Gets the currently opened game page type.
      *
-     * @return the page type, or {@code null}
+     * @return the game page type, or {@code null} if not defined
      */
-
     @Nullable
     GamePage getGamePage();
 
@@ -104,23 +99,23 @@ public interface ISession<T extends ArcadiumGame & GameMethods> {
 
 
     /**
-     * Checks whether the session is currently changing pages.
+     * Checks whether the session is currently switching pages.
      *
-     * @return {@code true} if a page change is in progress, otherwise {@code false}
+     * @return {@code true} if a page transition is active, otherwise {@code false}
      */
-
     boolean isChangingPage();
 
     void setChangingPage(boolean changingPage);
 
 
     /**
-     * Gets the name of the game mode associated with this session's table.
-     * Can be "ALL"
+     * Gets the game mode name associated with the linked table.
+     * <p>
+     * May return {@code "ALL"} if the table supports
+     * multiple game modes.
      *
-     * @return the table game identifier
+     * @return the associated table game name
      */
-
     @NotNull
     String getTableGame();
 
@@ -128,11 +123,10 @@ public interface ISession<T extends ArcadiumGame & GameMethods> {
 
 
     /**
-     * Gets the placed table the player is playing.
+     * Gets the placed game table associated with this session.
      *
-     * @return the placed table, or {@code null} if opened by a command.
+     * @return the placed table, or {@code null} if the GUI was opened without a table
      */
-
     @Nullable
     PlacedGameTable getGameTable();
 
@@ -140,42 +134,24 @@ public interface ISession<T extends ArcadiumGame & GameMethods> {
 
 
     /**
-     * Gets the current page index.
+     * Gets the current page (not index).
      *
-     * @return the page number
+     * @return the current page number
      */
-
     int getPage();
 
     void setPage(int page);
 
-
-    /**
-     * Advances to the next page and returns the new index.
-     *
-     * @param maxPage - maximum page size
-     *
-     * @return the next page number or -1 if it > maxPage
-     */
-
     int nextPage(int maxPage);
-
-
-    /**
-     * Goes back to the previous page and returns the new index.
-     *
-     * @return the previous page number or -1 if it less than 0
-     */
 
     int previousPage();
 
 
     /**
-     * Gets the background song settings of the current GUI.
+     * Gets the current background music.
      *
-     * @return the background song settings, or {@code null}
+     * @return the background song, or {@code null} if not configured
      */
-
     @Nullable
     BackgroundSongSettings getBackgroundSong();
 
@@ -183,12 +159,11 @@ public interface ISession<T extends ArcadiumGame & GameMethods> {
 
 
     /**
-     * Closes the GUI for the given player.
-     * Closes the GUI and does not return to the previous one.
+     * Closes the inventory for the specified player
+     * without returning to the previous GUI.
      *
-     * @param player the player whose inventory should be closed
+     * @param player the target player
      */
-
     void closeInventoryWithoutReturn(@NotNull Player player);
 
 }

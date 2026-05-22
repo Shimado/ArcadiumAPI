@@ -10,7 +10,6 @@ import java.util.List;
  * Represents a general item.
  * Provides common item properties such as slots in the GUI, material, title, lore, and custom model data.
  */
-
 public interface GeneralItem {
 
     /**
@@ -18,7 +17,6 @@ public interface GeneralItem {
      *
      * @return a non-null list of slot indices
      */
-
     @NotNull
     List<Integer> getSlots();
 
@@ -29,7 +27,6 @@ public interface GeneralItem {
      *
      * @return the item material, or {@code null} if not set
      */
-
     @Nullable
     Object getMaterial();
 
@@ -39,7 +36,6 @@ public interface GeneralItem {
      *
      * @return the item title, or {@code null} if not set
      */
-
     @Nullable
     String getTitle();
 
@@ -49,7 +45,6 @@ public interface GeneralItem {
      *
      * @return a non-null list of lore strings
      */
-
     @NotNull
     List<String> getLore();
 
@@ -60,7 +55,6 @@ public interface GeneralItem {
      *
      * @return the custom model data integer
      */
-
     int getCustomModelData();
 
 
@@ -70,7 +64,6 @@ public interface GeneralItem {
      *
      * @return the ItemStack, or {@code null} if not available or not generated yet
      */
-
     @Nullable
     ItemStack getItem();
 

@@ -12,7 +12,6 @@ import java.util.UUID;
  * Contains all relevant information about the game outcome, player statistics,
  * score changes, and betting results.
  */
-
 public interface GameLog {
 
     /**
@@ -20,7 +19,6 @@ public interface GameLog {
      *
      * @return a non-null LocalDateTime representing the game completion time
      */
-
     @NotNull
     LocalDateTime getDateTime();
 
@@ -30,7 +28,6 @@ public interface GameLog {
      *
      * @return a non-null UUID of the player
      */
-
     @NotNull
     UUID getPlayerUUID();
 
@@ -40,7 +37,6 @@ public interface GameLog {
      *
      * @return a non-null string containing the player's name
      */
-
     @NotNull
     String getPlayerName();
 
@@ -50,7 +46,6 @@ public interface GameLog {
      *
      * @return a non-null list of the rival uuids
      */
-
     @NotNull
     List<UUID> getRivalUUIDs();
 
@@ -60,7 +55,6 @@ public interface GameLog {
      *
      * @return a non-null list containing the rival names
      */
-
     @NotNull
     List<String> getRivalNames();
 
@@ -70,7 +64,6 @@ public interface GameLog {
      *
      * @return a non-null string containing the game ID
      */
-
     @NotNull
     String getGameID();
 
@@ -80,7 +73,6 @@ public interface GameLog {
      *
      * @return a non-null string containing the game name
      */
-
     @NotNull
     String getGameName();
 
@@ -90,7 +82,6 @@ public interface GameLog {
      *
      * @return true if the player won, false otherwise
      */
-
     boolean isVictory();
 
 
@@ -99,7 +90,6 @@ public interface GameLog {
      *
      * @return true if the player lost, false otherwise
      */
-
     boolean isDefeat();
 
 
@@ -108,7 +98,6 @@ public interface GameLog {
      *
      * @return true if the game was a draw, false otherwise
      */
-
     boolean isDraw();
 
 
@@ -117,7 +106,6 @@ public interface GameLog {
      *
      * @return the time played in seconds
      */
-
     long getTimePlayed();
 
 
@@ -126,7 +114,6 @@ public interface GameLog {
      *
      * @return the old score value
      */
-
     long getOldScore();
 
 
@@ -135,7 +122,6 @@ public interface GameLog {
      *
      * @return the new score value
      */
-
     long getNewScore();
 
 
@@ -144,7 +130,6 @@ public interface GameLog {
      *
      * @return the old rating value
      */
-
     long getOldRating();
 
 
@@ -153,7 +138,6 @@ public interface GameLog {
      *
      * @return the new rating value
      */
-
     long getNewRating();
 
 
@@ -164,7 +148,6 @@ public interface GameLog {
      *
      * @return a non-null string representation of the bet amount
      */
-
     @NotNull
     String getBetAsString();
 
@@ -176,7 +159,6 @@ public interface GameLog {
      *
      * @return a non-null string representation of the prize amount
      */
-
     @NotNull
     String getPrizeAsString();
 

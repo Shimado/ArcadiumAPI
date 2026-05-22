@@ -14,108 +14,106 @@ import java.util.Set;
 import java.util.UUID;
 
 /**
- * Provides access to persistent and runtime data used in the game system.
- * This interface defines methods to retrieve bet items, player-related data and game statistics.
+ * Provides access to persistent and runtime game data.
+ * <p>
+ * Includes methods for retrieving player settings, balances,
+ * statistics, logs, bet items, and sorted leaderboard data.
  */
-
 public interface DataStorage {
 
     /**
-     * Gets the base bet item used in the plugin.
-     * Needed if the token type is "ITEMS"
-     * If the item is not {@code null}, then players will be able to bet only with this item.
+     * Gets the base item used for item-based betting.
+     * <p>
+     * Used when the token type is set to {@code ITEMS}.
+     * If the returned item is not {@code null},
+     * players will only be able to place bets using this item type.
      *
-     * @return the bet {@link ItemStack} or {@code null}
+     * @return the configured bet item, or {@code null} if item-based betting is disabled
      */
-
     @Nullable
     ItemStack getBetItem();
 
 
     /**
-     * Gets the settings of a specific player.
+     * Gets the settings associated with the specified player.
      *
-     * @param playerUUID the unique identifier of the player
-     * @return the {@link PlayerSettings} of the player, or {@code null} if not found
+     * @param playerUUID the UUID of the player
+     * @return the player's settings, or {@code null} if no settings exist
      */
-
     @Nullable
     PlayerSettings getPlayerSettings(@Nullable UUID playerUUID);
 
 
     /**
-     * Gets the player's internal in-plugin balance.
-     * Use {@link EconomyUtil} to get the balance.
+     * Gets the player's internal plugin balance.
+     * <p>
+     * For economy-provider balances, use {@link EconomyUtil}.
      *
-     * @param playerUUID the unique identifier of the player
-     * @return the balance as a double
+     * @param playerUUID the UUID of the player
+     * @return the player's internal balance
      */
-
     double getBalance(@Nullable UUID playerUUID);
 
 
     /**
-     * Gets all registered player statistics.
+     * Gets statistics for all registered players.
      *
-     * @return a map of player UUIDs to {@link PlayerStats}
+     * @return a map of player UUIDs to player statistics
      */
-
     @NotNull
     Map<UUID, PlayerStats> getPlayerStats();
 
 
     /**
-     * Gets statistics of a specific player.
+     * Gets statistics for the specified player.
      *
-     * @param playerUUID the unique identifier of the player
-     * @return the {@link PlayerStats} of the player, or {@code null} if not found
+     * @param playerUUID the UUID of the player
+     * @return the player's statistics, or {@code null} if no statistics exist
      */
-
     @Nullable
     PlayerStats getPlayerStats(@Nullable UUID playerUUID);
 
 
     /**
-     * Gets overall statistics for all game modes.
-     * Where is the map key, this is the name of the game mode.
+     * Gets global statistics for all registered game modes.
      *
-     * @return a map of game names to {@link GameStats}
+     * @return a map of game names to game statistics
      */
-
     @NotNull
     Map<String, GameStats> getGameStats();
 
 
     /**
-     * Gets statistics for a specific game mode.
+     * Gets statistics for the specified game mode.
      *
-     * @param gameName the name of the game
-     * @return the {@link GameStats}, or {@code null} if not found
+     * @param gameName the game mode name
+     * @return the game statistics, or {@code null} if no statistics exist
      */
-
     @Nullable
     GameStats getGameStats(@Nullable String gameName);
 
 
     /**
-     * Gets a queue of all player logs that contain data on the game played and its results:
-     * Prizes, victory/defeat, player UUID/name, game mode and etc
+     * Gets all recorded game logs.
+     * <p>
+     * Logs may include information such as prizes,
+     * victories, defeats, player data, and game mode details.
      *
-     * @return a queue of all player logs.
+     * @return a queue containing all recorded game logs
      */
-
     @NotNull
     Queue<GameLog> getGameLogs();
 
 
     /**
-     * Gets a queue of the player logs that contain data on the game played and its results:
-     * Prizes, victory/defeat, player UUID/name, game mode and etc
+     * Gets all recorded game logs for the specified player.
+     * <p>
+     * Logs may include information such as prizes,
+     * victories, defeats, player data, and game mode details.
      *
-     * @param playerUUID the unique identifier of the player
-     * @return a queue of all logs for a given player, or empty queue
+     * @param playerUUID the UUID of the player
+     * @return a queue containing the player's game logs, or an empty queue if no logs exist
      */
-
     @NotNull
     Queue<GameLog> getPlayerGameLogs(@Nullable UUID playerUUID);
 
