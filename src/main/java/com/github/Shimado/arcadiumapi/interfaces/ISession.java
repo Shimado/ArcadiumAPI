@@ -159,6 +159,19 @@ public interface ISession<T extends ArcadiumGame & GameMethods> {
 
 
     /**
+     * Gets the current clicked notification.
+     * It is necessary in order to process the connection to the session of the player who sent it.
+     *
+     * @return the notification, or {@code null} if not set
+     */
+
+    @Nullable
+    Notification getNotification();
+
+    void setNotification(@Nullable Notification notification);
+
+
+    /**
      * Closes the inventory for the specified player
      * without returning to the previous GUI.
      *

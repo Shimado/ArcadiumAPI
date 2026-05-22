@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
  */
 public class SingleplayerGameSession {
 
-    private boolean withoutBet = false;
+    private final boolean withoutBet;
     private GameBet bet;
     private Object cycle;
     private int cycleTime = 0;
@@ -28,8 +28,9 @@ public class SingleplayerGameSession {
     private long bestScore = 0;
     private long score = 0;
 
-    public SingleplayerGameSession(@NotNull Player player){
-        bet = new GameBet(player);
+    public SingleplayerGameSession(@NotNull Player player, boolean withoutBet){
+        this.bet = new GameBet(player);
+        this.withoutBet = withoutBet;
     }
 
 
@@ -40,10 +41,6 @@ public class SingleplayerGameSession {
      */
     public boolean isWithoutBet() {
         return withoutBet;
-    }
-
-    public void setWithoutBet(boolean withoutBet) {
-        this.withoutBet = withoutBet;
     }
 
 
