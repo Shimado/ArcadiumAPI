@@ -37,6 +37,7 @@ public class ArcadiumGame {
     private ItemStack iconItem;                                              // The icon in the main GUI
 
     // VICTORY
+    private double victoryMultiplier = 0;                                    // Victory multiplier. Optional
     private BarColor victoryBossBarColor = BarColor.GREEN;                   // Bar color
     private BarStyle victoryBossBarStyle = BarStyle.SOLID;                   // Bar style
     private int victoryBossBarDuration = 0;                                  // Duration in ticks
@@ -68,7 +69,6 @@ public class ArcadiumGame {
     private BoomboxSong victoryMusic;                                        // Music in .nbs format from Boombox plugin
 
     // DEFEAT
-    private boolean sendDefeatTitle = false;                                 // Sends defeat title
     private BarColor defeatBossBarColor = BarColor.GREEN;                    // Bar color
     private BarStyle defeatBossBarStyle = BarStyle.SOLID;                    // Bar style
     private int defeatBossBarDuration = 0;                                   // Duration in ticks
@@ -76,6 +76,7 @@ public class ArcadiumGame {
     private String defeatBossBarTitle;                                       // Title itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
     private boolean sendDefeatBossBarToAll = false;                          // Sends bossbar title to all players
     private String defeatBossBarTitleToAll;                                  // Title itself [Placeholders: %player%, %mode%, %bet_price%, %prize%, %bet_price_rounded%, %prize_rounded%]
+    private boolean sendDefeatTitle = false;                                 // Sends defeat title
     private String defeatTitle;                                              // Title itself [Placeholders: %player%, %mode%, %bet_price%]
     private String defeatSubtitle;                                           // Subtitle itself [Placeholders: %player%, %mode%, %bet_price%]
     private boolean sendDefeatTitleToAll = false;                            // Sends defeat title to all players
@@ -311,6 +312,15 @@ public class ArcadiumGame {
     public ArcadiumGame setIconItem(@Nullable ItemStack iconItem) {
         this.iconItem = iconItem;
         return this;
+    }
+
+
+    public double getVictoryMultiplier() {
+        return victoryMultiplier;
+    }
+
+    public void setVictoryMultiplier(double victoryMultiplier) {
+        this.victoryMultiplier = victoryMultiplier;
     }
 
 
@@ -622,16 +632,6 @@ public class ArcadiumGame {
     }
 
 
-    public boolean isSendDefeatTitle() {
-        return sendDefeatTitle;
-    }
-
-    public ArcadiumGame setSendDefeatTitle(boolean sendDefeatTitle) {
-        this.sendDefeatTitle = sendDefeatTitle;
-        return this;
-    }
-
-
     @Nullable
     public BarColor getDefeatBossBarColor() {
         return defeatBossBarColor;
@@ -702,6 +702,16 @@ public class ArcadiumGame {
 
     public ArcadiumGame setDefeatBossBarTitleToAll(@Nullable String defeatBossBarTitleToAll) {
         this.defeatBossBarTitleToAll = defeatBossBarTitleToAll;
+        return this;
+    }
+
+
+    public boolean isSendDefeatTitle() {
+        return sendDefeatTitle;
+    }
+
+    public ArcadiumGame setSendDefeatTitle(boolean sendDefeatTitle) {
+        this.sendDefeatTitle = sendDefeatTitle;
         return this;
     }
 
