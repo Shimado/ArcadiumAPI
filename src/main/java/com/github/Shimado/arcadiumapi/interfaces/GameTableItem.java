@@ -65,6 +65,16 @@ public interface GameTableItem {
 
 
     /**
+     * Gets the item to decorate the gaming table
+     *
+     * @return the item to decorate the gaming table, or {@code null} if there are no decorations at all
+     * **/
+    @Nullable
+    ItemStack getDecorationItem();
+
+
+
+    /**
      * Gets the animation configuration assigned to this table.
      *
      * @return the table animation configuration, or {@code null} if no animation is configured
