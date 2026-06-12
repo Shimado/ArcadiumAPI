@@ -15,6 +15,14 @@ import java.util.UUID;
 public interface GameLog {
 
     /**
+     * Gets the identifier of the game log instance in SQL.
+     *
+     * @return the identifier of the game log instance in SQL
+     */
+    int getID();
+
+
+    /**
      * Gets the timestamp when the game was completed.
      *
      * @return a non-null LocalDateTime representing the game completion time
