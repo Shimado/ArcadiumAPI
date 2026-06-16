@@ -45,15 +45,15 @@ public interface PlacedGameTable {
 
 
     /**
-     * Gets the name of the game mode linked to this table.
+     * Gets the ID of the game mode linked to this table.
      * <p>
      * May return {@code "ALL"} if the table supports
      * multiple game modes.
      *
-     * @return the associated game mode name
+     * @return the associated game mode ID
      */
     @NotNull
-    String getGameName();
+    String getGameID();
 
 
     /**
@@ -62,10 +62,10 @@ public interface PlacedGameTable {
      * The value may be {@code "ALL"} to indicate
      * support for multiple game modes.
      *
-     * @param gameName the new game mode name
+     * @param gameID the new game mode ID
      * @return this table instance for chaining
      */
-    PlacedGameTable setGameName(@Nullable String gameName);
+    PlacedGameTable setGameID(@Nullable String gameID);
 
 
     /**

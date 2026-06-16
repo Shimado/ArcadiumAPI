@@ -58,10 +58,10 @@ public interface GameTableItem {
      * May return {@code "ALL"} if the table item
      * supports multiple game modes.
      *
-     * @return the associated game mode name
+     * @return the associated game mode ID (Config key name)
      */
     @NotNull
-    String getGameName();
+    String getGameID();
 
 
     /**
