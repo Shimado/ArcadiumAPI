@@ -41,10 +41,11 @@ public interface GameRegister<T extends ArcadiumGame & GameMethods> {
      * Gets a registered game mode by its assigned slot in the main GUI menu.
      *
      * @param slot the inventory slot index
+     * @param page the inventory page
      * @return the matching game mode instance, or {@code null} if no game was found
      */
     @Nullable
-    T getGameBySlotInMainGUI(int slot);
+    T getGameBySlotInMainGUI(int slot, int page);
 
 
     /**
