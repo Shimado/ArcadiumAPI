@@ -25,18 +25,18 @@ public interface GeneralItem {
      * Gets the material of this item.
      * The returned object type depends on the implementation (e.g., Material, String, Head String, ItemStack).
      *
-     * @return the item material, or {@code null} if not set
+     * @return the item material as Material, String, Head String or ItemStack
      */
-    @Nullable
+    @NotNull
     Object getMaterial();
 
 
     /**
      * Gets the display title of this item.
      *
-     * @return the item title, or {@code null} if not set
+     * @return the item title
      */
-    @Nullable
+    @NotNull
     String getTitle();
 
 
@@ -62,9 +62,9 @@ public interface GeneralItem {
      * Gets the actual ItemStack representation of this item.
      * May be generated dynamically based on other properties.
      *
-     * @return the ItemStack, or {@code null} if not available or not generated yet
+     * @return the ItemStack
      */
-    @Nullable
+    @NotNull
     ItemStack getItem();
 
 }

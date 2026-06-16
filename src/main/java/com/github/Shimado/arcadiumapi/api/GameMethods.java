@@ -46,8 +46,10 @@ public interface GameMethods {
      * @param player     the player who closed the GUI
      * @param session    the inventory session containing game-related data
      * @param fullClose  whether the GUI is being fully closed instead of returning to a previous menu
+     *
+     * @return {@code true} if the game was fully closed, otherwise {@code false}
      */
-    void closeGUI(@NotNull Player player, @NotNull ISession session, boolean fullClose);
+    boolean closeGUI(@NotNull Player player, @NotNull ISession session, boolean fullClose);
 
 
     /**
