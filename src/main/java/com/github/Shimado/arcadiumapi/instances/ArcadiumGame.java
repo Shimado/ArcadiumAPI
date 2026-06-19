@@ -32,9 +32,8 @@ public class ArcadiumGame {
     private double changeMoneyBetPerClickBig = 10000.0;                      // How much will "moneyBetDefault" change when Shift + click
     private GeneralItem moneyBetItem;                                        // Money bet icon
     private int pageInGUI;                                                   // Page on the icon in the main GUI
-    private List<Integer> slotsInGUI = new ArrayList<>();                    // Slots occupied by the icon in the main GUI
-    private List<Integer> slotsInOneGameGUI = new ArrayList<>();             // Slots occupied by an icon in the main GUI for one game
-    private ItemStack iconItem;                                              // The icon in the main GUI
+    private GeneralItem iconInGUI;                                           // The icon in the main GUI
+    private GeneralItem iconInOneGameGUI;                                    // The icon in the one game GUI
 
     // VICTORY
     private double victoryMultiplier = 0;                                    // Victory multiplier. Optional
@@ -280,37 +279,26 @@ public class ArcadiumGame {
     }
 
 
-    @NotNull
-    public List<Integer> getSlotsInGUI() {
-        return slotsInGUI;
+    @Nullable
+    public GeneralItem getIconInGUI() {
+        return iconInGUI;
     }
 
-    public ArcadiumGame setSlotsInGUI(@NotNull List<Integer> slotsInGUI) {
-        if(slotsInGUI == null) return this;
-        this.slotsInGUI = slotsInGUI;
-        return this;
-    }
-
-
-    @NotNull
-    public List<Integer> getSlotsInOneGameGUI() {
-        return slotsInOneGameGUI;
-    }
-
-    public ArcadiumGame setSlotsInOneGameGUI(@NotNull List<Integer> slotsInOneGameGUI) {
-        if(slotsInOneGameGUI == null) return this;
-        this.slotsInOneGameGUI = slotsInOneGameGUI;
+    public ArcadiumGame setIconInGUI(@Nullable GeneralItem iconInGUI) {
+        if(iconInGUI == null) return this;
+        this.iconInGUI = iconInGUI;
         return this;
     }
 
 
     @Nullable
-    public ItemStack getIconItem() {
-        return iconItem;
+    public GeneralItem getIconInOneGameGUI() {
+        return iconInOneGameGUI;
     }
 
-    public ArcadiumGame setIconItem(@Nullable ItemStack iconItem) {
-        this.iconItem = iconItem;
+    public ArcadiumGame setIconInOneGameGUI(@Nullable GeneralItem iconInOneGameGUI) {
+        if(iconInOneGameGUI == null) return this;
+        this.iconInOneGameGUI = iconInOneGameGUI;
         return this;
     }
 
