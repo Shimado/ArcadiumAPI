@@ -153,9 +153,9 @@ public interface ISession<T extends ArcadiumGame & GameMethods> {
      * @return the background song, or {@code null} if not configured
      */
     @Nullable
-    BackgroundSongSettings getBackgroundSong();
+    BackgroundSong getBackgroundSong();
 
-    void setBackgroundSong(@Nullable BackgroundSongSettings backgroundSong);
+    void setBackgroundSong(@Nullable BackgroundSong backgroundSong);
 
 
     /**
