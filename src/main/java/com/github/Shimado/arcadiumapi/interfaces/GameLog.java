@@ -118,19 +118,19 @@ public interface GameLog {
 
 
     /**
-     * Gets the player's score before the game started.
+     * Gets the player's reached score during the game.
      *
-     * @return the old score value
+     * @return the reached score value
      */
-    long getOldScore();
+    long getReachedScore();
 
 
     /**
-     * Gets the player's score after the game ended.
+     * Gets the player's record score for all time.
      *
-     * @return the new score value
+     * @return the record score value
      */
-    long getNewScore();
+    long getRecordScore();
 
 
     /**
