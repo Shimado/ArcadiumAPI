@@ -103,4 +103,13 @@ public interface GameUtil<T extends ArcadiumGame & GameMethods> {
      */
     void reloadSingleplayerGame(@NotNull Map<UUID, SingleplayerGameSession> sessions, @Nullable Runnable runnable);
 
+
+    /**
+     * Retrieves a player's rating by their UUID and the game mode name.
+     *
+     * @param playerUUID   the player UUID for which the rating will be checked
+     * @param gameName     the name of the game mode for which the rating will be checked
+     */
+    long getPlayerRatingByUUID(@NotNull UUID playerUUID, @NotNull String gameName);
+
 }
