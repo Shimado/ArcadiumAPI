@@ -129,6 +129,7 @@ public class ArcadiumGame {
 
     private String logText;                                                  // Logs line
     private List<String> notificationText;                                   // Notification text (as list)
+    private String botName;                                                  // Bot name
 
 
     public ArcadiumGame(@NotNull String gameID, @NotNull String modeName){
@@ -1237,6 +1238,16 @@ public class ArcadiumGame {
     public ArcadiumGame setNotificationText(@NotNull List<String> notificationText) {
         this.notificationText = notificationText != null ? notificationText : new ArrayList<>();
         return this;
+    }
+
+
+    @Nullable
+    public String getBotName(){
+        return botName;
+    }
+
+    public void setBotName(@Nullable String botName){
+        this.botName = botName;
     }
 
 }
