@@ -1,6 +1,7 @@
 package com.github.Shimado.arcadiumapi;
 
 import com.github.Shimado.arcadiumapi.api.*;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class ArcadiumAPI {
@@ -8,72 +9,84 @@ public class ArcadiumAPI {
     private static GameRegister gameRegister;
     private static DataStorage dataStorage;
     private static EconomyUtil economyUtil;
+    private static NotificationsHandler notificationsHandler;
     private static VictoryUtil victoryUtil;
     private static GameUtil gameUtil;
     private static InvSession invSession;
 
 
-    @Nullable
+    @NotNull
     public static GameRegister getGameRegister(){
         return gameRegister;
     }
 
-    public static GameRegister setGameRegister(@Nullable GameRegister c){
+    public static GameRegister setGameRegister(@NotNull GameRegister c){
         gameRegister = c;
         return c;
     }
 
 
-    @Nullable
+    @NotNull
     public static DataStorage getDataStorage(){
         return dataStorage;
     }
 
-    public static DataStorage setDataStorage(@Nullable DataStorage d){
+    public static DataStorage setDataStorage(@NotNull DataStorage d){
         dataStorage = d;
         return d;
     }
 
 
-    @Nullable
+    @NotNull
     public static EconomyUtil getEconomyUtil(){
         return economyUtil;
     }
 
-    public static EconomyUtil setEconomyUtil(@Nullable EconomyUtil e){
+    public static EconomyUtil setEconomyUtil(@NotNull EconomyUtil e){
         economyUtil = e;
         return e;
     }
 
 
-    @Nullable
+    @NotNull
+    public static NotificationsHandler getNotificationsHandler(){
+        return notificationsHandler;
+    }
+
+    public static NotificationsHandler setNotificationsHandler(@NotNull NotificationsHandler e){
+        notificationsHandler = e;
+        return e;
+    }
+
+
+    @NotNull
     public static VictoryUtil getVictoryUtil(){
         return victoryUtil;
     }
 
-    public static VictoryUtil setVictoryUtil(@Nullable VictoryUtil v){
+    public static VictoryUtil setVictoryUtil(@NotNull VictoryUtil v){
         victoryUtil = v;
         return v;
     }
 
 
-    @Nullable
+    @NotNull
     public static GameUtil getGameUtil(){
         return gameUtil;
     }
 
-    public static GameUtil setGameUtil(@Nullable GameUtil c){
+    public static GameUtil setGameUtil(@NotNull GameUtil c){
         gameUtil = c;
         return c;
     }
 
 
-    @Nullable
+    @NotNull
     public static InvSession getInvSession(){
         return invSession;
     }
 
-    public static InvSession setInvSession(@Nullable InvSession i){
+    public static InvSession setInvSession(@NotNull InvSession i){
         invSession = i;
         return i;
     }
