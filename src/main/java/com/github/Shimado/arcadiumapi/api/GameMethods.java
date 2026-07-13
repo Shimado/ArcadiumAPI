@@ -43,13 +43,14 @@ public interface GameMethods {
      * This may include refunding bets if the game has not started yet
      * and clearing player-related session data.
      *
-     * @param player     the player who closed the GUI
-     * @param session    the inventory session containing game-related data
-     * @param fullClose  whether the GUI is being fully closed instead of returning to a previous menu
+     * @param player               the player who closed the GUI
+     * @param session              the inventory session containing game-related data
+     * @param fullClose            whether the GUI is being fully closed instead of returning to a previous menu
+     * @param refundIfGameActive   should the player's bet be returned if the game was launched
      *
      * @return {@code true} if the game was fully closed, otherwise {@code false}
      */
-    boolean closeGUI(@NotNull Player player, @NotNull ISession session, boolean fullClose);
+    boolean closeGUI(@NotNull Player player, @NotNull ISession session, boolean fullClose, boolean refundIfGameActive);
 
 
     /**
