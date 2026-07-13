@@ -8,24 +8,80 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
+/**
+ * Represents a game notification sent from one player to another,
+ * optionally carrying a bet and an item associated with it.
+ */
 public interface Notification {
 
+    /**
+     * Returns the unique identifier of this notification.
+     *
+     * @return the notification's UUID
+     */
     @NotNull
     UUID getUUID();
 
+    /**
+     * Returns the player who sent this notification.
+     *
+     * @return the sender of the notification
+     */
     @NotNull
     Player getSender();
 
+    /**
+     * Returns the player who received this notification.
+     *
+     * @return the recipient of the notification
+     */
     @NotNull
     Player getRecipient();
 
+    /**
+     * Returns the name of the game this notification is related to.
+     *
+     * @return the game name
+     */
     @NotNull
     String getGameName();
 
+    /**
+     * Returns the item that will be displayed as the notification's icon
+     * in the notifications GUI.
+     *
+     * @return the item representing this notification's icon in the GUI
+     */
     @NotNull
     ItemStack getItem();
 
+    /**
+     * Returns the bet placed by the sender, if any.
+     *
+     * @return the sender's bet, or {@code null} if no bet was placed
+     */
     @Nullable
     GameBet getSenderBet();
+
+    /**
+     * Returns the instance of the lifecycle responsible for this
+     * notification's lifetime, after which the notification becomes
+     * inactive. (CycleTask from BasicUtils library)
+     *
+     * @return the lifecycle instance bound to this notification, or
+     * {@code null} if none is set
+     */
+    @Nullable
+    Object getLifeTimeCycleID();
+
+    /**
+     * Sets the instance of the lifecycle responsible for this
+     * notification's lifetime, after which the notification becomes
+     * inactive. (CycleTask from BasicUtils library)
+     *
+     * @param lifeTimeCycleID the lifecycle instance to bind to this
+     *                        notification, or {@code null} to clear it
+     */
+    void setLifeTimeCycleID(@Nullable Object lifeTimeCycleID);
 
 }
