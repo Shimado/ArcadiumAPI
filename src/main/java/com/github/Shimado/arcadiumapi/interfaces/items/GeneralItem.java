@@ -55,7 +55,8 @@ public interface GeneralItem {
      *
      * @return the custom model data integer
      */
-    int getCustomModelData();
+    @NotNull
+    Object getCustomModelData();
 
 
     /**

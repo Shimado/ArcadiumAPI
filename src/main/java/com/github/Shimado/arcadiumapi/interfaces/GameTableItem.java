@@ -49,7 +49,8 @@ public interface GameTableItem {
      *
      * @return the custom model data value
      */
-    int getCustomModelData();
+    @NotNull
+    Object getCustomModelData();
 
 
     /**
