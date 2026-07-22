@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * Represents a general item.
- * Provides common item properties such as slots in the GUI, material, title, lore, and custom model data.
+ * Provides common item properties such as slots in the GUI, material, title, lore, glowing and custom model data.
  */
 public interface GeneralItem {
 
@@ -47,6 +47,14 @@ public interface GeneralItem {
      */
     @NotNull
     List<String> getLore();
+
+
+    /**
+     * Returns whether the item will be highlighted or not.
+     *
+     * @return whether the item will be highlighted or not
+     */
+    boolean isGlowing();
 
 
     /**
