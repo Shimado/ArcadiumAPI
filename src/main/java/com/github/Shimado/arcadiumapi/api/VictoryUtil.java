@@ -25,7 +25,7 @@ public interface VictoryUtil {
      * <p>
      * Rewards the player, updates statistics and ratings,
      * and handles table-related payout logic.
-     * Chip information is not automatically cleared after execution.
+     * Bet information is not automatically cleared after execution.
      *
      * @param player          the winning player
      * @param bet             the player's bet
@@ -43,7 +43,7 @@ public interface VictoryUtil {
     /**
      * Processes a player victory using a placed game table instance.
      * <p>
-     * Chip information is not automatically cleared after execution.
+     * Bet information is not automatically cleared after execution.
      *
      * @param player         the winning player
      * @param bet            the player's bet
@@ -60,7 +60,7 @@ public interface VictoryUtil {
     /**
      * Processes a victory where the player wins bets from other players.
      * <p>
-     * Chip information is not automatically cleared after execution.
+     * Bet information is not automatically cleared after execution.
      *
      * @param player          the winning player
      * @param bet             the player's primary bet
@@ -78,7 +78,7 @@ public interface VictoryUtil {
      * Processes a victory where the player wins bets from other players
      * using a placed game table instance.
      * <p>
-     * Chip information is not automatically cleared after execution.
+     * Bet information is not automatically cleared after execution.
      *
      * @param player         the winning player
      * @param bet            the player's primary bet
@@ -96,7 +96,7 @@ public interface VictoryUtil {
      * Processes a player defeat.
      * <p>
      * Updates statistics, ratings, and other related systems.
-     * Chip information is not automatically cleared after execution.
+     * Bet information is not automatically cleared after execution.
      *
      * @param player         the losing player
      * @param bet            the player's bet
@@ -114,7 +114,7 @@ public interface VictoryUtil {
     /**
      * Processes a game draw.
      * <p>
-     * Chip information is not automatically cleared after execution.
+     * Bet information is not automatically cleared after execution.
      *
      * @param player       the player involved in the draw
      * @param bet          the player's bet

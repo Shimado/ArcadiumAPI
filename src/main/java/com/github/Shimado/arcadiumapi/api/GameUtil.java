@@ -3,6 +3,8 @@ package com.github.Shimado.arcadiumapi.api;
 import com.github.Shimado.arcadiumapi.instances.ArcadiumGame;
 import com.github.Shimado.arcadiumapi.instances.ArcadiumGamePage;
 import com.github.Shimado.arcadiumapi.instances.GameBet;
+import com.github.Shimado.arcadiumapi.instances.duel.queue.DuelQueueHandler;
+import com.github.Shimado.arcadiumapi.instances.duel.sessions.DuelGameSessionsHandler;
 import com.github.Shimado.arcadiumapi.instances.singleplayer.SingleplayerGameSession;
 import com.github.Shimado.arcadiumapi.interfaces.ItemRunnable;
 import com.github.Shimado.arcadiumapi.interfaces.PlacedGameTable;
@@ -37,7 +39,7 @@ public interface GameUtil<T extends ArcadiumGame & GameMethods> {
 
 
     /**
-     * Updates the GUI representation of a bet in a singleplayer game.
+     * Updates the GUI representation of a bet in the game.
      * <p>
      * Places the bet item into the inventory and updates related interactive elements,
      * such as active levers.
@@ -49,7 +51,7 @@ public interface GameUtil<T extends ArcadiumGame & GameMethods> {
      * @param itemToSet   the item to place into the bet slot, or {@code null} to clear it
      * @param slot        the inventory slot used for the bet
      */
-    void placeBetToSingleplayerGameInventory(@NotNull Player player, @NotNull Inventory inv, @NotNull T game, @NotNull ArcadiumGamePage gamePage, @Nullable ItemStack itemToSet, int slot);
+    void placeBetToGameInventory(@NotNull Player player, @NotNull Inventory inv, @NotNull T game, @NotNull ArcadiumGamePage gamePage, @Nullable ItemStack itemToSet, int slot);
 
 
     /**
@@ -63,14 +65,14 @@ public interface GameUtil<T extends ArcadiumGame & GameMethods> {
 
 
     /**
-     * Removes the bet display and related controls from a singleplayer game inventory.
+     * Removes the bet display and related controls from the game inventory.
      *
      * @param player      the player viewing the inventory
      * @param inv         the inventory to update
      * @param game        the target game instance
      * @param gamePage    the current game page
      */
-    void removeBetFromSingleplayerGameInventory(@NotNull Player player, @NotNull Inventory inv, @NotNull T game, @NotNull ArcadiumGamePage gamePage);
+    void removeBetFromGameInventory(@NotNull Player player, @NotNull Inventory inv, @NotNull T game, @NotNull ArcadiumGamePage gamePage);
 
 
     /**
@@ -94,7 +96,7 @@ public interface GameUtil<T extends ArcadiumGame & GameMethods> {
 
 
     /**
-     * Reloads all active singleplayer game sessions.
+     * Reloads all active game sessions.
      * <p>
      * Intended to be used during plugin reload operations.
      *
@@ -102,6 +104,18 @@ public interface GameUtil<T extends ArcadiumGame & GameMethods> {
      * @param runnable   optional action executed after reload handling
      */
     void reloadSingleplayerGame(@NotNull Map<UUID, SingleplayerGameSession> sessions, @Nullable Runnable runnable);
+
+
+    /**
+     * Reloads all active game sessions and queues.
+     * <p>
+     * Intended to be used during plugin reload operations.
+     *
+     * @param queueHandler    handler that manages all duel queues
+     * @param sessionHandler  handler that manages all active duel game sessions
+     */
+
+    void reloadDuelGame(@NotNull DuelQueueHandler queueHandler, @NotNull DuelGameSessionsHandler sessionHandler);
 
 
     /**
