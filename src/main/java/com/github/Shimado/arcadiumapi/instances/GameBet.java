@@ -6,6 +6,8 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.UUID;
+
 /**
  * Represents a player bet used within the game system.
  * <p>
@@ -22,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
  */
 public class GameBet {
 
-    private Player player;
+    private final UUID playerUUID;
     private int slot = -1;
     private double moneyBet = 0.0;
     private ItemStack itemsBet;
@@ -31,18 +33,24 @@ public class GameBet {
     /**
      * Creates a money-based bet with an assigned GUI slot.
      *
-     * @param player     the player who owns the bet
+     * @param playerUUID the UUID of the player who owns the bet
      * @param slot       the GUI slot associated with the bet
      * @param moneyBet   the money amount placed as a bet
      */
-    public GameBet(@NotNull Player player, int slot, double moneyBet){
-        this.player = player;
+    public GameBet(@NotNull UUID playerUUID, int slot, double moneyBet){
+        this.playerUUID = playerUUID;
         this.slot = slot;
         this.moneyBet = moneyBet;
     }
 
-    public GameBet(@NotNull Player player, double moneyBet){
-        this.player = player;
+    /**
+     * Creates a money-based bet without an assigned GUI slot.
+     *
+     * @param playerUUID the UUID of the player who owns the bet
+     * @param moneyBet   the money amount placed as a bet
+     */
+    public GameBet(@NotNull UUID playerUUID, double moneyBet){
+        this.playerUUID = playerUUID;
         this.moneyBet = moneyBet;
     }
 
@@ -50,18 +58,24 @@ public class GameBet {
     /**
      * Creates an item-based bet with an assigned GUI slot.
      *
-     * @param player     the player who owns the bet
+     * @param playerUUID the UUID of the player who owns the bet
      * @param slot       the GUI slot associated with the bet
      * @param itemsBet   the item stack placed as a bet
      */
-    public GameBet(@NotNull Player player, int slot, ItemStack itemsBet){
-        this.player = player;
+    public GameBet(@NotNull UUID playerUUID, int slot, ItemStack itemsBet){
+        this.playerUUID = playerUUID;
         this.slot = slot;
         this.itemsBet = itemsBet;
     }
 
-    public GameBet(@NotNull Player player, ItemStack itemsBet){
-        this.player = player;
+    /**
+     * Creates an item-based bet without an assigned GUI slot.
+     *
+     * @param playerUUID the UUID of the player who owns the bet
+     * @param itemsBet   the item stack placed as a bet
+     */
+    public GameBet(@NotNull UUID playerUUID, ItemStack itemsBet){
+        this.playerUUID = playerUUID;
         this.itemsBet = itemsBet;
     }
 
@@ -69,20 +83,20 @@ public class GameBet {
     /**
      * Creates an empty bet for the specified player.
      *
-     * @param player the player who owns the bet
+     * @param playerUUID the UUID of the player who owns the bet
      */
-    public GameBet(@NotNull Player player){
-        this.player = player;
+    public GameBet(@NotNull UUID playerUUID){
+        this.playerUUID = playerUUID;
     }
 
 
     /**
-     * Gets the owner of this bet.
+     * Gets the UUID of the owner of this bet.
      *
-     * @return the player who owns the bet
+     * @return the UUID of the player who owns the bet
      */
-    public Player getPlayer() {
-        return player;
+    public UUID getPlayerUUID() {
+        return playerUUID;
     }
 
 
@@ -95,6 +109,11 @@ public class GameBet {
         return slot;
     }
 
+    /**
+     * Sets the GUI slot associated with this bet.
+     *
+     * @param slot the GUI slot to assign
+     */
     public void setSlot(int slot) {
         this.slot = slot;
     }
@@ -109,14 +128,31 @@ public class GameBet {
         return moneyBet;
     }
 
+    /**
+     * Sets the money-based bet amount.
+     *
+     * @param moneyBet the new money bet value
+     */
     public void setMoneyBet(double moneyBet) {
         this.moneyBet = moneyBet;
     }
 
+    /**
+     * Adds the given amount to the current money bet.
+     *
+     * @param moneyBet the amount to add
+     */
     public void addMoneyBet(double moneyBet) {
         this.moneyBet += moneyBet;
     }
 
+    /**
+     * Subtracts the given amount from the current money bet.
+     * <p>
+     * If the resulting value would be negative, it is clamped to {@code 0}.
+     *
+     * @param moneyBet the amount to subtract
+     */
     public void removeMoneyBet(double moneyBet) {
         this.moneyBet -= moneyBet;
         if (this.moneyBet < 0) this.moneyBet = 0;
@@ -133,6 +169,11 @@ public class GameBet {
         return itemsBet;
     }
 
+    /**
+     * Sets the item-based bet.
+     *
+     * @param itemsBet the item stack to use as a bet, or {@code null} to clear it
+     */
     public void setItemsBet(@Nullable ItemStack itemsBet) {
         this.itemsBet = itemsBet;
     }

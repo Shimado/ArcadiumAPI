@@ -7,6 +7,8 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.UUID;
+
 /**
  * Represents a single duel game session between two players.
  * <p>
@@ -16,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
  */
 public class DuelGameSession {
 
-    private Player player;
+    private UUID playerUUID;
     private ISession session;
     private GameBet bet;
     private Object cycle;
@@ -27,8 +29,8 @@ public class DuelGameSession {
     private int ratingToAdd = 0;
     private int victoryStatus = 0;
 
-    public DuelGameSession(@NotNull Player player, @NotNull ISession session, @NotNull GameBet bet){
-        this.player = player;
+    public DuelGameSession(@NotNull UUID playerUUID, @NotNull ISession session, @NotNull GameBet bet){
+        this.playerUUID = playerUUID;
         this.session = session;
         this.bet = bet;
     }
@@ -38,17 +40,17 @@ public class DuelGameSession {
 
 
     /**
-     * Gets the player associated with this duel game session.
+     * Gets the UUID of the player associated with this duel game session.
      *
-     * @return the player, or {@code null} if none has been set
+     * @return the UUID of the player who owns this duel game session
      */
     @Nullable
-    public Player getPlayer(){
-        return player;
+    public UUID getPlayer(){
+        return playerUUID;
     }
 
-    public void setPlayer(@Nullable Player player) {
-        this.player = player;
+    public void setPlayer(@Nullable UUID playerUUID) {
+        this.playerUUID = playerUUID;
     }
 
 

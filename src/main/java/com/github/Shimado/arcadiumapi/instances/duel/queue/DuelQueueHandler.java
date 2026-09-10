@@ -1,7 +1,6 @@
 package com.github.Shimado.arcadiumapi.instances.duel.queue;
 
 import com.github.Shimado.arcadiumapi.interfaces.ISession;
-import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -26,12 +25,12 @@ public abstract class DuelQueueHandler<Q extends DuelQueue> {
     /**
      * Creates a new queue instance for the given player and session.
      *
-     * @param player     the player for whom the queue is created
-     * @param session    the session associated with the queue
-     * @param withoutBet {@code true} if the queue should not require a bet
+     * @param playerUUID   the UUID of the player who owns this queue entry
+     * @param session      the session associated with the queue
+     * @param withoutBet   {@code true} if the queue should not require a bet
      * @return the newly created queue instance
      */
-    protected abstract Q createQueue(@NotNull Player player, @NotNull ISession session, boolean withoutBet);
+    protected abstract Q createQueue(@NotNull UUID playerUUID, @NotNull ISession session, boolean withoutBet);
 
 
     /**
