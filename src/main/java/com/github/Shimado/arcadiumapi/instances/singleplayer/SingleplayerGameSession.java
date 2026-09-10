@@ -6,6 +6,8 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.UUID;
+
 /**
  * Represents a single-player game session.
  * <p>
@@ -28,8 +30,8 @@ public class SingleplayerGameSession {
     private long bestScore = 0;
     private long score = 0;
 
-    public SingleplayerGameSession(@NotNull Player player, boolean withoutBet){
-        this.bet = new GameBet(player);
+    public SingleplayerGameSession(@NotNull UUID playerUUID, boolean withoutBet){
+        this.bet = new GameBet(playerUUID);
         this.withoutBet = withoutBet;
     }
 
