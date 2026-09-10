@@ -45,11 +45,11 @@ public class DuelGameSession {
      * @return the UUID of the player who owns this duel game session
      */
     @Nullable
-    public UUID getPlayer(){
+    public UUID getPlayerUUID(){
         return playerUUID;
     }
 
-    public void setPlayer(@Nullable UUID playerUUID) {
+    public void setPlayerUUID(@Nullable UUID playerUUID) {
         this.playerUUID = playerUUID;
     }
 
