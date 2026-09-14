@@ -95,15 +95,15 @@ public interface NotificationsHandler {
      * Sends a game notification from one player to another, optionally
      * including a bet.
      *
-     * @param sender    the player sending the notification
-     * @param recipient the player receiving the notification
-     * @param gameName  the name of the game the notification refers to
-     * @param bet       the bet associated with the notification, or
-     *                  {@code null} if there is no bet
+     * @param sender        the player sending the notification
+     * @param recipientUUID the UUID of the recipient receiving the notification
+     * @param gameName      the name of the game the notification refers to
+     * @param bet           the bet associated with the notification, or
+     *                      {@code null} if there is no bet
      * @return {@code true} if the notification was successfully sent,
      * {@code false} otherwise
      */
-    boolean sendNotification(@NotNull Player sender, @NotNull Player recipient, @NotNull String gameName, @Nullable GameBet bet);
+    boolean sendNotification(@NotNull Player sender, @NotNull UUID recipientUUID, @NotNull String gameName, @Nullable GameBet bet);
 
 
     /**
