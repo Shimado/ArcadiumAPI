@@ -23,20 +23,20 @@ public interface Notification {
     UUID getUUID();
 
     /**
-     * Returns the player who sent this notification.
+     * Returns the UUID of the player who sent this notification.
      *
-     * @return the sender of the notification
+     * @return the UUID of the sender of the notification
      */
     @NotNull
-    Player getSender();
+    UUID getSenderUUID();
 
     /**
-     * Returns the player who received this notification.
+     * Returns the UUID of the player who received this notification.
      *
-     * @return the recipient of the notification
+     * @return the UUID of the recipient of the notification
      */
     @NotNull
-    Player getRecipient();
+    UUID getRecipientUUID();
 
     /**
      * Returns the name of the game this notification is related to.
