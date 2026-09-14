@@ -3,6 +3,7 @@ package com.github.Shimado.arcadiumapi.instances.duel.sessions;
 import com.github.Shimado.arcadiumapi.instances.GameBet;
 import com.github.Shimado.arcadiumapi.interfaces.CycleRunnable;
 import com.github.Shimado.arcadiumapi.interfaces.ISession;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -51,6 +52,11 @@ public class DuelGameSession {
 
     public void setPlayerUUID(@Nullable UUID playerUUID) {
         this.playerUUID = playerUUID;
+    }
+
+    @Nullable
+    public Player getPlayer(){
+        return playerUUID == null ? null : Bukkit.getPlayer(playerUUID);
     }
 
 

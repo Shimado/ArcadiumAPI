@@ -4,6 +4,8 @@ import com.github.Shimado.arcadiumapi.enums.RivalType;
 import com.github.Shimado.arcadiumapi.instances.GameBet;
 import com.github.Shimado.arcadiumapi.interfaces.CycleRunnable;
 import com.github.Shimado.arcadiumapi.interfaces.ISession;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -60,6 +62,11 @@ public class DuelQueue {
     @NotNull
     public UUID getPlayerUUID() {
         return playerUUID;
+    }
+
+    @Nullable
+    public Player getPlayer(){
+        return playerUUID == null ? null : Bukkit.getPlayer(playerUUID);
     }
 
 
