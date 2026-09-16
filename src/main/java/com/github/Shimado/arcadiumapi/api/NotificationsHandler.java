@@ -56,12 +56,12 @@ public interface NotificationsHandler {
      * to a specific game.
      *
      * @param recipientUUID the UUID of the recipient
-     * @param gameName      the name of the game
-     * @return a deque of the recipient's notifications for the given game;
+     * @param gameID        the ID of the game
+     * @return a deque of the recipient's notifications for the given UUID;
      * an empty deque if there are none
      */
     @NotNull
-    Deque<@NotNull Notification> getRecipientGameNotifications(@NotNull UUID recipientUUID, @NotNull String gameName);
+    Deque<@NotNull Notification> getRecipientGameNotifications(@NotNull UUID recipientUUID, @NotNull String gameID);
 
 
     /**
@@ -70,12 +70,12 @@ public interface NotificationsHandler {
      *
      * @param recipientUUID the UUID of the recipient
      * @param senderUUID    the UUID of the sender
-     * @param gameName      the name of the game
+     * @param gameID        the ID of the game
      * @return the found notification, or {@code null} if no such
      * notification exists
      */
     @Nullable
-    Notification getRecipientGameNotifications(@NotNull UUID recipientUUID, @NotNull UUID senderUUID, @NotNull String gameName);
+    Notification getRecipientGameNotifications(@NotNull UUID recipientUUID, @NotNull UUID senderUUID, @NotNull String gameID);
 
 
     /**
@@ -83,12 +83,12 @@ public interface NotificationsHandler {
      * a specific game.
      *
      * @param senderUUID the UUID of the sender
-     * @param gameName   the name of the game
+     * @param gameID     the ID of the game
      * @return a deque of notifications sent by the given sender for the
-     * given game; an empty deque if there are none
+     * given UUID; an empty deque if there are none
      */
     @NotNull
-    Deque<@NotNull Notification> getSenderGameNotifications(@NotNull UUID senderUUID, @NotNull String gameName);
+    Deque<@NotNull Notification> getSenderGameNotifications(@NotNull UUID senderUUID, @NotNull String gameID);
 
 
     /**
@@ -97,13 +97,13 @@ public interface NotificationsHandler {
      *
      * @param sender        the player sending the notification
      * @param recipientUUID the UUID of the recipient receiving the notification
-     * @param gameName      the name of the game the notification refers to
+     * @param gameID        the ID of the game the notification refers to
      * @param bet           the bet associated with the notification, or
      *                      {@code null} if there is no bet
      * @return {@code true} if the notification was successfully sent,
      * {@code false} otherwise
      */
-    boolean sendNotification(@NotNull Player sender, @NotNull UUID recipientUUID, @NotNull String gameName, @Nullable GameBet bet);
+    boolean sendNotification(@NotNull Player sender, @NotNull UUID recipientUUID, @NotNull String gameID, @Nullable GameBet bet);
 
 
     /**

@@ -39,12 +39,12 @@ public interface Notification {
     UUID getRecipientUUID();
 
     /**
-     * Returns the name of the game this notification is related to.
+     * Returns the ID of the game this notification is related to.
      *
-     * @return the game name
+     * @return the game ID
      */
     @NotNull
-    String getGameName();
+    String getGameID();
 
     /**
      * Returns the item that will be displayed as the notification's icon
