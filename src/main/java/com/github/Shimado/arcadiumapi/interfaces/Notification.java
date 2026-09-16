@@ -47,15 +47,6 @@ public interface Notification {
     String getGameID();
 
     /**
-     * Returns the item that will be displayed as the notification's icon
-     * in the notifications GUI.
-     *
-     * @return the item representing this notification's icon in the GUI
-     */
-    @NotNull
-    ItemStack getItem();
-
-    /**
      * Returns the bet placed by the sender, if any.
      *
      * @return the sender's bet, or {@code null} if no bet was placed
