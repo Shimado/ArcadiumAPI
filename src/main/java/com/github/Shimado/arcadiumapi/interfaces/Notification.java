@@ -55,6 +55,13 @@ public interface Notification {
     GameBet getSenderBet();
 
     /**
+     * Returns the time at which the notification was sent.
+     *
+     * @return notification sending time
+     */
+    long getCreatedAt();
+
+    /**
      * Returns the instance of the lifecycle responsible for this
      * notification's lifetime, after which the notification becomes
      * inactive. (CycleTask from BasicUtils library)
