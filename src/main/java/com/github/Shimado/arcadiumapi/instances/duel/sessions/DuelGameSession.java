@@ -19,9 +19,10 @@ import java.util.UUID;
  */
 public class DuelGameSession {
 
-    private UUID playerUUID;
-    private ISession session;
-    private GameBet bet;
+    private final UUID playerUUID;
+    private final ISession session;
+    private final GameBet bet;
+    private final boolean isBot;
     private Object cycle;
     private int cycleTime = 0;
     private boolean canClick = false;
@@ -30,14 +31,19 @@ public class DuelGameSession {
     private int ratingToAdd = 0;
     private int victoryStatus = 0;
 
-    public DuelGameSession(@NotNull UUID playerUUID, @NotNull ISession session, @NotNull GameBet bet){
+    public DuelGameSession(@NotNull UUID playerUUID, @Nullable ISession session, @Nullable GameBet bet){
         this.playerUUID = playerUUID;
         this.session = session;
         this.bet = bet;
+        this.isBot = false;
     }
 
-    public DuelGameSession(){}
-
+    public DuelGameSession(@NotNull UUID playerUUID){
+        this.playerUUID = playerUUID;
+        this.session = null;
+        this.bet = null;
+        this.isBot = true;
+    }
 
 
     /**
@@ -48,10 +54,6 @@ public class DuelGameSession {
     @Nullable
     public UUID getPlayerUUID(){
         return playerUUID;
-    }
-
-    public void setPlayerUUID(@Nullable UUID playerUUID) {
-        this.playerUUID = playerUUID;
     }
 
     @Nullable
@@ -70,10 +72,6 @@ public class DuelGameSession {
         return session;
     }
 
-    public void setSession(@Nullable ISession session) {
-        this.session = session;
-    }
-
 
     /**
      * Gets the bet associated with this duel game session.
@@ -85,8 +83,14 @@ public class DuelGameSession {
         return bet;
     }
 
-    public void setBet(@Nullable GameBet bet) {
-        this.bet = bet;
+
+    /**
+     * Checks whether the session belongs to a bot.
+     *
+     * @return {@code true} if the session belongs to a bot.
+     * **/
+    public boolean isBot() {
+        return isBot;
     }
 
 
