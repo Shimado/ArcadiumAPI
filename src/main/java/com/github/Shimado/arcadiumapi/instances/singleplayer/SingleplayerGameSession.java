@@ -234,14 +234,6 @@ public class SingleplayerGameSession {
         this.bestScore = bestScore;
     }
 
-    public void addBestScore(){
-        bestScore++;
-    }
-
-    public void addBestScore(long bestScore){
-        this.bestScore += bestScore;
-    }
-
 
     /**
      * Gets the current session score.
@@ -254,14 +246,23 @@ public class SingleplayerGameSession {
 
     public void setScore(long score) {
         this.score = score;
+        if(score > bestScore){
+            bestScore = score;
+        }
     }
 
     public void addScore(){
         score++;
+        if(score > bestScore){
+            bestScore = score;
+        }
     }
 
     public void addScore(long score){
         this.score += score;
+        if(this.score > bestScore){
+            bestScore = this.score;
+        }
     }
 
 }
