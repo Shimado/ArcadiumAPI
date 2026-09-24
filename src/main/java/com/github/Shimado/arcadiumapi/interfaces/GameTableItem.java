@@ -54,6 +54,14 @@ public interface GameTableItem {
 
 
     /**
+     * Gets the Y offset of the table textured armor stand.
+     *
+     * @return the Y offset of the table textured armor stand
+     */
+    double getOffset();
+
+
+    /**
      * Gets the game mode associated with this table item.
      * <p>
      * May return {@code "ALL"} if the table item
