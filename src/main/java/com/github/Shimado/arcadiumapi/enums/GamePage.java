@@ -6,6 +6,7 @@ public enum GamePage {
     PLAYERS,
     SEARCH,
     ACCEPT_GAME,
+    LEVELS,
     GAME,
     VICTORY,
     DEFEAT,
