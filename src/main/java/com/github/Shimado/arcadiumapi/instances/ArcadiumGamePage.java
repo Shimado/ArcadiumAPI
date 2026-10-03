@@ -7,7 +7,6 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +14,7 @@ import java.util.Map;
 public class ArcadiumGamePage {
 
     private final int guiSize;
-    private final String guiTitle;
+    private final List<String> guiTitles;
 
     private GeneralItem addMoneyBetItem;
     private GeneralItem removeMoneyBetItem;
@@ -42,7 +41,13 @@ public class ArcadiumGamePage {
 
     public ArcadiumGamePage(int guiSize, @NotNull String guiTitle){
         this.guiSize = guiSize;
-        this.guiTitle = guiTitle;
+        this.guiTitles = List.of(guiTitle);
+    }
+
+
+    public ArcadiumGamePage(int guiSize, @NotNull List<String> guiTitles){
+        this.guiSize = guiSize;
+        this.guiTitles = guiTitles;
     }
 
 
@@ -52,8 +57,8 @@ public class ArcadiumGamePage {
 
 
     @NotNull
-    public String getGuiTitle() {
-        return guiTitle;
+    public List<String> getGuiTitles() {
+        return guiTitles;
     }
 
 
