@@ -26,6 +26,7 @@ public class SingleplayerGameSession {
     private boolean canClick = true;
     private boolean started = false;
     private boolean ended = false;
+    private boolean victory = false;
     private int page = 1;
     private long bestScore = 0;
     private long score = 0;
@@ -204,6 +205,20 @@ public class SingleplayerGameSession {
 
     public void setEnded(boolean ended) {
         this.ended = ended;
+    }
+
+
+    /**
+     * Checks whether the game has been won.
+     *
+     * @return {@code true} if the game has been won
+     */
+    public boolean isVictory() {
+        return victory;
+    }
+
+    public void setVictory(boolean victory) {
+        this.victory = victory;
     }
 
 
