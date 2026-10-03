@@ -14,7 +14,7 @@ import java.util.Map;
 public class ArcadiumGamePage {
 
     private final int guiSize;
-    private final List<String> guiTitles;
+    private List<String> guiTitles;
 
     private GeneralItem addMoneyBetItem;
     private GeneralItem removeMoneyBetItem;
@@ -59,6 +59,10 @@ public class ArcadiumGamePage {
     @NotNull
     public List<String> getGuiTitles() {
         return guiTitles;
+    }
+
+    public void setGuiTitles(@NotNull List<String> guiTitles){
+        this.guiTitles = guiTitles;
     }
 
 
